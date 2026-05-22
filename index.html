@@ -1982,6 +1982,44 @@ body.modal-open { overflow: hidden; }
   .ll-meta { font-size: 13px; }
 }
 
+/* ll-compare: two link rows as side-by-side comparison cards (Claude vs Taalas).
+   Stays 2-col down to very narrow widths because the comparison only reads
+   when the two items sit next to each other. */
+.link-list.ll-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 14px;
+}
+.ll-compare .ll-label {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+.ll-compare .ll-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  grid-template-columns: none;
+  padding: 16px 18px 18px;
+  background: var(--paper-2);
+  border: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 2px;
+  align-items: stretch;
+}
+.ll-compare .ll-row:last-child { border-bottom: 1px solid var(--hairline); }
+.ll-compare .ll-row:hover { padding-left: 18px; transform: translateY(-1px); }
+.ll-compare .ll-claude { border-left: 3px solid var(--teal); }
+.ll-compare .ll-taalas { border-left: 3px solid var(--vermillion); }
+.ll-compare .ll-name { font-size: 22px; }
+.ll-compare .ll-url { font-size: 12px; }
+.ll-compare .ll-meta { font-size: 13px; line-height: 1.45; margin-top: 4px; }
+@media (max-width: 460px) {
+  .link-list.ll-compare { grid-template-columns: 1fr; }
+}
+
 
 /* ───────────────────────────────────────────
    THOUSAND-USERS RULE (section 08 callout)
@@ -3545,14 +3583,14 @@ body.modal-open { overflow: hidden; }
         <div class="sp-foot">Bars are log-scale &mdash; the actual gap is ~1,700&times;. The race button animates each bar at a speed proportional to real hardware.</div>
       </div>
 
-      <div class="link-list">
+      <div class="link-list ll-compare">
         <div class="ll-label">See the difference yourself &mdash; open both</div>
-        <a class="ll-row" href="https://claude.ai" target="_blank" rel="noopener">
+        <a class="ll-row ll-claude" href="https://claude.ai" target="_blank" rel="noopener">
           <span class="ll-name">Claude</span>
           <span class="ll-url">claude.ai</span>
           <span class="ll-meta">Runs on Cloud GPUs &middot; normal-speed reference (~100&ndash;300 tok/s)</span>
         </a>
-        <a class="ll-row" href="https://chatjimmy.ai" target="_blank" rel="noopener">
+        <a class="ll-row ll-taalas" href="https://chatjimmy.ai" target="_blank" rel="noopener">
           <span class="ll-name">Taalas (chatjimmy)</span>
           <span class="ll-url">chatjimmy.ai</span>
           <span class="ll-meta">Model literally burned into silicon &middot; ~17,000 tok/s</span>
