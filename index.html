@@ -2681,8 +2681,19 @@ body.modal-open { overflow: hidden; }
   margin: 0;
 }
 
+/* Keep 3-col much longer — sentences are more readable wrapping than stacking
+   into single-column rows. Only collapse when columns get truly too narrow. */
 @media (max-width: 900px) {
-  .bp-grid { grid-template-columns: 1fr; gap: 14px; }
+  .bp-grid { gap: 12px; }
+  .bp-card { padding: 14px 16px 16px; }
+}
+@media (max-width: 700px) {
+  .bp-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .bp-card.bp-card:nth-child(3) { grid-column: 1 / -1; }
+}
+@media (max-width: 460px) {
+  .bp-grid { grid-template-columns: 1fr; }
+  .bp-card.bp-card:nth-child(3) { grid-column: auto; }
 }
 
 
