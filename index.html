@@ -389,18 +389,29 @@ a { color: inherit; text-decoration: none; }
   color: var(--vermillion);
   font-variation-settings: "SOFT" 100, "opsz" 144;
 }
+.sec-title-xl { font-size: clamp(48px, 6.8vw, 96px); }
+/* Promoted payoff line acting as the action-slide headline */
+.payoff-lead {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(30px, 4.6vw, 62px);
+  line-height: 1.08; letter-spacing: -0.025em;
+  color: var(--ink); margin: 8px 0 18px;
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+  max-width: 1060px;
+}
+.payoff-lead em { font-style: normal; color: var(--vermillion); font-weight: 700; }
 
 .sec-lede {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(15px, 1.2vw, 18px);
-  line-height: 1.45;
+  font-size: clamp(20px, 2.4vw, 32px);
+  line-height: 1.35;
   color: var(--ink-2);
-  max-width: 760px;
-  margin-bottom: 20px;
-  font-variation-settings: "SOFT" 100, "opsz" 24;
+  max-width: 940px;
+  margin-bottom: 22px;
+  font-variation-settings: "SOFT" 60, "opsz" 36;
 }
-.sec-lede em { font-style: italic; }
+.sec-lede em { font-style: normal; color: var(--vermillion); font-weight: 700; font-size: 1.06em; }
 
 /* Thesis / statement slide */
 .thesis-wrap { max-width: 1040px; margin-top: 10px; }
@@ -413,7 +424,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink);
   font-variation-settings: "SOFT" 40, "opsz" 96;
 }
-.thesis em { font-style: italic; color: var(--vermillion); }
+.thesis em { font-style: italic; color: var(--vermillion); font-variation-settings: "SOFT" 30, "opsz" 18; font-weight: 600; }
 .thesis-sub {
   margin-top: 24px;
   font-family: var(--sans);
@@ -447,8 +458,12 @@ a { color: inherit; text-decoration: none; }
 .scenario { max-width: 1000px; margin-top: 12px; }
 .sc-problem {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(22px, 3vw, 38px); line-height: 1.35;
-  color: var(--muted);
+  font-size: clamp(27px, 3.8vw, 48px); line-height: 1.2;
+  color: var(--ink);
+}
+.sc-problem em {
+  font-style: italic; color: var(--vermillion-2); font-weight: 600;
+  font-variation-settings: "SOFT" 30, "opsz" 18;
 }
 .sc-solution {
   font-family: var(--serif); font-weight: 500;
@@ -456,13 +471,97 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.02em; color: var(--ink); margin-top: 24px;
   font-variation-settings: "SOFT" 40, "opsz" 96;
 }
-.sc-solution em { font-style: italic; color: var(--vermillion); }
+.sc-solution em { font-style: italic; color: var(--vermillion); font-variation-settings: "SOFT" 30, "opsz" 18; font-weight: 600; }
 .sc-payoff {
   font-family: var(--sans); font-weight: 600;
   font-size: clamp(18px, 2.3vw, 28px); line-height: 1.35;
   color: var(--ink-2); margin-top: 24px;
 }
 .sc-payoff em { font-style: italic; color: var(--vermillion-2); }
+
+/* Before / After phase chip in the eyebrow */
+.phase-badge {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 700;
+  padding: 4px 10px; border-radius: 100px;
+  margin-left: 4px;
+  line-height: 1;
+}
+.phase-before { background: var(--paper-3); color: var(--ink-2); border: 1px solid var(--hairline); }
+.phase-after  { background: var(--vermillion); color: var(--paper); border: 1px solid var(--vermillion); }
+.section[data-phase="before"] .sec-eyebrow .num { color: var(--muted); }
+.section[data-phase="after"]  .sec-eyebrow .num { color: var(--vermillion); }
+
+/* Reveal leading question ("If you knew AI?") — big serif heading on each reveal */
+.reveal-q {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(30px, 4.2vw, 54px);
+  line-height: 1.05; letter-spacing: -0.025em;
+  color: var(--ink); margin: 6px 0 14px;
+  font-variation-settings: "SOFT" 40, "opsz" 80;
+}
+.reveal-q em { font-style: italic; color: var(--vermillion); font-weight: 600; font-variation-settings: "SOFT" 30, "opsz" 18; }
+
+/* Reveal kicker — "Camera-shy era? [CANCELLED]" punchline on reveal slides */
+.reveal-kicker {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(32px, 4.6vw, 58px);
+  line-height: 1.1; letter-spacing: -0.025em;
+  color: var(--ink); margin: 18px 0 0;
+  font-variation-settings: "SOFT" 40, "opsz" 80;
+  max-width: 1040px;
+}
+.reveal-kicker .cancelled {
+  display: inline-block;
+  background: var(--vermillion); color: var(--paper);
+  font-family: var(--mono); font-size: 0.46em; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 7px 14px 8px; border-radius: 4px;
+  margin-left: 12px; vertical-align: middle;
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 0 var(--vermillion-2);
+}
+
+/* Reusable bullet list (closing + thousand-rule + similar) */
+.big-bullets { list-style: none; padding: 0; margin: 14px 0 0; max-width: 820px; }
+.big-bullets li {
+  font-family: var(--sans); font-size: clamp(17px, 1.9vw, 24px);
+  line-height: 1.4; color: var(--ink-2);
+  padding-left: 22px; position: relative; margin-bottom: 10px;
+}
+.big-bullets li::before {
+  content: ''; position: absolute; left: 2px; top: 0.65em;
+  width: 8px; height: 2px; background: var(--vermillion);
+}
+.big-bullets li em { font-style: italic; color: var(--vermillion-2); font-weight: 600; }
+
+/* Spoken-out-loud heading (for "this is you..." style slides) */
+.spoken {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 14px 0 18px;
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+  max-width: 1040px;
+}
+.spoken em { font-style: italic; color: var(--vermillion); font-weight: 600; font-variation-settings: "SOFT" 30, "opsz" 18; }
+
+/* Example flowing sub-title (sits below the formal eyebrow on example slides) */
+.ex-subtitle {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 32px); line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--vermillion-2);
+  margin: 4px 0 14px;
+  font-variation-settings: "SOFT" 60, "opsz" 36;
+}
+.ex-subtitle::before {
+  content: ''; display: inline-block;
+  width: 32px; height: 2px; background: var(--vermillion); flex-shrink: 0;
+}
 
 /* Story photo slot — TEMP hand-drawn SVG; swap the <svg> for an <img> later */
 .story-photo {
@@ -481,6 +580,12 @@ a { color: inherit; text-decoration: none; }
 .lev { animation: levbob 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes levbob { 0%,100% { transform: translateY(-40px); } 50% { transform: translateY(-56px); } }
 @media (prefers-reduced-motion: reduce) { .lev { animation: none; transform: translateY(-48px); } }
+/* aura-farming boat kid sway */
+.boatkid { animation: sway 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center bottom; }
+@keyframes sway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+.aura-rings { animation: aurapulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes aurapulse { 0%,100% { transform: scale(0.82); opacity: 0.4; } 50% { transform: scale(1.15); opacity: 0.85; } }
+@media (prefers-reduced-motion: reduce) { .boatkid, .aura-rings { animation: none; } }
 
 /* Single hero tool (one tool per demo, max shock value) */
 .hero-tool {
@@ -496,7 +601,7 @@ a { color: inherit; text-decoration: none; }
 .ht-name .ht-arrow { font-size: .42em; color: var(--muted); vertical-align: middle; }
 .hero-tool:hover .ht-arrow { color: var(--vermillion); }
 .ht-url { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 8px; }
-.ht-line { font-family: var(--sans); font-size: clamp(16px,1.8vw,20px); line-height: 1.5; color: var(--ink-2); margin-top: 14px; }
+.ht-line { font-family: var(--sans); font-size: clamp(18px,2.2vw,26px); line-height: 1.4; color: var(--ink-2); margin-top: 16px; }
 .ht-line em { font-style: italic; color: var(--vermillion-2); font-weight: 600; }
 
 /* The "next" button — bottom right of every section */
@@ -592,6 +697,22 @@ a { color: inherit; text-decoration: none; }
   max-width: 720px;
   font-variation-settings: "SOFT" 60, "opsz" 24;
 }
+/* Stacked hero statements (each line its own beat) */
+.hero-stack { margin-top: 34px; max-width: 900px; }
+.hero-stack p {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.8vw, 38px);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 18px;
+  font-variation-settings: "SOFT" 50, "opsz" 48;
+}
+.hero-stack p:last-child { margin-bottom: 0; }
+.hero-stack p em { font-style: italic; color: var(--vermillion); font-weight: 600; font-variation-settings: "SOFT" 30, "opsz" 18; }
+.zero-sub p { margin: 0 0 10px; font-size: clamp(16px, 1.7vw, 22px); line-height: 1.4; color: var(--ink-2); }
+.zero-sub p:last-child { margin-bottom: 0; }
+.zero-sub p em { font-style: italic; color: var(--vermillion-2); font-weight: 600; }
+
 
 .hero-meta {
   margin-top: 32px;
@@ -1582,14 +1703,14 @@ a { color: inherit; text-decoration: none; }
 }
 .secret-callout .pull {
   display: block;
-  margin-top: 18px;
-  font-size: 0.46em;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--muted);
-  font-family: var(--serif);
-  line-height: 1.4;
-  font-variation-settings: "SOFT" 100, "opsz" 24;
+  margin-top: 22px;
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(17px, 1.9vw, 24px);
+  color: var(--ink-2);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
 }
 
 .secret-list {
@@ -4032,34 +4153,37 @@ body.modal-open { overflow: hidden; }
     </button>
     <div class="sn-menu" id="snMenu" role="menu" aria-label="Sections">
       <button class="dm-item active" type="button" role="menuitem"><span class="dm-num">00</span><span class="dm-name">Hello</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">01</span><span class="dm-name">The big idea</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">02</span><span class="dm-name">What AI can do</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">03</span><span class="dm-name">Stale playlist</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">04</span><span class="dm-name">New track</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">05</span><span class="dm-name">Make a song</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">06</span><span class="dm-name">Boring camera roll</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">07</span><span class="dm-name">The reveal</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">08</span><span class="dm-name">Superpower</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">09</span><span class="dm-name">Show in 5 min</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">10</span><span class="dm-name">One sentence</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">11</span><span class="dm-name">Build an app</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">12</span><span class="dm-name">Stuck on a chapter</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">13</span><span class="dm-name">Your own tutor</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">14</span><span class="dm-name">Homework</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">15</span><span class="dm-name">Deck due tomorrow</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">16</span><span class="dm-name">One-line deck</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">17</span><span class="dm-name">Slide decks</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">18</span><span class="dm-name">Gym + study</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">19</span><span class="dm-name">Make it a podcast</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">20</span><span class="dm-name">Podcast it</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">21</span><span class="dm-name">Camera-shy</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">22</span><span class="dm-name">Be on camera</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">23</span><span class="dm-name">Be anyone</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">24</span><span class="dm-name">The truth of building</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">25</span><span class="dm-name">Free to build</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">26</span><span class="dm-name">The bigger picture</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">27</span><span class="dm-name">What you get</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">28</span><span class="dm-name">End</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">01</span><span class="dm-name">Reality check</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">02</span><span class="dm-name">The big idea</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">03</span><span class="dm-name">What AI can do</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">04</span><span class="dm-name">This is you</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">05</span><span class="dm-name">New track</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">06</span><span class="dm-name">Make a song</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">07</span><span class="dm-name">Boring camera roll</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">08</span><span class="dm-name">The reveal</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">09</span><span class="dm-name">Superpower</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">10</span><span class="dm-name">Show in 5 min</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">11</span><span class="dm-name">One sentence</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">12</span><span class="dm-name">Build an app</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">13</span><span class="dm-name">Halftime</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">14</span><span class="dm-name">Stuck on a chapter</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">15</span><span class="dm-name">Your own tutor</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">16</span><span class="dm-name">Homework</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">17</span><span class="dm-name">Deck due tomorrow</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">18</span><span class="dm-name">One-line deck</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">19</span><span class="dm-name">Slide decks</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">20</span><span class="dm-name">Gym + study</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">21</span><span class="dm-name">Make it a podcast</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">22</span><span class="dm-name">Podcast it</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">23</span><span class="dm-name">Camera-shy</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">24</span><span class="dm-name">Be on camera</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">25</span><span class="dm-name">Be anyone</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">26</span><span class="dm-name">This is you, with AI</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">27</span><span class="dm-name">The truth of building</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">28</span><span class="dm-name">Free to build</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">29</span><span class="dm-name">The bigger picture</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">30</span><span class="dm-name">What you get</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">31</span><span class="dm-name">End</span></button>
     </div>
   </div>
 </header>
@@ -4071,38 +4195,87 @@ body.modal-open { overflow: hidden; }
     <!-- 00 Hello -->
     <section class="section s-hero in-view" id="s0">
       <div class="hero-frame">
-        <div class="hero-eyebrow">Workshop · Day Zero · Free</div>
         <h1 class="hero-title">Hello, <em>World.</em></h1>
-        <p class="hero-lede">
-          Ten days from now you&rsquo;ll have built things you can&rsquo;t build today. This is Day Zero &mdash; the whole map of AI, in one sitting.
-        </p>
+        <div class="hero-stack">
+          <p>The world is <em>changing very fast.</em></p>
+          <p>And there’s a high chance you’re still working with an understanding of a world <em>without AI.</em></p>
+          <p>Respectfully? <em>You’re cooked. It’s giving NPC 💀</em></p>
+        </div>
         <div class="hero-cta">
           <button class="begin-btn" data-next="1">Begin <span class="arrow">↓</span></button>
         </div>
       </div>
     </section>
 
-    <!-- 01 The big idea -->
-    <section class="section" id="s_thesis">
+    <!-- 01 Reality check -->
+    <section class="section" id="s_grandparents">
       <div class="sec-eyebrow">
-        <span class="num">01</span><span class="dot"></span><span>The big idea</span><span class="rule"></span>
+        <span class="num">01</span><span class="dot"></span><span>Reality check</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A tilted smartphone showing 404 with floating question marks">
+          <line x1="36" y1="244" x2="444" y2="244" stroke="#1B1714" stroke-width="2"/>
+          <g transform="rotate(-8 240 130)">
+            <rect x="200" y="40" width="80" height="180" rx="14" fill="#F2ECDE" stroke="#1B1714" stroke-width="5"/>
+            <rect x="208" y="58" width="64" height="148" rx="3" fill="#1B1714" opacity="0.06"/>
+            <line x1="226" y1="50" x2="254" y2="50" stroke="#1B1714" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="240" cy="212" r="5" fill="none" stroke="#1B1714" stroke-width="2"/>
+            <text x="240" y="138" font-family="JetBrains Mono" font-size="34" fill="#D63E2A" text-anchor="middle" font-weight="700">404</text>
+            <text x="240" y="160" font-family="JetBrains Mono" font-size="10" fill="#1B1714" text-anchor="middle" opacity="0.55">page not found</text>
+          </g>
+          <text x="110" y="90" font-family="Fraunces" font-size="48" fill="#D63E2A" font-weight="700">?</text>
+          <text x="362" y="78" font-family="Fraunces" font-size="38" fill="#D63E2A" font-weight="700">?</text>
+          <text x="376" y="184" font-family="Fraunces" font-size="30" fill="#D63E2A" font-weight="700">?</text>
+          <text x="96" y="184" font-family="Fraunces" font-size="26" fill="#D63E2A" font-weight="700">?</text>
+        </svg>
       </div>
       <div class="thesis-wrap">
-        <h2 class="thesis">AI is a natural extension of your <em>intelligence</em> &mdash; here to <em>superpower</em> what you can already do.</h2>
-        <p class="thesis-sub">Not a replacement. An amplifier &mdash; everything in this workshop is one example of that.</p>
+        <h2 class="thesis">Adapt &mdash; or get <em>mogged</em> in 5 years.</h2>
+        <p class="thesis-sub">AI Pro, or the <em>unc</em> fumbling apps 💀 Pick one.</p>
+      </div>
+
+      <button class="next-btn">Next: The big idea <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 02 The big idea -->
+    <section class="section" id="s_thesis">
+      <div class="sec-eyebrow">
+        <span class="num">02</span><span class="dot"></span><span>The big idea</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A brain crackling with lightning and sparks">
+          <circle cx="240" cy="135" r="58" fill="#F2ECDE" stroke="#1B1714" stroke-width="5"/>
+          <path d="M240 77 q-14 28 0 58 q-14 28 0 58" fill="none" stroke="#1B1714" stroke-width="2.5"/>
+          <path d="M204 108 q16 8 0 18 M204 138 q16 8 0 18 M276 108 q-16 8 0 18 M276 138 q-16 8 0 18" fill="none" stroke="#1B1714" stroke-width="2"/>
+          <path d="M150 70 L185 100" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M330 70 L295 100" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M120 140 L165 140" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M360 140 L315 140" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M150 210 L185 180" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <path d="M330 210 L295 180" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="106" cy="86" r="4" fill="#D63E2A"/>
+          <circle cx="374" cy="86" r="4" fill="#D63E2A"/>
+          <circle cx="240" cy="36" r="5" fill="#D63E2A"/>
+          <circle cx="106" cy="194" r="3" fill="#D63E2A"/>
+          <circle cx="374" cy="194" r="3" fill="#D63E2A"/>
+        </svg>
+      </div>
+      <div class="thesis-wrap">
+        <h2 class="thesis">AI is your <em>cheat code.</em></h2>
+        <p class="thesis-sub">Not a replacement. An amplifier. <em>About to mog every adult you know 🗿</em></p>
       </div>
 
       <button class="next-btn">Next: What AI can do <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 02 What AI can do -->
+    <!-- 03 What AI can do -->
     <section class="section" id="s4">
       <div class="sec-eyebrow">
-        <span class="num">02</span><span class="dot"></span><span>What AI can do</span><span class="rule"></span>
+        <span class="num">03</span><span class="dot"></span><span>What AI can do</span><span class="rule"></span>
       </div>
       <div class="thesis-wrap">
         <h2 class="thesis">It&rsquo;s not just text anymore.</h2>
-        <p class="thesis-sub">AI can <em>speak, see your photos, draw, animate video, write music</em> &mdash; often several at once.</p>
+        <p class="thesis-sub">Speak. See. Draw. Animate. Compose. <em>It&rsquo;s giving multimodal ✨</em></p>
       </div>
 
       <div class="modality-strip">
@@ -4113,42 +4286,59 @@ body.modal-open { overflow: hidden; }
         <div class="ms-item"><div class="ms-name">Compose</div><div class="ms-desc">write music</div></div>
       </div>
 
-      <button class="next-btn">Next: Stale playlist <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: This is you <span class="arrow">↓</span></button>
     </section>
 
-    <!-- 03 Stale playlist -->
-    <section class="section" id="s_song_p">
+    <!-- 04 This is you -->
+    <section class="section" id="s_thisisyou" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">03</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">04</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
+      <h2 class="spoken">This is you, right now&hellip;</h2>
       <div class="story-photo">
-        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A bored person with headphones and a stale playlist"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#9A9082" stroke-width="4" fill="none" stroke-linecap="round"><path d="M340 70 L340 128"/><path d="M340 70 L372 62"/></g><ellipse cx="330" cy="130" rx="11" ry="8" fill="#9A9082"/><path d="M300 170 H410" stroke="#C8BFAB" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A smartphone showing an endless scroll feed with floating zZz">
+          <line x1="36" y1="244" x2="444" y2="244" stroke="#1B1714" stroke-width="2"/>
+          <rect x="190" y="38" width="100" height="200" rx="14" fill="#F2ECDE" stroke="#1B1714" stroke-width="5"/>
+          <rect x="198" y="56" width="84" height="166" rx="3" fill="#F2ECDE" stroke="#1B1714" stroke-width="1.5"/>
+          <line x1="222" y1="48" x2="258" y2="48" stroke="#1B1714" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="240" cy="230" r="5" fill="none" stroke="#1B1714" stroke-width="2"/>
+          <rect x="206" y="62" width="68" height="42" rx="3" fill="#D63E2A" opacity="0.5"/>
+          <rect x="206" y="110" width="68" height="42" rx="3" fill="#1B1714" opacity="0.16"/>
+          <rect x="206" y="158" width="68" height="42" rx="3" fill="#1B1714" opacity="0.10"/>
+          <g stroke="#1B1714" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M310 200 L310 158"/><path d="M302 166 L310 158 L318 166"/>
+          </g>
+          <text x="118" y="104" font-family="Fraunces" font-size="40" fill="#9A9082" font-style="italic">z</text>
+          <text x="98"  y="70"  font-family="Fraunces" font-size="30" fill="#9A9082" font-style="italic">z</text>
+          <text x="82"  y="44"  font-family="Fraunces" font-size="22" fill="#9A9082" font-style="italic">z</text>
+        </svg>
       </div>
-      <p class="sc-problem">&ldquo;Long bus ride, headphones in &mdash; and every single playlist feels stale.&rdquo;</p>
+      <div class="scenario">
+        <p class="sc-problem">&ldquo;Skipping songs&hellip; maybe I&rsquo;ll wait for Drake or Hot Shyt to drop something? The vibe is, like, painfully <em>mid 🥀</em> Negative aura. Full NPC.&rdquo;</p>
+      </div>
 
       <button class="next-btn">Next: New track <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 04 New track -->
-    <section class="section" id="s_song_r">
+    <!-- 05 New track -->
+    <section class="section" id="s_song_r" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">04</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">05</span><span class="dot"></span><span>Example 1</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The person with fresh music notes appearing"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#D63E2A" stroke-width="4" fill="none" stroke-linecap="round"><path d="M318 64 L318 110"/><path d="M358 82 L358 124"/><path d="M392 66 L392 104"/></g><ellipse cx="310" cy="112" rx="9" ry="7" fill="#D63E2A"/><ellipse cx="350" cy="126" rx="8" ry="6" fill="#D63E2A"/><ellipse cx="384" cy="106" rx="7" ry="5" fill="#D63E2A"/></svg>
       </div>
-      <p class="sc-solution">How about I make a <em>brand-new song</em> about literally anything &mdash; lyrics, melody, real vocals?</p>
+      <h2 class="reveal-kicker">Stale playlist era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Make a song <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 05 Make a song -->
-    <section class="section" id="s_song">
+    <!-- 06 Make a song -->
+    <section class="section" id="s_song" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">05</span><span class="dot"></span><span>Make a song</span><span class="rule"></span>
+        <span class="num">06</span><span class="dot"></span><span>Example 1</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Make a song from a sentence.</h2>
-      <p class="sec-lede">Now there&rsquo;s a track that didn&rsquo;t exist five minutes ago.</p>
+      <h2 class="payoff-lead">A track that didn&rsquo;t exist five minutes ago. <em>It&rsquo;s giving diabolical 🔥 Spotify could never. Aura: maxed 💯</em></h2>
 
       <a class="hero-tool" href="https://suno.com" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4160,10 +4350,10 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Boring camera roll <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 06 Boring camera roll -->
-    <section class="section" id="s_sc_super">
+    <!-- 07 Boring camera roll -->
+    <section class="section" id="s_sc_super" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">06</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">07</span><span class="dot"></span><span>Example 2</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person standing alone in an ordinary room">
@@ -4183,15 +4373,15 @@ body.modal-open { overflow: hidden; }
           </g>
         </svg>
       </div>
-      <p class="sc-problem">&ldquo;Nothing exciting ever happens around here &mdash; my camera roll is painfully normal.&rdquo;</p>
+      <p class="sc-problem">&ldquo;Nothing exciting ever happens around here &mdash; my camera roll is painfully normal. So demure, so mindful, so <em>chopped.</em>&rdquo;</p>
 
       <button class="next-btn">Next: The reveal <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 07 The reveal -->
-    <section class="section" id="s_sc_super2">
+    <!-- 08 The reveal -->
+    <section class="section" id="s_sc_super2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">07</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">08</span><span class="dot"></span><span>Example 2</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The same person floating off the floor, caught levitating">
@@ -4216,18 +4406,38 @@ body.modal-open { overflow: hidden; }
           <circle cx="258" cy="150" r="2.5" fill="#D63E2A" opacity="0.5"/>
         </svg>
       </div>
-      <p class="sc-solution">How about I make it look like I <em>secretly caught a friend levitating</em> &mdash; floating off the floor when they thought nobody was watching?</p>
+      <h2 class="reveal-kicker">Boring camera roll era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Superpower <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 08 Superpower -->
-    <section class="section" id="s_super_try">
+    <!-- 09 Superpower -->
+    <section class="section" id="s_super_try" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">08</span><span class="dot"></span><span>Superpower</span><span class="rule"></span>
+        <span class="num">09</span><span class="dot"></span><span>Example 2</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Caught levitating.</h2>
-      <p class="sec-lede">Now I&rsquo;ve got eerie caught-on-camera footage the group chat can&rsquo;t explain.</p>
+      <h2 class="payoff-lead">Group chat is in shambles. <em>They&rsquo;re cooking me 💀 Aura farming gone diabolical 🔥</em></h2>
+
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The aura-farming boat kid doing the sway pose on a racing boat">
+          <path d="M0 224 q30 -10 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#1F505F" stroke-width="3" opacity="0.45"/>
+          <path d="M0 242 q30 -10 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#1F505F" stroke-width="2.5" opacity="0.28"/>
+          <path d="M30 198 Q 240 232 450 198 L 438 210 Q 240 244 42 210 Z" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/>
+          <g class="aura-rings">
+            <circle cx="350" cy="150" r="42" fill="none" stroke="#D63E2A" stroke-width="2" opacity="0.5"/>
+            <circle cx="350" cy="150" r="58" fill="none" stroke="#D63E2A" stroke-width="1.5" opacity="0.3"/>
+          </g>
+          <g class="boatkid" fill="#1B1714" stroke="#1B1714" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M345 186 L332 206" stroke-width="13" fill="none"/>
+            <path d="M345 186 L360 206" stroke-width="13" fill="none"/>
+            <path d="M345 148 L345 186" stroke-width="22" fill="none"/>
+            <path d="M345 150 L428 100" stroke-width="15" fill="none"/>
+            <path d="M345 150 L394 133" stroke-width="15" fill="none"/>
+            <path d="M394 133 L368 108" stroke-width="14" fill="none"/>
+            <circle cx="380" cy="137" r="17"/>
+          </g>
+        </svg>
+      </div>
 
       <a class="hero-tool" href="https://higgsfield.ai" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4239,39 +4449,38 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Show in 5 min <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 09 Show in 5 min -->
-    <section class="section" id="s_sc_app">
+    <!-- 10 Show in 5 min -->
+    <section class="section" id="s_sc_app" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">09</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">10</span><span class="dot"></span><span>Example 3</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person facing a TV with a five-minute clock"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="74" width="120" height="84" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="330" y1="168" x2="390" y2="168" stroke="#1B1714" stroke-width="4"/><circle cx="360" cy="116" r="22" fill="#F2ECDE" stroke="#D63E2A" stroke-width="3"/><path d="M360 116 L360 100 M360 116 L373 116" stroke="#D63E2A" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
-      <p class="sc-problem">&ldquo;I just got an app idea &mdash; but my show starts in five minutes and I can&rsquo;t code.&rdquo;</p>
+      <p class="sc-problem">&ldquo;I just got an app idea &mdash; but my show drops in five minutes and I can&rsquo;t code. <em>Bro thought he could ship. Put the fries in the bag 🍟</em>&rdquo;</p>
 
       <button class="next-btn">Next: One sentence <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 10 One sentence -->
-    <section class="section" id="s_sc_app2">
+    <!-- 11 One sentence -->
+    <section class="section" id="s_sc_app2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">10</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">11</span><span class="dot"></span><span>Example 3</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A finished app on a phone screen"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="322" y="60" width="76" height="136" rx="12" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="336" y1="86" x2="384" y2="86" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/><line x1="336" y1="106" x2="384" y2="106" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><line x1="336" y1="124" x2="368" y2="124" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><circle cx="360" cy="176" r="7" fill="none" stroke="#1B1714" stroke-width="3"/></svg>
       </div>
-      <p class="sc-solution">How about I describe it in <em>one sentence</em> and let AI build the whole thing while the intro plays?</p>
+      <h2 class="reveal-kicker">Can&rsquo;t-code era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Build an app <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 11 Build an app -->
-    <section class="section" id="s_build_try">
+    <!-- 12 Build an app -->
+    <section class="section" id="s_build_try" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">11</span><span class="dot"></span><span>Build an app</span><span class="rule"></span>
+        <span class="num">12</span><span class="dot"></span><span>Example 3</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">An app from one sentence.</h2>
-      <p class="sec-lede">Now there&rsquo;s a working app waiting when the credits roll.</p>
+      <h2 class="payoff-lead">A working app before the credits roll. <em>Built different. No glaze, just locked in 🗿</em></h2>
 
       <a class="hero-tool" href="https://lovable.dev" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4280,42 +4489,68 @@ body.modal-open { overflow: hidden; }
         <p class="ht-line">Describe an app in <em>one sentence</em> and watch it build the whole thing &mdash; screens, logic, database &mdash; live.</p>
       </a>
 
+      <button class="next-btn">Next: Halftime <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 13 Halftime -->
+    <section class="section" id="s_halftime">
+      <div class="sec-eyebrow">
+        <span class="num">13</span><span class="dot"></span><span>Halftime</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A cooked face with X eyes wearing a chef hat">
+          <line x1="36" y1="244" x2="444" y2="244" stroke="#1B1714" stroke-width="2"/>
+          <ellipse cx="240" cy="42" rx="56" ry="22" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/>
+          <rect x="194" y="62" width="92" height="14" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/>
+          <circle cx="240" cy="148" r="76" fill="#F2ECDE" stroke="#1B1714" stroke-width="5"/>
+          <g stroke="#D63E2A" stroke-width="7" stroke-linecap="round">
+            <line x1="194" y1="124" x2="218" y2="148"/><line x1="218" y1="124" x2="194" y2="148"/>
+            <line x1="262" y1="124" x2="286" y2="148"/><line x1="286" y1="124" x2="262" y2="148"/>
+          </g>
+          <path d="M204 182 Q 220 196 234 184 T 264 184 T 282 198" fill="none" stroke="#1B1714" stroke-width="5" stroke-linecap="round"/>
+          <path d="M118 76 q-12 -18 0 -34" fill="none" stroke="#C8BFAB" stroke-width="3" stroke-linecap="round"/>
+          <path d="M138 90 q-10 -16 0 -30" fill="none" stroke="#C8BFAB" stroke-width="3" stroke-linecap="round"/>
+          <path d="M340 76 q12 -18 0 -34" fill="none" stroke="#C8BFAB" stroke-width="3" stroke-linecap="round"/>
+          <path d="M360 90 q10 -16 0 -30" fill="none" stroke="#C8BFAB" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="spoken">Halftime &mdash; <em>cooked yet?</em></h2>
+
       <button class="next-btn">Next: Stuck on a chapter <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 12 Stuck on a chapter -->
-    <section class="section" id="s_sc_hw">
+    <!-- 14 Stuck on a chapter -->
+    <section class="section" id="s_sc_hw" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">12</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">14</span><span class="dot"></span><span>Example 4</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a stack of books and a question mark"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#1B1714" stroke-width="4" fill="none"><rect x="300" y="150" width="112" height="18"/><rect x="308" y="132" width="96" height="18"/><rect x="300" y="114" width="108" height="18"/></g><text x="356" y="98" font-family="Fraunces" font-size="48" fill="#D63E2A" text-anchor="middle">?</text></svg>
       </div>
-      <p class="sc-problem">&ldquo;Problem set due tomorrow and I genuinely don&rsquo;t get chapter 4 &mdash; Googling just buries me in ten tabs.&rdquo;</p>
+      <p class="sc-problem">&ldquo;Problem set due tomorrow, don&rsquo;t get chapter 4 &mdash; Googling buries me in ten tabs of yap. <em>I am cooked.</em>&rdquo;</p>
 
       <button class="next-btn">Next: Your own tutor <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 13 Your own tutor -->
-    <section class="section" id="s_sc_hw2">
+    <!-- 15 Your own tutor -->
+    <section class="section" id="s_sc_hw2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">13</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">15</span><span class="dot"></span><span>Example 4</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A speech bubble with a checkmark"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><path d="M300 78 h112 a10 10 0 0 1 10 10 v48 a10 10 0 0 1 -10 10 h-66 l-20 22 v-22 h-26 a10 10 0 0 1 -10 -10 v-48 a10 10 0 0 1 10 -10 z" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><path d="M324 114 l14 14 l28 -32" fill="none" stroke="#D63E2A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <p class="sc-solution">How about I hand an AI tutor my <em>own notes</em> and let it quiz me until it sticks?</p>
+      <h2 class="reveal-kicker">Stuck-on-chapter-4 era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Homework <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 14 Homework -->
-    <section class="section" id="s_tool_hw">
+    <!-- 16 Homework -->
+    <section class="section" id="s_tool_hw" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">14</span><span class="dot"></span><span>Homework</span><span class="rule"></span>
+        <span class="num">16</span><span class="dot"></span><span>Example 4</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Get through homework.</h2>
-      <p class="sec-lede">Now I actually understand it &mdash; not just copy the answer.</p>
+      <h2 class="payoff-lead">I actually understand it &mdash; not just copy the answer. <em>Mogged the whole syllabus 📈 Academic-weapon aura 🧠</em></h2>
 
       <a class="hero-tool" href="https://www.studyfetch.com" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4327,39 +4562,38 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Deck due tomorrow <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 15 Deck due tomorrow -->
-    <section class="section" id="s_sc_slides">
+    <!-- 17 Deck due tomorrow -->
+    <section class="section" id="s_sc_slides" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">15</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">17</span><span class="dot"></span><span>Example 5</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a blank slide and a clock"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="80" width="120" height="80" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><circle cx="360" cy="120" r="20" fill="#F2ECDE" stroke="#D63E2A" stroke-width="3"/><path d="M360 120 L360 106 M360 120 L372 126" stroke="#D63E2A" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
-      <p class="sc-problem">&ldquo;Group presentation tomorrow. I&rsquo;ve got the ideas&hellip; and zero hours to design twelve slides.&rdquo;</p>
+      <p class="sc-problem">&ldquo;Group presentation tomorrow. Got the ideas&hellip; zero hours to design twelve slides. <em>Full crashout incoming.</em>&rdquo;</p>
 
       <button class="next-btn">Next: One-line deck <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 16 One-line deck -->
-    <section class="section" id="s_sc_slides2">
+    <!-- 18 One-line deck -->
+    <section class="section" id="s_sc_slides2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">16</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">18</span><span class="dot"></span><span>Example 5</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A finished slide with content"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="80" width="120" height="80" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="316" y1="100" x2="384" y2="100" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/><line x1="316" y1="120" x2="404" y2="120" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><line x1="316" y1="138" x2="404" y2="138" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/></svg>
       </div>
-      <p class="sc-solution">How about I describe it in <em>one sentence</em> and let AI build the whole deck &mdash; layout, images, notes?</p>
+      <h2 class="reveal-kicker">All-nighter deck era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Slide decks <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 17 Slide decks -->
-    <section class="section" id="s_tool_slides">
+    <!-- 19 Slide decks -->
+    <section class="section" id="s_tool_slides" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">17</span><span class="dot"></span><span>Slide decks</span><span class="rule"></span>
+        <span class="num">19</span><span class="dot"></span><span>Example 5</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Slide decks in minutes.</h2>
-      <p class="sec-lede">Now I show up looking like I spent all weekend on it.</p>
+      <h2 class="payoff-lead">I show up looking like I spent all weekend on it. <em>The deck ate 💅 Demure. Mindful. Zero crumbs.</em></h2>
 
       <a class="hero-tool" href="https://gamma.app" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4371,39 +4605,38 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Gym + study <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 18 Gym + study -->
-    <section class="section" id="s_sc_audio">
+    <!-- 20 Gym + study -->
+    <section class="section" id="s_sc_audio" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">18</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">20</span><span class="dot"></span><span>Example 6</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a dumbbell"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#1B1714" stroke-width="5" stroke-linecap="round"><line x1="322" y1="118" x2="402" y2="118"/><line x1="322" y1="102" x2="322" y2="134"/><line x1="334" y1="96" x2="334" y2="140"/><line x1="402" y1="102" x2="402" y2="134"/><line x1="390" y1="96" x2="390" y2="140"/></g></svg>
       </div>
-      <p class="sc-problem">&ldquo;I have to read an entire biology chapter &mdash; but I&rsquo;d rather be at the gym.&rdquo;</p>
+      <p class="sc-problem">&ldquo;Entire biology chapter due &mdash; but I&rsquo;d rather be <em>gymmaxxing</em>. Studying is so demure, so mindful, so <em>boring</em>.&rdquo;</p>
 
       <button class="next-btn">Next: Make it a podcast <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 19 Make it a podcast -->
-    <section class="section" id="s_sc_audio2">
+    <!-- 21 Make it a podcast -->
+    <section class="section" id="s_sc_audio2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">19</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">21</span><span class="dot"></span><span>Example 6</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two podcast microphones"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g fill="none" stroke="#1B1714" stroke-width="4"><rect x="316" y="78" width="26" height="46" rx="13" fill="#F2ECDE"/><path d="M329 124 L329 150 M314 150 H344" stroke-linecap="round"/></g><g fill="none" stroke="#D63E2A" stroke-width="4"><rect x="374" y="78" width="26" height="46" rx="13" fill="#F2ECDE"/><path d="M387 124 L387 150 M372 150 H402" stroke-linecap="round"/></g></svg>
       </div>
-      <p class="sc-solution">How about I turn the chapter into an <em>exciting podcast</em> &mdash; a host and a guest talking it through?</p>
+      <h2 class="reveal-kicker">Gym-or-study era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Podcast it <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 20 Podcast it -->
-    <section class="section" id="s_tool_audio">
+    <!-- 22 Podcast it -->
+    <section class="section" id="s_tool_audio" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">20</span><span class="dot"></span><span>Podcast it</span><span class="rule"></span>
+        <span class="num">22</span><span class="dot"></span><span>Example 6</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Turn your homework into a podcast.</h2>
-      <p class="sec-lede">Now I work out <em>and</em> learn &mdash; in a way I&rsquo;ll actually remember.</p>
+      <h2 class="payoff-lead">Workout <em>and</em> learn, actually remembering it. <em>Curing brainrot with elite brainrot 🧠</em></h2>
 
       <a class="hero-tool" href="https://notebooklm.google.com" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4415,39 +4648,38 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Camera-shy <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 21 Camera-shy -->
-    <section class="section" id="s_sc_clone">
+    <!-- 23 Camera-shy -->
+    <section class="section" id="s_sc_clone" data-phase="before">
       <div class="sec-eyebrow">
-        <span class="num">21</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">23</span><span class="dot"></span><span>Example 7</span><span class="phase-badge phase-before">Before AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person avoiding a video camera"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="298" y="92" width="86" height="58" rx="6" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><path d="M384 108 L414 94 L414 148 L384 134 Z" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="298" y1="152" x2="414" y2="90" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/></svg>
       </div>
-      <p class="sc-problem">&ldquo;I have to submit a video presentation &mdash; but I freeze on camera and I&rsquo;m out of time to film.&rdquo;</p>
+      <p class="sc-problem">&ldquo;Submitting a video &mdash; but I freeze on camera, full crashout, out of time to film. <em>I am cooked.</em>&rdquo;</p>
 
       <button class="next-btn">Next: Be on camera <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 22 Be on camera -->
-    <section class="section" id="s_sc_clone2">
+    <!-- 24 Be on camera -->
+    <section class="section" id="s_sc_clone2" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">22</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+        <span class="num">24</span><span class="dot"></span><span>Example 7</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
       <div class="story-photo">
         <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two identical faces, a clone"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><circle cx="332" cy="116" r="26" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><circle cx="392" cy="116" r="26" fill="#F2ECDE" stroke="#D63E2A" stroke-width="4"/><path d="M360 104 q2 12 0 24" fill="none" stroke="#C8BFAB" stroke-width="2" stroke-dasharray="3 4"/></svg>
       </div>
-      <p class="sc-solution">How about I generate a video of <em>me</em> delivering it perfectly &mdash; my face, my voice, a script I typed?</p>
+      <h2 class="reveal-kicker">Camera-shy era? <span class="cancelled">Cancelled</span></h2>
 
       <button class="next-btn">Next: Be anyone <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 23 Be anyone -->
-    <section class="section" id="s_tool_clone">
+    <!-- 25 Be anyone -->
+    <section class="section" id="s_tool_clone" data-phase="after">
       <div class="sec-eyebrow">
-        <span class="num">23</span><span class="dot"></span><span>Be anyone</span><span class="rule"></span>
+        <span class="num">25</span><span class="dot"></span><span>Example 7</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Look &amp; sound like anyone.</h2>
-      <p class="sec-lede">Now I hand it in without filming a thing.</p>
+      <h2 class="payoff-lead">I hand it in without filming a thing. <em>Deepfake, but make it demure 💀</em></h2>
 
       <a class="hero-tool" href="https://www.heygen.com" target="_blank" rel="noopener">
         <div class="ht-tag">The one I&rsquo;ll use</div>
@@ -4456,20 +4688,54 @@ body.modal-open { overflow: hidden; }
         <p class="ht-line">Record yourself for two minutes, once. After that, type anything and <em>&ldquo;you&rdquo; says it on camera</em> &mdash; perfect face, perfect voice.</p>
       </a>
 
+      <button class="next-btn">Next: This is you, with AI <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 26 This is you, with AI -->
+    <section class="section" id="s_thisisyou2" data-phase="after">
+      <div class="sec-eyebrow">
+        <span class="num">26</span><span class="phase-badge phase-after">After AI</span><span class="rule"></span>
+      </div>
+      <h2 class="spoken">This is you, <em>with AI</em>&hellip;</h2>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person standing tall with arms raised, sparkles around them">
+          <line x1="36" y1="244" x2="444" y2="244" stroke="#1B1714" stroke-width="2"/>
+          <ellipse cx="240" cy="248" rx="44" ry="7" fill="#1B1714" opacity="0.14"/>
+          <g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="240" cy="80" r="22" fill="#F2ECDE"/>
+            <path d="M240 102 L240 184"/>
+            <path d="M240 124 L196 70"/>
+            <path d="M240 124 L284 70"/>
+            <path d="M240 184 L216 234"/>
+            <path d="M240 184 L264 234"/>
+          </g>
+          <text x="170" y="60" font-family="Fraunces" font-size="22" fill="#D63E2A" font-weight="700">+</text>
+          <text x="304" y="60" font-family="Fraunces" font-size="22" fill="#D63E2A" font-weight="700">+</text>
+          <circle cx="150" cy="118" r="4" fill="#D63E2A"/>
+          <circle cx="334" cy="118" r="4" fill="#D63E2A"/>
+          <circle cx="120" cy="170" r="3" fill="#D63E2A"/>
+          <circle cx="362" cy="170" r="3" fill="#D63E2A"/>
+          <circle cx="240" cy="34" r="5" fill="#D63E2A"/>
+        </svg>
+      </div>
+      <div class="scenario">
+        <p class="sc-solution"><em>Main-character era.</em> You actually understand the tech &mdash; and bend it to make your life better. <em>Locked in 🔒🗿</em></p>
+      </div>
+
       <button class="next-btn">Next: The truth of building <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- 24 The truth of building -->
+    <!-- 27 The truth of building -->
     <section class="section" id="s7">
       <div class="sec-eyebrow">
-        <span class="num">24</span><span class="dot"></span><span>The truth of building</span><span class="rule"></span>
+        <span class="num">27</span><span class="dot"></span><span>The truth of building</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">The truth of building applications in the AI era.</h2>
 
       <div class="secret-frame">
         <div class="secret-callout">
           You don't need to know the names of any of it.
-          <span class="pull">&mdash; for yourself, or friends, or even up to a thousand users, describe what you want and AI picks fine.</span>
+          <span class="pull">&mdash; for yourself, friends, or up to a thousand users &mdash; describe what you want, AI picks fine. <em>It&rsquo;s cooking.</em></span>
         </div>
 
         <div>
@@ -4489,19 +4755,20 @@ body.modal-open { overflow: hidden; }
         <div class="tr-num">1,000</div>
         <div class="tr-content">
           <div class="tr-headline">When you cross 1,000 active users.</div>
-          <div class="tr-text">
-            That's your signal to learn what's under the hood &mdash; so you can run it as cheaply as possible. Before then, AI's defaults are usually fine. 86% of new businesses fail; don't waste time optimising something only a few people use.
-          </div>
+          <ul class="big-bullets">
+            <li>Before then, AI&rsquo;s defaults are usually fine &mdash; ship first.</li>
+            <li>86% of new businesses fail; don&rsquo;t optimise for users you don&rsquo;t have.</li>
+          </ul>
         </div>
       </div>
 
       <button class="next-btn">Next: Free to build <span class="arrow">↓</span></button>
     </section>
 
-    <!-- 25 Free to build -->
+    <!-- 28 Free to build -->
     <section class="section" id="s_free">
       <div class="sec-eyebrow">
-        <span class="num">25</span><span class="dot"></span><span>Free to build</span><span class="rule"></span>
+        <span class="num">28</span><span class="dot"></span><span>Free to build</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">Free to build.</h2>
 
@@ -4518,31 +4785,21 @@ body.modal-open { overflow: hidden; }
         <div class="zero-num">&#36;0</div>
         <div class="zero-content">
           <div class="zero-headline">Total cost to build and ship a real app</div>
-          <div class="zero-sub">From idea to live product, used by up to ~1,000 people, you can spend nothing. The free tiers across the modern stack add up to a complete development environment.</div>
+          <div class="zero-sub"><p>Idea → live product, used by up to ~1,000 people: <em>zero dollars.</em></p><p>The free tiers across the modern stack add up to a <em>complete dev environment.</em></p></div>
         </div>
-      </div>
-
-      <div class="why-card">
-        <div class="wc-tag">Why most people never start</div>
-        <ul class="wc-list">
-          <li>They don&rsquo;t know the stack is this cheap</li>
-          <li>They think you need a CS degree</li>
-          <li>They&rsquo;re waiting for a &ldquo;right time&rdquo; &mdash; it was two years ago</li>
-        </ul>
-        <div class="wc-pull">Open <em>Lovable</em> and start today. That&rsquo;s Day 1.</div>
       </div>
 
       <button class="next-btn">Next: The bigger picture <span class="arrow">↓</span></button>
     </section>
 
-    <!-- 26 The bigger picture -->
+    <!-- 29 The bigger picture -->
     <section class="section" id="s_bp">
       <div class="sec-eyebrow">
-        <span class="num">26</span><span class="dot"></span><span>The bigger picture</span><span class="rule"></span>
+        <span class="num">29</span><span class="dot"></span><span>The bigger picture</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">The bigger picture.</h2>
       <p class="sec-lede">
-        Why this matters &mdash; even if you never build anything yourself.
+        Why this matters &mdash; even if you never build anything. <em>Lock in or get mogged 💀</em>
       </p>
 
       <div class="bp-grid">
@@ -4572,13 +4829,13 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: What you get <span class="arrow">↓</span></button>
     </section>
 
-    <!-- 27 What you get -->
+    <!-- 30 What you get -->
     <section class="section" id="s_get">
       <div class="sec-eyebrow">
-        <span class="num">27</span><span class="dot"></span><span>What you get</span><span class="rule"></span>
+        <span class="num">30</span><span class="dot"></span><span>What you get</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">What you get.</h2>
-      <p class="sec-lede">Every single day, across all 10. And what continues beyond the workshop.</p>
+      <p class="sec-lede">Every single day, across all 10 &mdash; and what continues beyond. <em>Aura-farming for life.</em></p>
 
       <div class="get-grid">
         <div class="get-card g-understand">
@@ -4602,14 +4859,15 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: End <span class="arrow">↓</span></button>
     </section>
 
-    <!-- 28 End -->
+    <!-- 31 End -->
     <section class="section s-closing" id="s9">
       <div class="closing-frame">
         <div class="closing-meta">Day Zero · complete</div>
         <h2 class="closing-title">Now the <em>10 days.</em></h2>
-        <p class="closing-sub">
-          You just saw the whole map in one sitting. The next ten days are where you <em>build it</em> &mdash; ship real apps, clone your own voice and face, all alongside a room of other builders.
-        </p>
+        <ul class="closing-sub-bullets big-bullets">
+          <li>You just saw the whole map of AI in <em>one sitting.</em></li>
+          <li>Next ten days: <em>ship real apps, clone yourself, lock in alongside a room of builders.</em></li>
+        </ul>
 
         <div class="closing-actions">
           <a class="join-btn" href="#">Join the next cohort <span class="arrow">&rarr;</span></a>
