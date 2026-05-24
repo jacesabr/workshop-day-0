@@ -402,6 +402,103 @@ a { color: inherit; text-decoration: none; }
 }
 .sec-lede em { font-style: italic; }
 
+/* Thesis / statement slide */
+.thesis-wrap { max-width: 1040px; margin-top: 10px; }
+.thesis {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(40px, 6.4vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+}
+.thesis em { font-style: italic; color: var(--vermillion); }
+.thesis-sub {
+  margin-top: 24px;
+  font-family: var(--sans);
+  font-size: clamp(18px, 2.1vw, 26px);
+  line-height: 1.45;
+  color: var(--ink-2);
+  max-width: 760px;
+}
+
+/* Modality strip (What AI can do) */
+.modality-strip { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.ms-item {
+  flex: 1 1 0; min-width: 130px;
+  background: var(--paper-2);
+  border: 1px solid var(--hairline);
+  border-top: 3px solid var(--vermillion);
+  border-radius: 2px;
+  padding: 20px 18px 22px;
+}
+.ms-name {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 30px);
+  letter-spacing: -0.02em; color: var(--ink);
+}
+.ms-desc {
+  font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 6px;
+}
+@media (max-width: 760px) { .ms-item { min-width: calc(50% - 6px); } }
+
+/* Scenario lead-in slides (problem -> how about AI -> payoff) */
+.scenario { max-width: 1000px; margin-top: 12px; }
+.sc-problem {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(22px, 3vw, 38px); line-height: 1.35;
+  color: var(--muted);
+}
+.sc-solution {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(30px, 4.8vw, 60px); line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--ink); margin-top: 24px;
+  font-variation-settings: "SOFT" 40, "opsz" 96;
+}
+.sc-solution em { font-style: italic; color: var(--vermillion); }
+.sc-payoff {
+  font-family: var(--sans); font-weight: 600;
+  font-size: clamp(18px, 2.3vw, 28px); line-height: 1.35;
+  color: var(--ink-2); margin-top: 24px;
+}
+.sc-payoff em { font-style: italic; color: var(--vermillion-2); }
+
+/* Story photo slot — TEMP hand-drawn SVG; swap the <svg> for an <img> later */
+.story-photo {
+  width: 100%; max-width: 560px; aspect-ratio: 16 / 9; margin: 4px 0;
+  background: var(--paper-2); border: 1px solid var(--hairline); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.story-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.story-photo svg { width: 100%; height: 100%; display: block; }
+.story-photo::after {
+  content: "temp sketch \2014 replace with a photo"; position: absolute; bottom: 6px; right: 8px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); opacity: .7;
+}
+/* levitation bob */
+.lev { animation: levbob 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes levbob { 0%,100% { transform: translateY(-40px); } 50% { transform: translateY(-56px); } }
+@media (prefers-reduced-motion: reduce) { .lev { animation: none; transform: translateY(-48px); } }
+
+/* Single hero tool (one tool per demo, max shock value) */
+.hero-tool {
+  display: block; margin-top: 26px; padding: 26px 30px 28px; max-width: 800px;
+  background: linear-gradient(180deg,#F6EEDC,#EFE4CC);
+  border: 1px solid var(--vermillion); border-left: 4px solid var(--vermillion);
+  border-radius: 3px; text-decoration: none; color: var(--ink);
+  transition: transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+.hero-tool:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(27,23,20,.13); }
+.ht-tag { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--vermillion); font-weight: 700; }
+.ht-name { font-family: var(--serif); font-weight: 700; font-size: clamp(34px,4.8vw,56px); letter-spacing: -0.025em; line-height: 1; margin-top: 8px; }
+.ht-name .ht-arrow { font-size: .42em; color: var(--muted); vertical-align: middle; }
+.hero-tool:hover .ht-arrow { color: var(--vermillion); }
+.ht-url { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 8px; }
+.ht-line { font-family: var(--sans); font-size: clamp(16px,1.8vw,20px); line-height: 1.5; color: var(--ink-2); margin-top: 14px; }
+.ht-line em { font-style: italic; color: var(--vermillion-2); font-weight: 600; }
+
 /* The "next" button — bottom right of every section */
 .next-btn {
   position: absolute;
@@ -668,6 +765,370 @@ a { color: inherit; text-decoration: none; }
 .cg-1x3 { grid-template-columns: repeat(3, 1fr); }
 .cg-2x4 { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; }
 .cg-1x4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ───────────────────────────────────────────
+   01b LLM EXPLAINER (section 01 — What is AI?)
+─────────────────────────────────────────── */
+.s-llm .sec-fit {
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 12px 8px 0;
+}
+.llm-marker {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--vermillion);
+  border: 1px solid var(--vermillion);
+  padding: 4px 10px 3px;
+  border-radius: 2px;
+  margin-bottom: 22px;
+}
+.llm-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(38px, 4.4vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+  margin-bottom: 18px;
+}
+.llm-title em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "opsz" 144, "WONK" 1;
+}
+.llm-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 760px;
+  font-variation-settings: "SOFT" 60, "opsz" 24;
+  margin-bottom: 26px;
+}
+
+.llm-body {
+  max-width: 720px;
+  margin-bottom: 24px;
+}
+.llm-p {
+  font-family: var(--serif);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 14px;
+  font-variation-settings: "SOFT" 30, "opsz" 18;
+}
+.llm-p em {
+  font-style: italic;
+  color: var(--ink);
+}
+.llm-p .tok {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--ink);
+  background: var(--paper-3);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+.llm-p.with-dropcap::first-letter {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 4.2em;
+  line-height: 0.85;
+  float: left;
+  padding: 6px 12px 0 0;
+  color: var(--vermillion);
+  font-variation-settings: "SOFT" 100, "opsz" 144, "WONK" 1;
+}
+.llm-list {
+  list-style: none;
+  max-width: 720px;
+  margin: 0;
+  padding: 0;
+}
+.llm-list li {
+  font-family: var(--serif);
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 12px;
+  font-variation-settings: "SOFT" 30, "opsz" 18;
+}
+.llm-list li:last-child { margin-bottom: 0; }
+.llm-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.6em;
+  width: 8px;
+  height: 2px;
+  background: var(--vermillion);
+}
+.llm-list em { font-style: italic; color: var(--ink); }
+.llm-list .tok {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  color: var(--ink);
+  background: var(--paper-3);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.llm-figure {
+  background: var(--paper-2);
+  padding: 26px 32px 30px;
+  border: 1px solid var(--hairline-2);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Context strip */
+.ctx-block { display: flex; flex-direction: column; gap: 10px; }
+.ctx-label, .prob-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+.ctx-tokens {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.ctx-tok {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 7px 14px;
+  min-width: 56px;
+  text-align: center;
+}
+.ctx-tok.ctx-hatched {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--ink) 0 2px,
+      transparent 2px 5px
+    );
+  border: 1px dashed var(--ink);
+  color: transparent;
+  min-width: 56px;
+  min-height: 34px;
+  padding: 7px 14px;
+}
+.ctx-arrow {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0 4px;
+  line-height: 1;
+}
+.ctx-pred {
+  flex: 1;
+  background: var(--ink);
+  border-radius: 4px;
+  min-height: 36px;
+  max-width: 360px;
+}
+
+/* Probability bar chart */
+.prob-block { display: flex; flex-direction: column; gap: 10px; }
+.prob-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prob-row {
+  display: grid;
+  grid-template-columns: 84px 1fr 60px;
+  gap: 14px;
+  align-items: center;
+}
+.pr-tok {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  text-align: right;
+  padding-right: 4px;
+}
+.pr-bar {
+  background: transparent;
+  height: 18px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pr-fill {
+  height: 100%;
+  background: var(--vermillion);
+  border-radius: 1px;
+  opacity: 0.92;
+}
+.prob-row.rank-2 .pr-fill { opacity: 0.68; }
+.prob-row.rank-3 .pr-fill { opacity: 0.58; }
+.prob-row.rank-4 .pr-fill { opacity: 0.5; }
+.prob-row.rank-5 .pr-fill { opacity: 0.42; }
+.pr-val {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.prob-ellipsis {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 0 6px;
+  letter-spacing: 0.04em;
+}
+.prob-row.prob-tail .pr-fill {
+  min-width: 2px;
+  background: var(--muted-2);
+}
+.prob-row.prob-tail .pr-val {
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .ctx-tokens { flex-wrap: wrap; }
+  .ctx-pred { width: 100%; max-width: 100%; }
+  .prob-row { grid-template-columns: 70px 1fr 56px; }
+}
+
+/* ─── Tokens figure (section 02) ─── */
+.tok-fig {
+  background: var(--paper-2);
+  padding: 28px 32px 32px;
+  border: 1px solid var(--hairline-2);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.tok-fig-headline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 60, "opsz" 24;
+}
+.tok-fig-arrow {
+  font-family: var(--sans);
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1;
+  margin: 2px 0;
+}
+.tok-fig-label {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.tok-pieces {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+.tok-piece {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--paper);
+  background: var(--vermillion);
+  padding: 9px 18px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+.tok-piece-count {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.tok-char-row {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  text-align: center;
+  word-break: break-all;
+}
+.tok-char-row .sp { color: var(--muted-2); }
+
+/* ─── Probability simplex (section 03) ─── */
+.simplex-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  background: var(--paper-2);
+  padding: 20px 18px 22px;
+  border: 1px solid var(--hairline-2);
+  border-radius: 2px;
+}
+.simplex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.simplex-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.simplex-svg {
+  width: 100%;
+  max-width: 170px;
+  height: auto;
+}
+.simplex-prob {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink);
+  margin-top: 2px;
+  font-variation-settings: "SOFT" 60, "opsz" 18;
+}
+.simplex-desc {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-align: center;
+  max-width: 200px;
+}
+@media (max-width: 520px) {
+  .simplex-grid { grid-template-columns: 1fr; gap: 18px; }
+  .simplex-svg { max-width: 200px; }
+}
 
 /* ───────────────────────────────────────────
    02 SPEED RACE
@@ -1134,29 +1595,32 @@ a { color: inherit; text-decoration: none; }
 .secret-list {
   list-style: none;
   padding: 0;
-  border-top: 1px solid var(--hairline);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 10px;
 }
 .secret-list li {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--hairline);
-  align-items: baseline;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  background: var(--paper-2);
+  border: 1px solid var(--hairline);
+  border-radius: 100px;
 }
 .secret-list .x {
   font-family: var(--serif);
   font-style: italic;
   color: var(--vermillion);
-  font-size: 22px;
+  font-size: 16px;
   line-height: 1;
-  font-variation-settings: "opsz" 24;
-  font-weight: 500;
+  font-weight: 600;
 }
 .secret-list .t {
   font-family: var(--sans);
-  font-size: 15.5px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.15;
   color: var(--ink);
 }
 .secret-list .t strong { font-weight: 600; }
@@ -1179,6 +1643,165 @@ a { color: inherit; text-decoration: none; }
   font-style: normal;
   font-weight: 600;
   color: var(--ink);
+}
+
+/* ───────────────────────────────────────────
+   08b SURPRISE QUIZ (section 09)
+─────────────────────────────────────────── */
+.quiz-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  flex: 1;
+  align-items: stretch;
+  min-height: 0;
+  margin-top: 8px;
+}
+
+.quiz-prompt {
+  background: var(--paper-2);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--saffron);
+  padding: 22px 26px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.qp-tag {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--hairline-2);
+}
+.qp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.qp-list li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  align-items: baseline;
+}
+.qp-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--vermillion);
+}
+.qp-t {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.qp-t em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--vermillion);
+}
+.qp-pick {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed var(--hairline);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  font-variation-settings: "SOFT" 60, "opsz" 24;
+}
+.qp-pick strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--vermillion);
+}
+
+.quiz-example {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.qe-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.qe-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.qe-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 60, "opsz" 24;
+}
+.qe-parts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  flex: 1;
+  min-height: 0;
+}
+.qe-part {
+  background: var(--paper);
+  padding: 11px 18px 12px;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: baseline;
+}
+.qe-pn {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--vermillion);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-variation-settings: "SOFT" 30, "opsz" 24;
+}
+.qe-part.qe-muted .qe-pn { color: var(--muted); }
+.qe-pd {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.qe-pd em {
+  font-style: italic;
+  color: var(--muted);
+}
+.qe-mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--teal);
+  background: var(--paper-2);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+@media (max-width: 980px) {
+  .quiz-layout { grid-template-columns: 1fr; gap: 28px; }
 }
 
 /* ───────────────────────────────────────────
@@ -1281,6 +1904,25 @@ a { color: inherit; text-decoration: none; }
   background: var(--ink);
   color: var(--paper);
 }
+.closing-actions .join-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--vermillion);
+  color: var(--paper);
+  border: none;
+  border-radius: 2px;
+  padding: 16px 28px;
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+}
+.closing-actions .join-btn:hover { background: var(--vermillion-2); transform: translateY(-2px); }
+.closing-actions .join-btn .arrow { transition: transform 200ms var(--ease); }
+.closing-actions .join-btn:hover .arrow { transform: translateX(3px); }
 
 /* ───────────────────────────────────────────
    RESPONSIVE
@@ -2069,9 +2711,6 @@ body.modal-open { overflow: hidden; }
   .thousand-rule { grid-template-columns: 1fr; gap: 8px; padding: 18px 20px; }
 }
 
-/* Slimmer secret-list, more compact for the skip items */
-.secret-list li { padding: 8px 0; }
-.secret-list .t { font-size: 14.5px; }
 
 
 /* ───────────────────────────────────────────
@@ -2982,6 +3621,32 @@ body.modal-open { overflow: hidden; }
   font-size: 13.5px;
 }
 
+/* Pop-out launcher button (opens a standalone exercise page) */
+.act-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  background: var(--vermillion);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 240ms var(--ease);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+}
+.act-cta:hover {
+  background: var(--vermillion-2, #B53321);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(214,62,42,0.28);
+}
+.act-cta .ar { font-family: var(--sans); font-size: 14px; }
+
 
 /* Race button on the inference spectrum */
 .race-btn {
@@ -3092,7 +3757,7 @@ body.modal-open { overflow: hidden; }
 
 
 /* Top open models — pill row */
-.model-pills-block { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--hairline-2); }
+.model-pills-block { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--hairline-2); }
 .model-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .model-pill {
   display: inline-flex;
@@ -3118,6 +3783,21 @@ body.modal-open { overflow: hidden; }
   transform: translateY(-1px);
 }
 .model-pill:hover .ar { opacity: 1; transform: translate(2px, -2px); }
+
+/* Browse-all-models banner (Open models) — kept compact to fit viewport */
+.hf-all-link {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 10px; margin-right: 170px; padding: 8px 14px;
+  background: var(--paper-2); border: 1px solid var(--hairline);
+  border-left: 3px solid var(--vermillion); border-radius: 2px;
+  transition: background 160ms var(--ease), border-color 160ms var(--ease);
+}
+@media (max-width: 700px) { .hf-all-link { margin-right: 0; } }
+.hf-all-link:hover { background: var(--paper-3); border-color: var(--vermillion); }
+.hf-all-num { font-family: var(--serif); font-weight: 700; font-size: 20px; line-height: 1; color: var(--vermillion); }
+.hf-all-txt { font-family: var(--sans); font-size: 13px; color: var(--ink); flex: 1; }
+.hf-all-link .ar { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.hf-all-link:hover .ar { color: var(--vermillion); }
 
 
 /* Compact tool pills row (Building apps) */
@@ -3224,13 +3904,13 @@ body.modal-open { overflow: hidden; }
 }
 
 
-/* Compact "why it matters" bullet (replaces forever-box) */
+/* Compact "why it matters" bullet — vertical (tag above text) for more readable wrap */
 .why-line {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 12px 18px 14px;
-  margin: 4px 0 22px;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 16px 12px;
+  margin: 4px 0 12px;
   background: var(--paper-2);
   border-left: 3px solid var(--ink);
   border-radius: 2px;
@@ -3242,8 +3922,6 @@ body.modal-open { overflow: hidden; }
   text-transform: uppercase;
   font-weight: 700;
   color: var(--vermillion);
-  flex-shrink: 0;
-  padding-top: 3px;
   white-space: nowrap;
 }
 .wl-text {
@@ -3256,10 +3934,6 @@ body.modal-open { overflow: hidden; }
   font-style: italic;
   color: var(--muted);
   font-weight: 400;
-}
-@media (max-width: 600px) {
-  .why-line { flex-direction: column; gap: 6px; }
-  .wl-tag { padding-top: 0; }
 }
 
 
@@ -3358,19 +4032,34 @@ body.modal-open { overflow: hidden; }
     </button>
     <div class="sn-menu" id="snMenu" role="menu" aria-label="Sections">
       <button class="dm-item active" type="button" role="menuitem"><span class="dm-num">00</span><span class="dm-name">Hello</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">01</span><span class="dm-name">Chat services</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">02</span><span class="dm-name">Try it</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">03</span><span class="dm-name">Prompt engineering</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">04</span><span class="dm-name">Speed of AI</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">05</span><span class="dm-name">Open models</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">06</span><span class="dm-name">What AI can do</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">07</span><span class="dm-name">Building apps</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">08</span><span class="dm-name">How apps work</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">09</span><span class="dm-name">The truth of building</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">10</span><span class="dm-name">Free to build</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">11</span><span class="dm-name">The bigger picture</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">12</span><span class="dm-name">What you get</span></button>
-      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">13</span><span class="dm-name">End</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">01</span><span class="dm-name">The big idea</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">02</span><span class="dm-name">What AI can do</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">03</span><span class="dm-name">Stale playlist</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">04</span><span class="dm-name">New track</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">05</span><span class="dm-name">Make a song</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">06</span><span class="dm-name">Boring camera roll</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">07</span><span class="dm-name">The reveal</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">08</span><span class="dm-name">Superpower</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">09</span><span class="dm-name">Show in 5 min</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">10</span><span class="dm-name">One sentence</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">11</span><span class="dm-name">Build an app</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">12</span><span class="dm-name">Stuck on a chapter</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">13</span><span class="dm-name">Your own tutor</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">14</span><span class="dm-name">Homework</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">15</span><span class="dm-name">Deck due tomorrow</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">16</span><span class="dm-name">One-line deck</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">17</span><span class="dm-name">Slide decks</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">18</span><span class="dm-name">Gym + study</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">19</span><span class="dm-name">Make it a podcast</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">20</span><span class="dm-name">Podcast it</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">21</span><span class="dm-name">Camera-shy</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">22</span><span class="dm-name">Be on camera</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">23</span><span class="dm-name">Be anyone</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">24</span><span class="dm-name">The truth of building</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">25</span><span class="dm-name">Free to build</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">26</span><span class="dm-name">The bigger picture</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">27</span><span class="dm-name">What you get</span></button>
+      <button class="dm-item" type="button" role="menuitem"><span class="dm-num">28</span><span class="dm-name">End</span></button>
     </div>
   </div>
 </header>
@@ -3379,15 +4068,13 @@ body.modal-open { overflow: hidden; }
   <!-- ─────────── MAIN SCROLL CONTAINER ─────────── -->
   <main class="main" id="main">
 
-
-
-    <!-- ─────────── 00 HERO ─────────── -->
+    <!-- 00 Hello -->
     <section class="section s-hero in-view" id="s0">
       <div class="hero-frame">
-        <div class="hero-eyebrow">Workshop · Day Zero</div>
+        <div class="hero-eyebrow">Workshop · Day Zero · Free</div>
         <h1 class="hero-title">Hello, <em>World.</em></h1>
         <p class="hero-lede">
-          What AI actually is right now, and what you can do with it.
+          Ten days from now you&rsquo;ll have built things you can&rsquo;t build today. This is Day Zero &mdash; the whole map of AI, in one sitting.
         </p>
         <div class="hero-cta">
           <button class="begin-btn" data-next="1">Begin <span class="arrow">↓</span></button>
@@ -3395,608 +4082,387 @@ body.modal-open { overflow: hidden; }
       </div>
     </section>
 
-    <!-- ─────────── 01 TODAY'S FRAME (template — same shape on every workshop day) ─────────── -->
-    <!-- ─────────── 02 CHAT SERVICES (medium cards) ─────────── -->
-    <section class="section" id="s1">
+    <!-- 01 The big idea -->
+    <section class="section" id="s_thesis">
       <div class="sec-eyebrow">
-        <span class="num">01</span><span class="dot"></span><span>Chat services</span><span class="rule"></span>
+        <span class="num">01</span><span class="dot"></span><span>The big idea</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Chat services.</h2>
-      <p class="sec-lede">Four worth knowing &mdash; click any to open. Each has a different strength.</p>
-
-      <div class="chat-grid">
-        <a class="chat-card" href="https://claude.ai" target="_blank" rel="noopener">
-          <div class="cc-head">
-            <span class="cc-name">Claude</span>
-            <span class="cc-arrow">&#8599;</span>
-          </div>
-          <div class="cc-url">claude.ai &middot; Anthropic</div>
-          <ul class="cc-pros">
-            <li>Best for code &amp; writing &mdash; Claude Code is the dev favourite</li>
-            <li>Fewer hallucinations, cleaner reasoning</li>
-          </ul>
-        </a>
-
-        <a class="chat-card" href="https://perplexity.ai" target="_blank" rel="noopener">
-          <div class="cc-head">
-            <span class="cc-name">Perplexity</span>
-            <span class="cc-arrow">&#8599;</span>
-          </div>
-          <div class="cc-url">perplexity.ai</div>
-          <ul class="cc-pros">
-            <li>Search with cited sources &mdash; better than Google for research</li>
-            <li>Deep Research mode for longer reports</li>
-          </ul>
-        </a>
-
-        <a class="chat-card" href="https://grok.com" target="_blank" rel="noopener">
-          <div class="cc-head">
-            <span class="cc-name">Grok</span>
-            <span class="cc-arrow">&#8599;</span>
-          </div>
-          <div class="cc-url">grok.com &middot; xAI</div>
-          <ul class="cc-pros">
-            <li>Live from X &mdash; up-to-the-minute posts and news</li>
-            <li>Less filtered, more direct in its answers</li>
-          </ul>
-        </a>
-
-        <a class="chat-card" href="https://chat.deepseek.com" target="_blank" rel="noopener">
-          <div class="cc-head">
-            <span class="cc-name">DeepSeek</span>
-            <span class="cc-arrow">&#8599;</span>
-          </div>
-          <div class="cc-url">chat.deepseek.com</div>
-          <ul class="cc-pros">
-            <li>Free, with a strong reasoning mode</li>
-            <li>Excellent at math and code</li>
-          </ul>
-        </a>
+      <div class="thesis-wrap">
+        <h2 class="thesis">AI is a natural extension of your <em>intelligence</em> &mdash; here to <em>superpower</em> what you can already do.</h2>
+        <p class="thesis-sub">Not a replacement. An amplifier &mdash; everything in this workshop is one example of that.</p>
       </div>
 
-      <button class="next-btn">Next: Try it <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: What AI can do <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- ─────────── 03 TRY IT (task session) ─────────── -->
-    <section class="section" id="s_try">
-      <div class="sec-eyebrow">
-        <span class="num">02</span><span class="dot"></span><span>Try it</span><span class="rule"></span>
-      </div>
-      <h2 class="sec-title">Try it.</h2>
-      <p class="sec-lede">Pick a real task. Pick the right tool. Try it now &mdash; ~5 minutes each.</p>
-
-      <div class="task-grid">
-        <div class="task-card">
-          <div class="tc-tag"><span class="tc-num">01</span><span>Think through something complex</span></div>
-          <div class="tc-tool">Use Claude &mdash; <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai &#8599;</a></div>
-          <ul class="tc-steps">
-            <li>Frame a real problem &mdash; what you know, what you don&rsquo;t, what outcome you want</li>
-            <li>Let it reason through, step by step</li>
-            <li>Push back on the reasoning if something feels off</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="hold-note">
-        <strong>Hold on to that answer.</strong> You&rsquo;ll re-ask the same question in the next section, with prompt engineering, and compare.
-      </div>
-
-      <button class="next-btn">Next: Prompt engineering <span class="arrow">↓</span></button>
-    </section>
-
-    <!-- ─────────── 04 PROMPT ENGINEERING ─────────── -->
-    <section class="section" id="s_prompt">
-      <div class="sec-eyebrow">
-        <span class="num">03</span><span class="dot"></span><span>Prompt engineering</span><span class="rule"></span>
-      </div>
-      <h2 class="sec-title">Prompt engineering.</h2>
-      <p class="sec-lede pe-lede">The same question, asked better. Four small additions to your prompt change the answer dramatically &mdash; you&rsquo;ll re-ask the question from the last section and see for yourself.</p>
-
-      <!-- 4 rules -->
-      <div class="rules-grid">
-        <div class="rule-card">
-          <div class="rl-num">01</div>
-          <div class="rl-title">Tell it who it is</div>
-          <p>Set the role. The AI takes on different vocabulary, depth, and assumptions depending.</p>
-          <div class="rl-example">&ldquo;You are an expert math teacher who explains things to high-schoolers.&rdquo;</div>
-        </div>
-        <div class="rule-card">
-          <div class="rl-num">02</div>
-          <div class="rl-title">Tell it what to do</div>
-          <p>Be concrete about the action you want. Not just &ldquo;help me&rdquo; &mdash; &ldquo;walk me through it&rdquo;.</p>
-          <div class="rl-example">&ldquo;Explain this concept step-by-step. Then quiz me on it.&rdquo;</div>
-        </div>
-        <div class="rule-card">
-          <div class="rl-num">03</div>
-          <div class="rl-title">Give it context</div>
-          <p>Background changes the answer entirely. Who&rsquo;s asking? What&rsquo;s the situation?</p>
-          <div class="rl-example">&ldquo;I&rsquo;m a 12th-grader prepping for boards. I&rsquo;ve been struggling with this for a week.&rdquo;</div>
-        </div>
-        <div class="rule-card">
-          <div class="rl-num">04</div>
-          <div class="rl-title">Tell it how to answer</div>
-          <p>Specify format. Bullets vs prose, length, structure, examples.</p>
-          <div class="rl-example">&ldquo;Use bullet points. Keep it under 200 words. Show one worked example.&rdquo;</div>
-        </div>
-      </div>
-
-      <div class="task-note">
-        <div class="tn-tag">Your turn</div>
-        <ul class="tn-list">
-          <li>Take the complex-thinking question you asked Claude in the last section</li>
-          <li>Re-write it using all four rules above</li>
-          <li>Send it back to Claude &mdash; get the new answer</li>
-          <li>Compare: which answer is actually more useful to you?</li>
-        </ul>
-        <p class="tn-foot">Want to go deeper? &mdash; <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic&rsquo;s prompt engineering guide &#8599;</a> is the best free resource.</p>
-      </div>
-
-      <button class="next-btn">Next: Speed of AI <span class="arrow">↓</span></button>
-    </section>
-
-    <!-- ─────────── 05 INSTANT INFERENCE ─────────── -->
-    <section class="section" id="s2">
-      <div class="sec-eyebrow">
-        <span class="num">04</span><span class="dot"></span><span>Speed of AI</span><span class="rule"></span>
-      </div>
-      <h2 class="sec-title">Speed of AI.</h2>
-      <p class="sec-lede ic-lede">Depends on <em>where</em> and <em>how</em> it&rsquo;s run. The same model can answer in a blink or stall for minutes &mdash; the chip underneath decides.</p>
-
-      <!-- Hardware speed spectrum -->
-      <div class="spectrum" id="spectrum">
-        <div class="sp-head">
-          <span class="sp-head-label">Tokens per second by hardware</span>
-          <button class="race-btn" id="raceBtn" type="button"><span class="rb-icon">&#9654;</span><span class="rb-text">Race them</span></button>
-        </div>
-        <div class="sp-rows" id="spRows">
-          <div class="sp-row sp-phone">
-            <div class="sp-name">Phone</div>
-            <div class="sp-bar-wrap"><div class="sp-bar" data-target="14" data-duration="5000" style="width: 14%"></div></div>
-            <div class="sp-speed">~10</div>
-            <div class="sp-model">small on-device model</div>
-          </div>
-          <div class="sp-row sp-laptop">
-            <div class="sp-name">Laptop</div>
-            <div class="sp-bar-wrap"><div class="sp-bar" data-target="32" data-duration="2500" style="width: 32%"></div></div>
-            <div class="sp-speed">20&ndash;50</div>
-            <div class="sp-model">via Ollama, LM Studio</div>
-          </div>
-          <div class="sp-row sp-cgpu">
-            <div class="sp-name">Gaming GPU (4090)</div>
-            <div class="sp-bar-wrap"><div class="sp-bar" data-target="40" data-duration="1000" style="width: 40%"></div></div>
-            <div class="sp-speed">50&ndash;100</div>
-            <div class="sp-model">decent 7&ndash;30B models</div>
-          </div>
-          <div class="sp-row sp-h100">
-            <div class="sp-name">Cloud GPU (H100)</div>
-            <div class="sp-bar-wrap"><div class="sp-bar" data-target="53" data-duration="500" style="width: 53%"></div></div>
-            <div class="sp-speed">100&ndash;300</div>
-            <div class="sp-model">Claude and most major chatbots run here</div>
-          </div>
-          <div class="sp-row sp-specialty">
-            <div class="sp-name">Specialty silicon</div>
-            <div class="sp-bar-wrap"><div class="sp-bar" data-target="100" data-duration="0" style="width: 100%"></div></div>
-            <div class="sp-speed">500&ndash;17,000</div>
-            <div class="sp-model">Groq, Cerebras, Taalas (next &darr;)</div>
-          </div>
-        </div>
-        <div class="sp-foot">Bars are log-scale &mdash; the actual gap is ~1,700&times;. The race button animates each bar at a speed proportional to real hardware.</div>
-      </div>
-
-      <div class="link-list ll-compare">
-        <div class="ll-label">See the difference yourself &mdash; open both</div>
-        <a class="ll-row ll-claude" href="https://claude.ai" target="_blank" rel="noopener">
-          <span class="ll-name">Claude</span>
-          <span class="ll-url">claude.ai</span>
-          <span class="ll-meta">Runs on Cloud GPUs &middot; normal-speed reference (~100&ndash;300 tok/s)</span>
-        </a>
-        <a class="ll-row ll-taalas" href="https://chatjimmy.ai" target="_blank" rel="noopener">
-          <span class="ll-name">Taalas (chatjimmy)</span>
-          <span class="ll-url">chatjimmy.ai</span>
-          <span class="ll-meta">Model literally burned into silicon &middot; ~17,000 tok/s</span>
-        </a>
-      </div>
-
-      <div class="activity">
-        <div class="act-head">
-          <span class="act-label">Activity</span>
-          <span class="act-time">~3 min</span>
-        </div>
-        <div class="act-title">Race the chips</div>
-        <ol class="act-steps">
-          <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a> and <a href="https://chatjimmy.ai" target="_blank">chatjimmy.ai</a> in two tabs</li>
-          <li>Ask both the same question &mdash; e.g. &ldquo;Write a haiku about the ocean&rdquo;</li>
-          <li>Watch the speed live &mdash; Taalas streams hundreds of words per second; Claude is noticeably slower (still fast, just regular fast)</li>
-        </ol>
-      </div>
-
-      <button class="next-btn">Next: Open models <span class="arrow">↓</span></button>
-    </section>
-
-    <!-- ─────────── 04 HUGGINGFACE ─────────── -->
-    <section class="section" id="s3">
-      <div class="sec-eyebrow">
-        <span class="num">05</span><span class="dot"></span><span>Open models</span><span class="rule"></span>
-      </div>
-      <h2 class="sec-title">Open models.</h2>
-
-      <div class="cover-list">
-        <div class="cover-label">What we cover</div>
-        <ul class="cover-bullets">
-          <li>1.8 million open models on Hugging Face &mdash; quality nearly matches Claude and other closed models</li>
-          <li>LM Studio and Jan let you run them on your computer with no coding</li>
-          <li>Local also means truly private &mdash; online prompts can be logged and read</li>
-        </ul>
-      </div>
-
-      <!-- Quality gap chart: closed vs open, 2023-2026 -->
-      <div class="gap-chart">
-        <div class="gc-head">
-          <span class="gc-title">Quality gap: closed vs open models</span>
-          <span class="gc-axis">MMLU + Arena-Elo equivalent</span>
-        </div>
-        <div class="gc-svg-wrap">
-          <svg viewBox="0 0 700 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quality gap chart showing closed-source and open-source AI models converging from 2023 to 2026">
-            <!-- gridlines -->
-            <line x1="50" y1="30" x2="660" y2="30" stroke="#E5DFD2" stroke-dasharray="2,3" stroke-width="0.5"/>
-            <line x1="50" y1="105" x2="660" y2="105" stroke="#E5DFD2" stroke-dasharray="2,3" stroke-width="0.5"/>
-
-            <!-- Y axis -->
-            <line x1="50" y1="30" x2="50" y2="180" stroke="#D8D0BE" stroke-width="0.5"/>
-            <line x1="46" y1="30" x2="54" y2="30" stroke="#7A7064" stroke-width="0.6"/>
-            <line x1="46" y1="105" x2="54" y2="105" stroke="#7A7064" stroke-width="0.6"/>
-            <line x1="46" y1="180" x2="54" y2="180" stroke="#7A7064" stroke-width="0.6"/>
-            <text x="42" y="34" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#7A7064">100</text>
-            <text x="42" y="109" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#7A7064">75</text>
-            <text x="42" y="184" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#7A7064">50</text>
-
-            <!-- X axis -->
-            <line x1="50" y1="180" x2="660" y2="180" stroke="#1B1714" stroke-width="1"/>
-            <text x="80" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#7A7064">2023</text>
-            <text x="273" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#7A7064">2024</text>
-            <text x="467" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#7A7064">2025</text>
-            <text x="640" y="200" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#7A7064">2026</text>
-
-            <!-- Gap area (subtle shading between the two lines) -->
-            <polygon points="80,103 273,90 467,79 640,71 640,76 467,96 273,124 80,166" fill="#D63E2A" opacity="0.07"/>
-
-            <!-- Closed-source line: quality 78 -> 82 -> 86 -> 89 -->
-            <polyline points="80,103 273,90 467,79 640,71" stroke="#D63E2A" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="80" cy="103" r="4" fill="#D63E2A"/>
-            <circle cx="273" cy="90" r="4" fill="#D63E2A"/>
-            <circle cx="467" cy="79" r="4" fill="#D63E2A"/>
-            <circle cx="640" cy="71" r="4" fill="#D63E2A"/>
-
-            <!-- Open-source line: quality 55 -> 70 -> 80 -> 87 -->
-            <polyline points="80,166 273,124 467,96 640,76" stroke="#1B1714" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="80" cy="166" r="4" fill="#1B1714"/>
-            <circle cx="273" cy="124" r="4" fill="#1B1714"/>
-            <circle cx="467" cy="96" r="4" fill="#1B1714"/>
-            <circle cx="640" cy="76" r="4" fill="#1B1714"/>
-
-            <!-- Line labels -->
-            <text x="100" y="98" font-family="Fraunces" font-weight="600" font-size="13" fill="#D63E2A" font-style="italic">Closed-source frontier (Claude, etc.)</text>
-            <text x="100" y="160" font-family="Fraunces" font-weight="600" font-size="13" fill="#1B1714" font-style="italic">Open-source (Llama, Qwen, DeepSeek)</text>
-
-            <!-- Gap annotations -->
-            <text x="155" y="135" font-family="DM Sans" font-size="10.5" fill="#7A7064" font-style="italic">~20pt gap</text>
-            <text x="620" y="62" text-anchor="end" font-family="DM Sans" font-size="10.5" fill="#7A7064" font-style="italic">~3pt gap</text>
-          </svg>
-        </div>
-        <div class="gc-foot">
-          Gap shrank from ~20 points (2023) to ~3 points (2026). For most things, open is now good enough.
-        </div>
-      </div>
-
-      <!-- Top models — small pill links for the curious (moved to top) -->
-      <div class="model-pills-block model-pills-top">
-        <div class="oc-label">Top open models &mdash; click any to view on Hugging Face</div>
-        <div class="model-pills">
-          <a class="model-pill" href="https://huggingface.co/Qwen" target="_blank" rel="noopener">Qwen 3 <span class="ar">&#8599;</span></a>
-          <a class="model-pill" href="https://huggingface.co/meta-llama" target="_blank" rel="noopener">Llama 4 <span class="ar">&#8599;</span></a>
-          <a class="model-pill" href="https://huggingface.co/deepseek-ai" target="_blank" rel="noopener">DeepSeek V3 <span class="ar">&#8599;</span></a>
-          <a class="model-pill" href="https://huggingface.co/google" target="_blank" rel="noopener">Gemma 3 <span class="ar">&#8599;</span></a>
-          <a class="model-pill" href="https://huggingface.co/mistralai" target="_blank" rel="noopener">Mistral Large <span class="ar">&#8599;</span></a>
-          <a class="model-pill" href="https://huggingface.co/THUDM" target="_blank" rel="noopener">GLM-5 <span class="ar">&#8599;</span></a>
-        </div>
-      </div>
-
-      <!-- How it actually works — horizontal flow -->
-      <div class="how-flow">
-        <div class="oc-label">How it actually works</div>
-        <div class="hf-pipeline">
-          <a class="hp-step" href="https://huggingface.co" target="_blank" rel="noopener">
-            <div class="hp-num">1</div>
-            <div class="hp-body">
-              <div class="hp-title">The library</div>
-              <div class="hp-name">Hugging Face</div>
-              <div class="hp-meta">huggingface.co &middot; where models live</div>
-            </div>
-          </a>
-          <div class="hp-arrow">&rarr;</div>
-          <a class="hp-step" href="https://lmstudio.ai" target="_blank" rel="noopener">
-            <div class="hp-num">2</div>
-            <div class="hp-body">
-              <div class="hp-title">The app</div>
-              <div class="hp-name">LM Studio <span class="hp-or">or</span> <span class="hp-alt">Jan</span></div>
-              <div class="hp-meta">download &amp; run on your computer</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- Why it matters — compact bullet -->
-      <div class="why-line">
-        <span class="wl-tag">Why it matters</span>
-        <span class="wl-text">Once downloaded, a model is yours forever &mdash; no subscription, no internet, works on a plane. <em>Heavy though &mdash; if your laptop can&rsquo;t run basic games, it won&rsquo;t run smoothly.</em></span>
-      </div>
-
-      <div class="activity">
-        <div class="act-head">
-          <span class="act-label">Activity</span>
-          <span class="act-time">~15 min</span>
-        </div>
-        <div class="act-title">Run AI on your own laptop</div>
-        <ol class="act-steps">
-          <li>Download <a href="https://lmstudio.ai" target="_blank">LM Studio</a> and install it</li>
-          <li>In the Discover tab, search &ldquo;Llama 3.2 3B&rdquo; (small, ~2 GB)</li>
-          <li>Download it, then chat with it &mdash; completely offline, completely private</li>
-        </ol>
-      </div>
-
-      <button class="next-btn">Next: What AI can do <span class="arrow">↓</span></button>
-    </section>
-
-    <!-- ─────────── 05 MULTIMODALITY ─────────── -->
+    <!-- 02 What AI can do -->
     <section class="section" id="s4">
       <div class="sec-eyebrow">
-        <span class="num">06</span><span class="dot"></span><span>What AI can do</span><span class="rule"></span>
+        <span class="num">02</span><span class="dot"></span><span>What AI can do</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">What AI can do.</h2>
-      <div class="cover-list">
-        <div class="cover-label">What we cover</div>
-        <ul class="cover-bullets">
-          <li>AI handles way more than text now</li>
-          <li>Voice, images, video, music &mdash; all available</li>
-          <li>Multimodal = one model that handles several of these</li>
-        </ul>
+      <div class="thesis-wrap">
+        <h2 class="thesis">It&rsquo;s not just text anymore.</h2>
+        <p class="thesis-sub">AI can <em>speak, see your photos, draw, animate video, write music</em> &mdash; often several at once.</p>
       </div>
 
-      <div class="mod-list">
-        <div class="ll-label">By modality &mdash; click any to open</div>
-
-        <div class="mod-row">
-          <div class="mod-left">
-            <div class="mod-name">Voice</div>
-            <div class="mod-desc">Talk to it, it talks back &mdash; real-time</div>
-          </div>
-          <div class="mod-pills">
-            <a class="mod-pill" href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs <span class="ar">&#8599;</span></a>
-          </div>
-        </div>
-
-        <div class="mod-row">
-          <div class="mod-left">
-            <div class="mod-name">Image in</div>
-            <div class="mod-desc">Upload a photo, ask about it</div>
-          </div>
-          <div class="mod-pills">
-            <a class="mod-pill" href="https://claude.ai" target="_blank" rel="noopener">Claude <span class="ar">&#8599;</span></a>
-          </div>
-        </div>
-
-        <div class="mod-row">
-          <div class="mod-left">
-            <div class="mod-name">Image out</div>
-            <div class="mod-desc">Describe a picture, get a picture</div>
-          </div>
-          <div class="mod-pills">
-            <a class="mod-pill" href="https://midjourney.com" target="_blank" rel="noopener">Midjourney <span class="ar">&#8599;</span></a>
-            <a class="mod-pill" href="https://ideogram.ai" target="_blank" rel="noopener">Ideogram <span class="ar">&#8599;</span></a>
-            <a class="mod-pill" href="https://bfl.ai" target="_blank" rel="noopener">Flux <span class="ar">&#8599;</span></a>
-          </div>
-        </div>
-
-        <div class="mod-row">
-          <div class="mod-left">
-            <div class="mod-name">Video</div>
-            <div class="mod-desc">Text to short video clip</div>
-          </div>
-          <div class="mod-pills">
-            <a class="mod-pill" href="https://sora.com" target="_blank" rel="noopener">Sora <span class="ar">&#8599;</span></a>
-            <a class="mod-pill" href="https://runwayml.com" target="_blank" rel="noopener">Runway <span class="ar">&#8599;</span></a>
-            <a class="mod-pill" href="https://pika.art" target="_blank" rel="noopener">Pika <span class="ar">&#8599;</span></a>
-          </div>
-        </div>
-
-        <div class="mod-row">
-          <div class="mod-left">
-            <div class="mod-name">Music</div>
-            <div class="mod-desc">Text to song with vocals</div>
-          </div>
-          <div class="mod-pills">
-            <a class="mod-pill" href="https://suno.com" target="_blank" rel="noopener">Suno <span class="ar">&#8599;</span></a>
-            <a class="mod-pill" href="https://udio.com" target="_blank" rel="noopener">Udio <span class="ar">&#8599;</span></a>
-          </div>
-        </div>
+      <div class="modality-strip">
+        <div class="ms-item"><div class="ms-name">Speak</div><div class="ms-desc">talk &amp; listen</div></div>
+        <div class="ms-item"><div class="ms-name">See</div><div class="ms-desc">read your photos</div></div>
+        <div class="ms-item"><div class="ms-name">Draw</div><div class="ms-desc">make images</div></div>
+        <div class="ms-item"><div class="ms-name">Animate</div><div class="ms-desc">generate video</div></div>
+        <div class="ms-item"><div class="ms-name">Compose</div><div class="ms-desc">write music</div></div>
       </div>
 
-      <div class="activity">
-        <div class="act-head">
-          <span class="act-label">Activity</span>
-          <span class="act-time">~10 min</span>
-        </div>
-        <div class="act-title">Clone your own voice</div>
-        <ol class="act-steps">
-          <li>Open <a href="https://elevenlabs.io" target="_blank" rel="noopener">elevenlabs.io</a> and create an instant voice clone of yourself</li>
-          <li>Type something out, generate it in your cloned voice, and play it for the class &mdash; you talking to yourself</li>
-        </ol>
-      </div>
-
-      <button class="next-btn">Next: Building apps <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: Stale playlist <span class="arrow">↓</span></button>
     </section>
 
-    <!-- ─────────── 06 BUILDING ─────────── -->
-    <section class="section" id="s5">
+    <!-- 03 Stale playlist -->
+    <section class="section" id="s_song_p">
       <div class="sec-eyebrow">
-        <span class="num">07</span><span class="dot"></span><span>Building apps</span><span class="rule"></span>
+        <span class="num">03</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">Building apps.</h2>
-      <div class="cover-list">
-        <div class="cover-label">What we cover</div>
-        <ul class="cover-bullets">
-          <li>AI now writes most of the code for you</li>
-          <li>Some tools live in a browser, some in your editor</li>
-          <li>Pick one, spend 5 minutes, you'll have a complete app</li>
-        </ul>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A bored person with headphones and a stale playlist"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#9A9082" stroke-width="4" fill="none" stroke-linecap="round"><path d="M340 70 L340 128"/><path d="M340 70 L372 62"/></g><ellipse cx="330" cy="130" rx="11" ry="8" fill="#9A9082"/><path d="M300 170 H410" stroke="#C8BFAB" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/></svg>
       </div>
+      <p class="sc-problem">&ldquo;Long bus ride, headphones in &mdash; and every single playlist feels stale.&rdquo;</p>
 
-      <div class="tools-row">
-        <div class="tr-label">Tools to try</div>
-        <div class="tr-pills">
-          <a class="tool-pill" href="https://cursor.com" target="_blank" rel="noopener">Cursor <span class="ar">&#8599;</span></a>
-          <a class="tool-pill" href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code <span class="ar">&#8599;</span></a>
-          <a class="tool-pill" href="https://v0.app" target="_blank" rel="noopener">v0 <span class="ar">&#8599;</span></a>
-          <a class="tool-pill" href="https://lovable.dev" target="_blank" rel="noopener">Lovable <span class="ar">&#8599;</span></a>
-          <a class="tool-pill" href="https://bolt.new" target="_blank" rel="noopener">Bolt <span class="ar">&#8599;</span></a>
-          <a class="tool-pill" href="https://replit.com" target="_blank" rel="noopener">Replit <span class="ar">&#8599;</span></a>
-        </div>
-      </div>
-
-      <div class="activity activity-big">
-        <div class="act-head">
-          <span class="act-label">Activity</span>
-          <span class="act-time">~5 min</span>
-        </div>
-        <div class="act-title">Build an app from one sentence</div>
-        <p class="act-intro">One sentence. Any idea. Let the tool do the rest.</p>
-        <ol class="act-steps">
-          <li>Open <a href="https://lovable.dev" target="_blank">lovable.dev</a> or <a href="https://bolt.new" target="_blank">bolt.new</a></li>
-          <li>Describe your app idea in a single sentence &mdash; whatever you want</li>
-          <li>Hit submit and watch it generate &mdash; we&rsquo;ll keep it brief and move on</li>
-        </ol>
-      </div>
-
-      <button class="next-btn">Next: How apps work <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: New track <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- ─────────── 07 SYSTEM DESIGN ─────────── -->
-    <section class="section" id="s6">
+    <!-- 04 New track -->
+    <section class="section" id="s_song_r">
       <div class="sec-eyebrow">
-        <span class="num">08</span><span class="dot"></span><span>How apps work</span><span class="rule"></span>
+        <span class="num">04</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
       </div>
-      <h2 class="sec-title">How apps work.</h2>
-      <p class="sec-lede">
-        Every app is the same six pieces. Once you see the parts, you can talk about any of them.
-      </p>
-
-      <div class="sd-layout">
-        <div class="sd-diagram">
-          <div class="dtitle">The shape of every app</div>
-          <div class="sd-svg-wrap">
-            <svg class="sd-svg" viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                  <path d="M0,0 L10,5 L0,10 z" fill="#7A7064"/>
-                </marker>
-              </defs>
-
-              <!-- User -->
-              <g>
-                <ellipse cx="240" cy="32" rx="48" ry="20" fill="none" stroke="#1B1714" stroke-width="1.5"/>
-                <text x="240" y="37" text-anchor="middle" font-family="DM Sans" font-size="13" font-weight="600" fill="#1B1714">USER</text>
-              </g>
-              <line x1="240" y1="56" x2="240" y2="74" stroke="#7A7064" stroke-width="1.2" marker-end="url(#arr)"/>
-
-              <!-- Frontend -->
-              <g>
-                <rect x="160" y="80" width="160" height="48" fill="#F2ECDE" stroke="#D63E2A" stroke-width="1.6" rx="2"/>
-                <text x="240" y="103" text-anchor="middle" font-family="Fraunces" font-size="17" font-weight="600" fill="#1B1714">Frontend</text>
-                <text x="240" y="119" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#7A7064">what the user sees</text>
-              </g>
-              <line x1="240" y1="132" x2="240" y2="150" stroke="#7A7064" stroke-width="1.2" marker-end="url(#arr)"/>
-
-              <!-- Backend -->
-              <g>
-                <rect x="160" y="156" width="160" height="48" fill="#F2ECDE" stroke="#D63E2A" stroke-width="1.6" rx="2"/>
-                <text x="240" y="179" text-anchor="middle" font-family="Fraunces" font-size="17" font-weight="600" fill="#1B1714">Backend</text>
-                <text x="240" y="195" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#7A7064">the rules &amp; API</text>
-              </g>
-
-              <!-- Auth (side annotation) -->
-              <g>
-                <rect x="350" y="156" width="100" height="48" fill="#F2ECDE" stroke="#1F505F" stroke-width="1.4" stroke-dasharray="4,3" rx="2"/>
-                <text x="400" y="179" text-anchor="middle" font-family="Fraunces" font-size="14" font-weight="500" fill="#1F505F">Auth</text>
-                <text x="400" y="194" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#7A7064">gatekeeper</text>
-              </g>
-              <line x1="320" y1="180" x2="350" y2="180" stroke="#7A7064" stroke-width="1.2" stroke-dasharray="3,3"/>
-
-              <!-- Branches -->
-              <line x1="200" y1="204" x2="200" y2="226" stroke="#7A7064" stroke-width="1.2"/>
-              <line x1="280" y1="204" x2="280" y2="226" stroke="#7A7064" stroke-width="1.2"/>
-              <line x1="120" y1="226" x2="360" y2="226" stroke="#7A7064" stroke-width="1.2"/>
-              <line x1="120" y1="226" x2="120" y2="246" stroke="#7A7064" stroke-width="1.2" marker-end="url(#arr)"/>
-              <line x1="360" y1="226" x2="360" y2="246" stroke="#7A7064" stroke-width="1.2" marker-end="url(#arr)"/>
-
-              <!-- Database -->
-              <g>
-                <rect x="50" y="252" width="140" height="48" fill="#F2ECDE" stroke="#D63E2A" stroke-width="1.6" rx="2"/>
-                <text x="120" y="275" text-anchor="middle" font-family="Fraunces" font-size="17" font-weight="600" fill="#1B1714">Database</text>
-                <text x="120" y="291" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#7A7064">rows &amp; records</text>
-              </g>
-
-              <!-- Storage -->
-              <g>
-                <rect x="290" y="252" width="140" height="48" fill="#F2ECDE" stroke="#D63E2A" stroke-width="1.6" rx="2"/>
-                <text x="360" y="275" text-anchor="middle" font-family="Fraunces" font-size="17" font-weight="600" fill="#1B1714">Storage</text>
-                <text x="360" y="291" text-anchor="middle" font-family="DM Sans" font-size="11" fill="#7A7064">files &amp; images</text>
-              </g>
-
-              <!-- Hosting underline -->
-              <line x1="40" y1="335" x2="440" y2="335" stroke="#1B1714" stroke-width="1" stroke-dasharray="2,3"/>
-              <text x="240" y="356" text-anchor="middle" font-family="DM Sans" font-size="12" font-weight="500" fill="#1B1714">
-                All of this lives on <tspan font-family="Fraunces" font-style="italic" font-weight="600" fill="#D63E2A">Hosting</tspan>
-              </text>
-              <text x="240" y="372" text-anchor="middle" font-family="DM Sans" font-size="10" fill="#7A7064">someone else's computer, running 24/7</text>
-            </svg>
-          </div>
-        </div>
-
-        <div class="sd-parts">
-          <div class="sd-part accent">
-            <div class="pn">Frontend</div>
-            <div class="pd">The screen. The buttons, forms, and pages. What the user actually <em>sees and touches.</em></div>
-          </div>
-          <div class="sd-part accent">
-            <div class="pn">Backend</div>
-            <div class="pd">The brain. The rules. <em>"When the user taps Submit, do these five things."</em> Lives on a server.</div>
-          </div>
-          <div class="sd-part accent">
-            <div class="pn">Database</div>
-            <div class="pd">Where stuff is kept. Users, posts, orders, messages &mdash; rows in tables you can query.</div>
-          </div>
-          <div class="sd-part accent">
-            <div class="pn">Storage</div>
-            <div class="pd">Where <em>files</em> go &mdash; profile pictures, PDFs, uploads. Different from a database; databases hate big files.</div>
-          </div>
-          <div class="sd-part">
-            <div class="pn">Auth</div>
-            <div class="pd">"Who is this person? Are they allowed to do this?" Sits between frontend and backend.</div>
-          </div>
-          <div class="sd-part">
-            <div class="pn">Hosting</div>
-            <div class="pd">The actual computers, somewhere, running this 24/7 so anyone can reach it.</div>
-          </div>
-        </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The person with fresh music notes appearing"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#D63E2A" stroke-width="4" fill="none" stroke-linecap="round"><path d="M318 64 L318 110"/><path d="M358 82 L358 124"/><path d="M392 66 L392 104"/></g><ellipse cx="310" cy="112" rx="9" ry="7" fill="#D63E2A"/><ellipse cx="350" cy="126" rx="8" ry="6" fill="#D63E2A"/><ellipse cx="384" cy="106" rx="7" ry="5" fill="#D63E2A"/></svg>
       </div>
+      <p class="sc-solution">How about I make a <em>brand-new song</em> about literally anything &mdash; lyrics, melody, real vocals?</p>
 
-      <button class="next-btn">Next: The truth of building <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: Make a song <span class="arrow">&darr;</span></button>
     </section>
 
-    <!-- ─────────── 08 THE SECRET ─────────── -->
+    <!-- 05 Make a song -->
+    <section class="section" id="s_song">
+      <div class="sec-eyebrow">
+        <span class="num">05</span><span class="dot"></span><span>Make a song</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Make a song from a sentence.</h2>
+      <p class="sec-lede">Now there&rsquo;s a track that didn&rsquo;t exist five minutes ago.</p>
+
+      <a class="hero-tool" href="https://suno.com" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">Suno <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">suno.com</div>
+        <p class="ht-line">Type a vibe and a topic &mdash; get back a <em>full song with real vocals</em> in about sixty seconds.</p>
+      </a>
+
+      <button class="next-btn">Next: Boring camera roll <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 06 Boring camera roll -->
+    <section class="section" id="s_sc_super">
+      <div class="sec-eyebrow">
+        <span class="num">06</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person standing alone in an ordinary room">
+          <rect x="324" y="44" width="84" height="84" fill="none" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="366" y1="44" x2="366" y2="128" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="324" y1="86" x2="408" y2="86" stroke="#C8BFAB" stroke-width="2"/>
+          <rect x="74" y="52" width="58" height="44" fill="none" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="36" y1="222" x2="444" y2="222" stroke="#1B1714" stroke-width="2"/>
+          <ellipse cx="210" cy="226" rx="44" ry="7" fill="#1B1714" opacity="0.12"/>
+          <g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="210" cy="78" r="22" fill="#F2ECDE"/>
+            <path d="M210 100 L210 168"/>
+            <path d="M210 118 L180 150"/>
+            <path d="M210 118 L240 150"/>
+            <path d="M210 168 L190 216"/>
+            <path d="M210 168 L230 216"/>
+          </g>
+        </svg>
+      </div>
+      <p class="sc-problem">&ldquo;Nothing exciting ever happens around here &mdash; my camera roll is painfully normal.&rdquo;</p>
+
+      <button class="next-btn">Next: The reveal <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 07 The reveal -->
+    <section class="section" id="s_sc_super2">
+      <div class="sec-eyebrow">
+        <span class="num">07</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The same person floating off the floor, caught levitating">
+          <rect x="324" y="44" width="84" height="84" fill="none" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="366" y1="44" x2="366" y2="128" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="324" y1="86" x2="408" y2="86" stroke="#C8BFAB" stroke-width="2"/>
+          <rect x="74" y="52" width="58" height="44" fill="none" stroke="#C8BFAB" stroke-width="2"/>
+          <line x1="36" y1="222" x2="444" y2="222" stroke="#1B1714" stroke-width="2"/>
+          <ellipse cx="210" cy="228" rx="26" ry="5" fill="#1B1714" opacity="0.10"/>
+          <path d="M182 214 q28 16 56 0" fill="none" stroke="#D63E2A" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+          <path d="M194 226 q16 9 32 0" fill="none" stroke="#D63E2A" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+          <g class="lev" fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="210" cy="78" r="22" fill="#F2ECDE"/>
+            <path d="M210 100 L210 168"/>
+            <path d="M210 118 L180 148"/>
+            <path d="M210 118 L240 148"/>
+            <path d="M210 168 L196 206"/>
+            <path d="M210 168 L224 206"/>
+          </g>
+          <circle cx="150" cy="120" r="3" fill="#D63E2A" opacity="0.7"/>
+          <circle cx="272" cy="96" r="3" fill="#D63E2A" opacity="0.6"/>
+          <circle cx="258" cy="150" r="2.5" fill="#D63E2A" opacity="0.5"/>
+        </svg>
+      </div>
+      <p class="sc-solution">How about I make it look like I <em>secretly caught a friend levitating</em> &mdash; floating off the floor when they thought nobody was watching?</p>
+
+      <button class="next-btn">Next: Superpower <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 08 Superpower -->
+    <section class="section" id="s_super_try">
+      <div class="sec-eyebrow">
+        <span class="num">08</span><span class="dot"></span><span>Superpower</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Caught levitating.</h2>
+      <p class="sec-lede">Now I&rsquo;ve got eerie caught-on-camera footage the group chat can&rsquo;t explain.</p>
+
+      <a class="hero-tool" href="https://higgsfield.ai" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">Higgsfield <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">higgsfield.ai</div>
+        <p class="ht-line">One photo in, tap the <em>Levitation</em> effect &mdash; out comes a clip of them floating, no prompt skill needed.</p>
+      </a>
+
+      <button class="next-btn">Next: Show in 5 min <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 09 Show in 5 min -->
+    <section class="section" id="s_sc_app">
+      <div class="sec-eyebrow">
+        <span class="num">09</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person facing a TV with a five-minute clock"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="74" width="120" height="84" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="330" y1="168" x2="390" y2="168" stroke="#1B1714" stroke-width="4"/><circle cx="360" cy="116" r="22" fill="#F2ECDE" stroke="#D63E2A" stroke-width="3"/><path d="M360 116 L360 100 M360 116 L373 116" stroke="#D63E2A" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <p class="sc-problem">&ldquo;I just got an app idea &mdash; but my show starts in five minutes and I can&rsquo;t code.&rdquo;</p>
+
+      <button class="next-btn">Next: One sentence <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 10 One sentence -->
+    <section class="section" id="s_sc_app2">
+      <div class="sec-eyebrow">
+        <span class="num">10</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A finished app on a phone screen"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="322" y="60" width="76" height="136" rx="12" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="336" y1="86" x2="384" y2="86" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/><line x1="336" y1="106" x2="384" y2="106" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><line x1="336" y1="124" x2="368" y2="124" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><circle cx="360" cy="176" r="7" fill="none" stroke="#1B1714" stroke-width="3"/></svg>
+      </div>
+      <p class="sc-solution">How about I describe it in <em>one sentence</em> and let AI build the whole thing while the intro plays?</p>
+
+      <button class="next-btn">Next: Build an app <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 11 Build an app -->
+    <section class="section" id="s_build_try">
+      <div class="sec-eyebrow">
+        <span class="num">11</span><span class="dot"></span><span>Build an app</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">An app from one sentence.</h2>
+      <p class="sec-lede">Now there&rsquo;s a working app waiting when the credits roll.</p>
+
+      <a class="hero-tool" href="https://lovable.dev" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">Lovable <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">lovable.dev</div>
+        <p class="ht-line">Describe an app in <em>one sentence</em> and watch it build the whole thing &mdash; screens, logic, database &mdash; live.</p>
+      </a>
+
+      <button class="next-btn">Next: Stuck on a chapter <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 12 Stuck on a chapter -->
+    <section class="section" id="s_sc_hw">
+      <div class="sec-eyebrow">
+        <span class="num">12</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a stack of books and a question mark"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#1B1714" stroke-width="4" fill="none"><rect x="300" y="150" width="112" height="18"/><rect x="308" y="132" width="96" height="18"/><rect x="300" y="114" width="108" height="18"/></g><text x="356" y="98" font-family="Fraunces" font-size="48" fill="#D63E2A" text-anchor="middle">?</text></svg>
+      </div>
+      <p class="sc-problem">&ldquo;Problem set due tomorrow and I genuinely don&rsquo;t get chapter 4 &mdash; Googling just buries me in ten tabs.&rdquo;</p>
+
+      <button class="next-btn">Next: Your own tutor <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 13 Your own tutor -->
+    <section class="section" id="s_sc_hw2">
+      <div class="sec-eyebrow">
+        <span class="num">13</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A speech bubble with a checkmark"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><path d="M300 78 h112 a10 10 0 0 1 10 10 v48 a10 10 0 0 1 -10 10 h-66 l-20 22 v-22 h-26 a10 10 0 0 1 -10 -10 v-48 a10 10 0 0 1 10 -10 z" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><path d="M324 114 l14 14 l28 -32" fill="none" stroke="#D63E2A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p class="sc-solution">How about I hand an AI tutor my <em>own notes</em> and let it quiz me until it sticks?</p>
+
+      <button class="next-btn">Next: Homework <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 14 Homework -->
+    <section class="section" id="s_tool_hw">
+      <div class="sec-eyebrow">
+        <span class="num">14</span><span class="dot"></span><span>Homework</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Get through homework.</h2>
+      <p class="sec-lede">Now I actually understand it &mdash; not just copy the answer.</p>
+
+      <a class="hero-tool" href="https://www.studyfetch.com" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">StudyFetch <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">studyfetch.com</div>
+        <p class="ht-line">Upload your own notes or textbook and it becomes a tutor that <em>quizzes you on exactly your material</em> &mdash; not generic questions.</p>
+      </a>
+
+      <button class="next-btn">Next: Deck due tomorrow <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 15 Deck due tomorrow -->
+    <section class="section" id="s_sc_slides">
+      <div class="sec-eyebrow">
+        <span class="num">15</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a blank slide and a clock"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="80" width="120" height="80" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><circle cx="360" cy="120" r="20" fill="#F2ECDE" stroke="#D63E2A" stroke-width="3"/><path d="M360 120 L360 106 M360 120 L372 126" stroke="#D63E2A" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <p class="sc-problem">&ldquo;Group presentation tomorrow. I&rsquo;ve got the ideas&hellip; and zero hours to design twelve slides.&rdquo;</p>
+
+      <button class="next-btn">Next: One-line deck <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 16 One-line deck -->
+    <section class="section" id="s_sc_slides2">
+      <div class="sec-eyebrow">
+        <span class="num">16</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A finished slide with content"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="300" y="80" width="120" height="80" rx="4" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="316" y1="100" x2="384" y2="100" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/><line x1="316" y1="120" x2="404" y2="120" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/><line x1="316" y1="138" x2="404" y2="138" stroke="#C8BFAB" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+      <p class="sc-solution">How about I describe it in <em>one sentence</em> and let AI build the whole deck &mdash; layout, images, notes?</p>
+
+      <button class="next-btn">Next: Slide decks <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 17 Slide decks -->
+    <section class="section" id="s_tool_slides">
+      <div class="sec-eyebrow">
+        <span class="num">17</span><span class="dot"></span><span>Slide decks</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Slide decks in minutes.</h2>
+      <p class="sec-lede">Now I show up looking like I spent all weekend on it.</p>
+
+      <a class="hero-tool" href="https://gamma.app" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">Gamma <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">gamma.app</div>
+        <p class="ht-line">One sentence in &mdash; a <em>designed, presentation-ready deck</em> out, in under a minute. Export to PowerPoint when it&rsquo;s done.</p>
+      </a>
+
+      <button class="next-btn">Next: Gym + study <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 18 Gym + study -->
+    <section class="section" id="s_sc_audio">
+      <div class="sec-eyebrow">
+        <span class="num">18</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person beside a dumbbell"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g stroke="#1B1714" stroke-width="5" stroke-linecap="round"><line x1="322" y1="118" x2="402" y2="118"/><line x1="322" y1="102" x2="322" y2="134"/><line x1="334" y1="96" x2="334" y2="140"/><line x1="402" y1="102" x2="402" y2="134"/><line x1="390" y1="96" x2="390" y2="140"/></g></svg>
+      </div>
+      <p class="sc-problem">&ldquo;I have to read an entire biology chapter &mdash; but I&rsquo;d rather be at the gym.&rdquo;</p>
+
+      <button class="next-btn">Next: Make it a podcast <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 19 Make it a podcast -->
+    <section class="section" id="s_sc_audio2">
+      <div class="sec-eyebrow">
+        <span class="num">19</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two podcast microphones"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><g fill="none" stroke="#1B1714" stroke-width="4"><rect x="316" y="78" width="26" height="46" rx="13" fill="#F2ECDE"/><path d="M329 124 L329 150 M314 150 H344" stroke-linecap="round"/></g><g fill="none" stroke="#D63E2A" stroke-width="4"><rect x="374" y="78" width="26" height="46" rx="13" fill="#F2ECDE"/><path d="M387 124 L387 150 M372 150 H402" stroke-linecap="round"/></g></svg>
+      </div>
+      <p class="sc-solution">How about I turn the chapter into an <em>exciting podcast</em> &mdash; a host and a guest talking it through?</p>
+
+      <button class="next-btn">Next: Podcast it <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 20 Podcast it -->
+    <section class="section" id="s_tool_audio">
+      <div class="sec-eyebrow">
+        <span class="num">20</span><span class="dot"></span><span>Podcast it</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Turn your homework into a podcast.</h2>
+      <p class="sec-lede">Now I work out <em>and</em> learn &mdash; in a way I&rsquo;ll actually remember.</p>
+
+      <a class="hero-tool" href="https://notebooklm.google.com" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">NotebookLM <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">notebooklm.google.com</div>
+        <p class="ht-line">Upload your notes, press one button &mdash; out comes a <em>two-host podcast</em> about your own material. Nobody believes it&rsquo;s AI.</p>
+      </a>
+
+      <button class="next-btn">Next: Camera-shy <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 21 Camera-shy -->
+    <section class="section" id="s_sc_clone">
+      <div class="sec-eyebrow">
+        <span class="num">21</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A person avoiding a video camera"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><rect x="298" y="92" width="86" height="58" rx="6" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><path d="M384 108 L414 94 L414 148 L384 134 Z" fill="none" stroke="#1B1714" stroke-width="4"/><line x1="298" y1="152" x2="414" y2="90" stroke="#D63E2A" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+      <p class="sc-problem">&ldquo;I have to submit a video presentation &mdash; but I freeze on camera and I&rsquo;m out of time to film.&rdquo;</p>
+
+      <button class="next-btn">Next: Be on camera <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 22 Be on camera -->
+    <section class="section" id="s_sc_clone2">
+      <div class="sec-eyebrow">
+        <span class="num">22</span><span class="dot"></span><span>Picture this</span><span class="rule"></span>
+      </div>
+      <div class="story-photo">
+        <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two identical faces, a clone"><line x1="36" y1="220" x2="444" y2="220" stroke="#1B1714" stroke-width="2"/><ellipse cx="150" cy="224" rx="38" ry="6" fill="#1B1714" opacity="0.12"/><g fill="none" stroke="#1B1714" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="150" cy="86" r="20" fill="#F2ECDE"/><path d="M150 106 L150 168"/><path d="M150 124 L124 152"/><path d="M150 124 L176 152"/><path d="M150 168 L132 214"/><path d="M150 168 L168 214"/></g><circle cx="332" cy="116" r="26" fill="#F2ECDE" stroke="#1B1714" stroke-width="4"/><circle cx="392" cy="116" r="26" fill="#F2ECDE" stroke="#D63E2A" stroke-width="4"/><path d="M360 104 q2 12 0 24" fill="none" stroke="#C8BFAB" stroke-width="2" stroke-dasharray="3 4"/></svg>
+      </div>
+      <p class="sc-solution">How about I generate a video of <em>me</em> delivering it perfectly &mdash; my face, my voice, a script I typed?</p>
+
+      <button class="next-btn">Next: Be anyone <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 23 Be anyone -->
+    <section class="section" id="s_tool_clone">
+      <div class="sec-eyebrow">
+        <span class="num">23</span><span class="dot"></span><span>Be anyone</span><span class="rule"></span>
+      </div>
+      <h2 class="sec-title">Look &amp; sound like anyone.</h2>
+      <p class="sec-lede">Now I hand it in without filming a thing.</p>
+
+      <a class="hero-tool" href="https://www.heygen.com" target="_blank" rel="noopener">
+        <div class="ht-tag">The one I&rsquo;ll use</div>
+        <div class="ht-name">HeyGen <span class="ht-arrow">&#8599;</span></div>
+        <div class="ht-url">heygen.com</div>
+        <p class="ht-line">Record yourself for two minutes, once. After that, type anything and <em>&ldquo;you&rdquo; says it on camera</em> &mdash; perfect face, perfect voice.</p>
+      </a>
+
+      <button class="next-btn">Next: The truth of building <span class="arrow">&darr;</span></button>
+    </section>
+
+    <!-- 24 The truth of building -->
     <section class="section" id="s7">
       <div class="sec-eyebrow">
-        <span class="num">09</span><span class="dot"></span><span>The truth of building</span><span class="rule"></span>
+        <span class="num">24</span><span class="dot"></span><span>The truth of building</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">The truth of building applications in the AI era.</h2>
 
@@ -4008,12 +4474,12 @@ body.modal-open { overflow: hidden; }
 
         <div>
           <ul class="secret-list">
-            <li><span class="x">&times;</span><span class="t"><strong>Postgres vs MySQL</strong></span></li>
-            <li><span class="x">&times;</span><span class="t">Designing <strong>database tables</strong> by hand</span></li>
-            <li><span class="x">&times;</span><span class="t">Writing <strong>authentication code</strong></span></li>
-            <li><span class="x">&times;</span><span class="t"><strong>Optimising storage</strong> or picking a region</span></li>
-            <li><span class="x">&times;</span><span class="t">What <strong>&ldquo;serverless&rdquo;</strong> actually means</span></li>
-            <li><span class="x">&times;</span><span class="t">A <strong>computer science degree</strong></span></li>
+            <li><span class="x">&times;</span><span class="t">Postgres vs MySQL</span></li>
+            <li><span class="x">&times;</span><span class="t">Database tables</span></li>
+            <li><span class="x">&times;</span><span class="t">Auth code</span></li>
+            <li><span class="x">&times;</span><span class="t">Storage &amp; regions</span></li>
+            <li><span class="x">&times;</span><span class="t">&ldquo;Serverless&rdquo;</span></li>
+            <li><span class="x">&times;</span><span class="t">A CS degree</span></li>
           </ul>
         </div>
       </div>
@@ -4032,10 +4498,10 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: Free to build <span class="arrow">↓</span></button>
     </section>
 
-    <!-- ─────────── 09 FREE TO BUILD ─────────── -->
+    <!-- 25 Free to build -->
     <section class="section" id="s_free">
       <div class="sec-eyebrow">
-        <span class="num">10</span><span class="dot"></span><span>Free to build</span><span class="rule"></span>
+        <span class="num">25</span><span class="dot"></span><span>Free to build</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">Free to build.</h2>
 
@@ -4056,37 +4522,6 @@ body.modal-open { overflow: hidden; }
         </div>
       </div>
 
-      <div class="stack-grid">
-        <div class="stack-label">The free stack &mdash; every layer covered</div>
-        <div class="stack-rows">
-          <div class="stack-row">
-            <div class="sr-layer">AI / Chat</div>
-            <div class="sr-tools">Claude &middot; DeepSeek &middot; Perplexity</div>
-            <div class="sr-note">All have free tiers &middot; Perplexity Pro is free for Airtel customers in India</div>
-          </div>
-          <div class="stack-row">
-            <div class="sr-layer">Coding tools</div>
-            <div class="sr-tools">Cursor &middot; Claude Code &middot; v0 &middot; Bolt &middot; Lovable</div>
-            <div class="sr-note">Free tiers cover most weekend-project usage</div>
-          </div>
-          <div class="stack-row">
-            <div class="sr-layer">Hosting</div>
-            <div class="sr-tools">Vercel &middot; Netlify &middot; Cloudflare Workers</div>
-            <div class="sr-note">Free for small projects &middot; Cloudflare's tier is very generous</div>
-          </div>
-          <div class="stack-row">
-            <div class="sr-layer">Database</div>
-            <div class="sr-tools">Supabase &middot; Neon &middot; Turso</div>
-            <div class="sr-note">Free up to hundreds of MB &amp; thousands of users</div>
-          </div>
-          <div class="stack-row">
-            <div class="sr-layer">Auth + Storage</div>
-            <div class="sr-tools">Clerk &middot; Supabase Auth &middot; Cloudflare R2</div>
-            <div class="sr-note">Free at small scale &middot; pay only when you grow</div>
-          </div>
-        </div>
-      </div>
-
       <div class="why-card">
         <div class="wc-tag">Why most people never start</div>
         <ul class="wc-list">
@@ -4094,16 +4529,16 @@ body.modal-open { overflow: hidden; }
           <li>They think you need a CS degree</li>
           <li>They&rsquo;re waiting for a &ldquo;right time&rdquo; &mdash; it was two years ago</li>
         </ul>
-        <div class="wc-pull">Pick a tool from <em>Building apps</em> and start today. That&rsquo;s Day 1.</div>
+        <div class="wc-pull">Open <em>Lovable</em> and start today. That&rsquo;s Day 1.</div>
       </div>
 
       <button class="next-btn">Next: The bigger picture <span class="arrow">↓</span></button>
     </section>
 
-    <!-- ─────────── 10 THE BIGGER PICTURE ─────────── -->
+    <!-- 26 The bigger picture -->
     <section class="section" id="s_bp">
       <div class="sec-eyebrow">
-        <span class="num">11</span><span class="dot"></span><span>The bigger picture</span><span class="rule"></span>
+        <span class="num">26</span><span class="dot"></span><span>The bigger picture</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">The bigger picture.</h2>
       <p class="sec-lede">
@@ -4115,27 +4550,21 @@ body.modal-open { overflow: hidden; }
           <div class="bp-stat">$700B</div>
           <div class="bp-stat-sub">AI infrastructure spend, 2026</div>
           <ul class="bp-bullets">
-            <li>Microsoft, Google, Amazon, Meta alone &mdash; this year</li>
-            <li>Projected to pass <strong>&#36;1T in 2027</strong></li>
-            <li>&#36;3&ndash;4T total industry spend by end of decade</li>
+            <li>Big Tech, this year alone &mdash; heading past <strong>&#36;3T by 2030</strong>.</li>
           </ul>
         </div>
         <div class="bp-card">
           <div class="bp-stat">20 yrs</div>
           <div class="bp-stat-sub">India's tax holiday for data centres</div>
           <ul class="bp-bullets">
-            <li>Tax holiday until <strong>2047</strong> &mdash; Union Budget 2026</li>
-            <li>That&rsquo;s the length of your school <em>and</em> most of your career</li>
-            <li>Google committed <strong>&#36;15B</strong> to one in Andhra Pradesh; Microsoft &amp; Amazon billions more</li>
+            <li>Tax-free until <strong>2047</strong> &mdash; longer than your school <em>and</em> most of your career.</li>
           </ul>
         </div>
         <div class="bp-card">
           <div class="bp-stat">&infin;</div>
           <div class="bp-stat-sub">You&rsquo;re in the storm either way</div>
           <ul class="bp-bullets">
-            <li>The AI boom will define your school years <em>and</em> your professional life</li>
-            <li>You don&rsquo;t get to opt out &mdash; the economy around you is shifting</li>
-            <li>Understand it now, ride it well, and it can be the best thing for you</li>
+            <li>You can&rsquo;t opt out &mdash; so understand it now and ride it well.</li>
           </ul>
         </div>
       </div>
@@ -4143,10 +4572,10 @@ body.modal-open { overflow: hidden; }
       <button class="next-btn">Next: What you get <span class="arrow">↓</span></button>
     </section>
 
-    <!-- ─────────── 11 WHAT YOU GET (compact, at bottom) ─────────── -->
+    <!-- 27 What you get -->
     <section class="section" id="s_get">
       <div class="sec-eyebrow">
-        <span class="num">12</span><span class="dot"></span><span>What you get</span><span class="rule"></span>
+        <span class="num">27</span><span class="dot"></span><span>What you get</span><span class="rule"></span>
       </div>
       <h2 class="sec-title">What you get.</h2>
       <p class="sec-lede">Every single day, across all 10. And what continues beyond the workshop.</p>
@@ -4170,19 +4599,20 @@ body.modal-open { overflow: hidden; }
         </div>
       </div>
 
-      <button class="next-btn">Next: Day 0 done <span class="arrow">↓</span></button>
+      <button class="next-btn">Next: End <span class="arrow">↓</span></button>
     </section>
 
-    <!-- ─────────── 12 CLOSING ─────────── -->
+    <!-- 28 End -->
     <section class="section s-closing" id="s9">
       <div class="closing-frame">
-        <div class="closing-meta">End</div>
-        <h2 class="closing-title">Done.</h2>
+        <div class="closing-meta">Day Zero · complete</div>
+        <h2 class="closing-title">Now the <em>10 days.</em></h2>
         <p class="closing-sub">
-          That's it for Day 0. Day 1 is whenever you start.
+          You just saw the whole map in one sitting. The next ten days are where you <em>build it</em> &mdash; ship real apps, clone your own voice and face, all alongside a room of other builders.
         </p>
 
         <div class="closing-actions">
+          <a class="join-btn" href="#">Join the next cohort <span class="arrow">&rarr;</span></a>
           <button class="ghost" id="restart">↑ Back to top</button>
         </div>
       </div>
