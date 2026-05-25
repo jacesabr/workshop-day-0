@@ -193,8 +193,21 @@
   }
   .compete .yes { color: var(--accent); font-weight: 700; }
   .compete .no { color: var(--dim); }
-  .compete .row-us { background: var(--accent-soft); border-radius: 6px; }
-  .compete .row-us div { color: var(--ink); font-weight: 600; }
+  .compete .row-us {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    background: var(--accent-soft);
+    border-radius: 6px;
+    border-bottom: none;
+    padding: 0;
+  }
+  .compete .row-us > div {
+    padding: 2vh 1.5vw;
+    color: var(--ink);
+    font-weight: 600;
+    border-bottom: none;
+  }
   .progress {
     position: fixed;
     bottom: 2vh;
