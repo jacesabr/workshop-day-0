@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarthi — Pitch</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --ink: #f5f5f0;
+    --dim: #8a8a85;
+    --accent: #ff7a3d;
+    --accent-soft: #ff7a3d22;
+    --gold: #f6c544;
+    --rule: #1f1f1c;
+    --card: #131311;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', -apple-system, system-ui, sans-serif; }
+  body {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+  .slide {
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5vh;
+    font-weight: 600;
+  }
+  h1.cover {
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 2vh;
+  }
+  h1.cover em { color: var(--accent); font-style: normal; }
+  .cover-tag {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    color: var(--dim);
+    max-width: 60ch;
+    line-height: 1.3;
+  }
+  .cover-meta {
+    position: absolute;
+    bottom: 6vh;
+    left: 8vw;
+    right: 8vw;
+    display: flex;
+    justify-content: space-between;
+    color: var(--dim);
+    font-size: 0.9rem;
+  }
+  h2.title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 4vh;
+    max-width: 22ch;
+  }
+  h2.title em { color: var(--accent); font-style: normal; }
+  h2.title b { color: var(--gold); font-weight: 700; }
+  .lead {
+    font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+    color: var(--dim);
+    line-height: 1.5;
+    max-width: 60ch;
+    margin-bottom: 4vh;
+  }
+  .lead strong { color: var(--ink); font-weight: 600; }
+  .big-stat {
+    font-size: clamp(5rem, 14vw, 14rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--accent);
+    margin-bottom: 1vh;
+  }
+  .stat-cap {
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    color: var(--ink);
+    max-width: 50ch;
+    line-height: 1.4;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3vw;
+    margin-top: 3vh;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    margin-top: 3vh;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 3vh 2.5vw;
+  }
+  .card-num {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 1.5vh;
+    letter-spacing: 0.15em;
+  }
+  .card-title {
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+    font-weight: 700;
+    margin-bottom: 1.5vh;
+    color: var(--ink);
+  }
+  .card-body {
+    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    color: var(--dim);
+    line-height: 1.5;
+  }
+  .bullets {
+    list-style: none;
+    margin-top: 2vh;
+  }
+  .bullets li {
+    font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+    line-height: 1.5;
+    margin-bottom: 2vh;
+    padding-left: 2.5rem;
+    position: relative;
+    color: var(--ink);
+  }
+  .bullets li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .bullets li em { color: var(--accent); font-style: normal; font-weight: 600; }
+  .bullets li b { color: var(--gold); font-weight: 600; }
+  table.market {
+    border-collapse: collapse;
+    margin-top: 3vh;
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    width: 80%;
+  }
+  table.market td, table.market th {
+    text-align: left;
+    padding: 1.5vh 2vw;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.market th {
+    color: var(--dim);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  table.market td.num { color: var(--accent); font-weight: 700; }
+  table.market tr.total td { font-weight: 700; color: var(--gold); border-top: 2px solid var(--accent); border-bottom: none; padding-top: 2vh; }
+  .compete {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 0;
+    margin-top: 3vh;
+    font-size: clamp(1rem, 1.3vw, 1.25rem);
+  }
+  .compete > div {
+    padding: 2vh 1.5vw;
+    border-bottom: 1px solid var(--rule);
+  }
+  .compete .ch {
+    color: var(--dim);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .compete .yes { color: var(--accent); font-weight: 700; }
+  .compete .no { color: var(--dim); }
+  .compete .row-us { background: var(--accent-soft); border-radius: 6px; }
+  .compete .row-us div { color: var(--ink); font-weight: 600; }
+  .progress {
+    position: fixed;
+    bottom: 2vh;
+    right: 2vw;
+    color: var(--dim);
+    font-size: 0.85rem;
+    background: var(--bg);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    z-index: 10;
+  }
+  .pull-quote {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    max-width: 28ch;
+  }
+  .pull-quote em { color: var(--accent); font-style: normal; }
+  .ask-num {
+    font-size: clamp(4rem, 9vw, 8rem);
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 2vh;
+  }
+  .ask-cap { font-size: clamp(1.3rem, 1.8vw, 1.6rem); color: var(--dim); }
+  .footnote {
+    font-size: 0.85rem;
+    color: var(--dim);
+    margin-top: 4vh;
+    font-style: italic;
+  }
+  .demo-mock {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 3vh 3vw;
+    margin-top: 3vh;
+    max-width: 700px;
+  }
+  .mock-row { display: flex; justify-content: space-between; align-items: center; padding: 1vh 0; border-bottom: 1px solid var(--rule); }
+  .mock-row:last-child { border-bottom: none; }
+  .mock-chapter { font-size: 1.1rem; }
+  .mock-bar { flex: 0 0 200px; height: 8px; background: var(--rule); border-radius: 100px; margin: 0 1rem; overflow: hidden; }
+  .mock-bar-fill { height: 100%; background: var(--accent); border-radius: 100px; }
+  .mock-pct { font-size: 1rem; color: var(--accent); font-weight: 700; min-width: 50px; text-align: right; }
+  .mock-pct.weak { color: #ff5a5a; }
+  .mock-pct.mid { color: var(--gold); }
+  .strikethrough { text-decoration: line-through; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<!-- 01 COVER -->
+<section class="slide">
+  <div class="eyebrow">Sarthi · Investor + Parent Deck</div>
+  <h1 class="cover">Personal coaching <em>for the price of a tiffin.</em></h1>
+  <p class="cover-tag">An AI coach for JEE, NEET, and CBSE Boards. Built for the 90% of students who can't afford ₹2 lakh a year — and the parents who shouldn't have to pay it.</p>
+  <div class="cover-meta">
+    <span>Sarthi · 2026</span>
+    <span>Confidential</span>
+  </div>
+</section>
+
+<!-- 02 THE PROBLEM -->
+<section class="slide">
+  <div class="eyebrow">01 · The problem</div>
+  <h2 class="title">Parents pay <em>₹2 lakh a year</em> for a class of 40.</h2>
+  <p class="lead">Coaching centres are a 30-year-old model: <strong>one teacher, one pace, one answer key.</strong> The kid who's stuck on chapter 4 sits through chapter 12 anyway. The kid who needs more practice on optics gets the same homework as everyone else.</p>
+  <p class="lead">India spends <strong>$58 billion</strong> a year on test prep. The success rate for JEE? <strong>Under 2%.</strong></p>
+</section>
+
+<!-- 03 THE STAT -->
+<section class="slide" style="justify-content: center; text-align: center; align-items: center;">
+  <div class="big-stat">95%</div>
+  <p class="stat-cap">of students who pay for premium coaching <strong>do not</strong> crack the exam they paid for.</p>
+  <p class="footnote">Source: Allen, Aakash, FIITJEE published selection rates · NTA results 2024</p>
+</section>
+
+<!-- 04 WHAT STUDENTS ACTUALLY NEED -->
+<section class="slide">
+  <div class="eyebrow">02 · What students actually need</div>
+  <h2 class="title">A coach who <em>knows them.</em></h2>
+  <ul class="bullets">
+    <li>Knows <em>which chapter</em> they're weak in — not "Physics", but <em>rotational mechanics, week 3.</em></li>
+    <li>Gives them <em>their own</em> question set, not the same worksheet as 40 other kids.</li>
+    <li>Explains the wrong answer until they actually get it — in <em>their own language.</em></li>
+    <li>Never gets tired. Never has 39 other students. Never charges ₹2 lakh.</li>
+  </ul>
+</section>
+
+<!-- 05 THE SHIFT -->
+<section class="slide">
+  <div class="eyebrow">03 · Why this wasn't possible before</div>
+  <h2 class="title">A <em>private tutor</em> used to mean a private tutor.</h2>
+  <p class="lead">Until 2024, "personalised coaching" meant hiring a human. Hours, ego, scheduling, salary.</p>
+  <p class="lead">As of 2026, AI is <strong>good enough and cheap enough</strong> to give every Indian student their own tutor — for less than a Domino's pizza per month. <em>This is the first time in history this has been possible.</em></p>
+</section>
+
+<!-- 06 THE PRODUCT -->
+<section class="slide">
+  <div class="eyebrow">04 · What we built</div>
+  <h2 class="title">Sarthi. <em>One app, four exams.</em></h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">Pick your exam</div>
+      <div class="card-body">JEE Main · NEET · Class 10 Boards · Class 12 Boards. One per student.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">Diagnostic</div>
+      <div class="card-body">10 minutes. Sarthi finds the chapters you're weak in — by chapter, not by subject.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Daily loop</div>
+      <div class="card-body">A personalised question set every morning. AI grades it, finds the gap, explains the gap, hammers it until closed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 MASTERY -->
+<section class="slide">
+  <div class="eyebrow">05 · The mastery engine</div>
+  <h2 class="title">Every chapter scored. <em>Unlock the next tier.</em></h2>
+  <div class="demo-mock">
+    <div class="mock-row"><span class="mock-chapter">Rotational Mechanics</span><div class="mock-bar"><div class="mock-bar-fill" style="width: 92%"></div></div><span class="mock-pct">92%</span></div>
+    <div class="mock-row"><span class="mock-chapter">Thermodynamics</span><div class="mock-bar"><div class="mock-bar-fill" style="width: 64%; background: #f6c544;"></div></div><span class="mock-pct mid">64%</span></div>
+    <div class="mock-row"><span class="mock-chapter">Electromagnetic Induction</span><div class="mock-bar"><div class="mock-bar-fill" style="width: 38%; background: #ff5a5a;"></div></div><span class="mock-pct weak">38%</span></div>
+    <div class="mock-row"><span class="mock-chapter">Modern Physics</span><div class="mock-bar"><div class="mock-bar-fill" style="width: 88%"></div></div><span class="mock-pct">88%</span></div>
+  </div>
+  <p class="lead" style="margin-top: 3vh;">Hit 90% across every chapter in JEE Main → <em>JEE Advanced</em> mode unlocks. Earned, not handed.</p>
+</section>
+
+<!-- 08 WHY NOW -->
+<section class="slide">
+  <div class="eyebrow">06 · Why now</div>
+  <h2 class="title">Three lines crossed <em>this year.</em></h2>
+  <ul class="bullets">
+    <li><em>AI got cheap.</em> Per-student inference: <b>~₹10/month.</b> In 2023 it was ₹500. In 2021 it was impossible.</li>
+    <li><em>Phones reached the kids.</em> Smartphone penetration in our target demographic: <b>82%.</b> Up from 41% in 2020.</li>
+    <li><em>Parents got tired.</em> Coaching ROI is now a national conversation. ₹2 lakh for a 2% chance? <b>Math has changed.</b></li>
+  </ul>
+</section>
+
+<!-- 09 MARKET -->
+<section class="slide">
+  <div class="eyebrow">07 · Market</div>
+  <h2 class="title">A floor we can <em>actually reach.</em></h2>
+  <table class="market">
+    <tr><th>Exam</th><th>Students / year</th></tr>
+    <tr><td>JEE Main</td><td class="num">12 lakh</td></tr>
+    <tr><td>NEET</td><td class="num">22 lakh</td></tr>
+    <tr><td>CBSE Class 10</td><td class="num">22 lakh</td></tr>
+    <tr><td>CBSE Class 12</td><td class="num">17 lakh</td></tr>
+    <tr class="total"><td>Total addressable</td><td class="num">73 lakh / year</td></tr>
+  </table>
+  <p class="lead" style="margin-top: 3vh;">At ₹4,000 ARPU — that's a <em>₹2,920 crore</em> annual market. <strong>1% capture in 3 years = ₹29 Cr ARR.</strong></p>
+</section>
+
+<!-- 10 PRICING -->
+<section class="slide">
+  <div class="eyebrow">08 · Pricing</div>
+  <h2 class="title">What parents pay today vs <em>what they'll pay us.</em></h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-num">TODAY</div>
+      <div class="card-title">Allen / Aakash / FIITJEE</div>
+      <div class="card-body" style="font-size: 1.5rem; color: var(--ink); margin-top: 2vh;"><span class="strikethrough">₹1,80,000</span> / year</div>
+      <div class="card-body" style="margin-top: 1vh;">One teacher, 40 kids, same pace. 95% don't crack it.</div>
+    </div>
+    <div class="card" style="border-color: var(--accent);">
+      <div class="card-num" style="color: var(--gold);">SARTHI</div>
+      <div class="card-title">AI coach, 1:1, every chapter</div>
+      <div class="card-body" style="font-size: 1.5rem; color: var(--accent); margin-top: 2vh; font-weight: 700;">₹499 / month</div>
+      <div class="card-body" style="margin-top: 1vh;">~₹6,000/year. <strong>1/30th the price.</strong> Gross margin 85%+.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 COMPETITION -->
+<section class="slide">
+  <div class="eyebrow">09 · Competition</div>
+  <h2 class="title">Nobody is doing <em>all four</em> things.</h2>
+  <div class="compete">
+    <div class="ch">Player</div><div class="ch">Indian curriculum</div><div class="ch">1:1 personalised</div><div class="ch">Affordable</div>
+
+    <div>Allen / Aakash</div><div class="yes">Yes</div><div class="no">No</div><div class="no">No (₹2L)</div>
+    <div>Byju's / Unacademy</div><div class="yes">Yes</div><div class="no">Video, not 1:1</div><div class="no">₹30-70K</div>
+    <div>PhysicsWallah</div><div class="yes">Yes</div><div class="no">Video + live, not 1:1</div><div class="yes">₹5K</div>
+    <div>Khanmigo / ChatGPT</div><div class="no">No (US curriculum)</div><div class="yes">Yes</div><div class="yes">Free-ish</div>
+    <div class="row-us"><div>Sarthi</div><div class="yes">Yes</div><div class="yes">Yes</div><div class="yes">₹6K</div></div>
+  </div>
+</section>
+
+<!-- 12 GO TO MARKET -->
+<section class="slide">
+  <div class="eyebrow">10 · Go-to-market</div>
+  <h2 class="title">Where the students <em>actually are.</em></h2>
+  <ul class="bullets">
+    <li><em>WhatsApp-native onboarding</em> — share a link, take the diagnostic, start learning. No app store friction.</li>
+    <li><em>Tier-2/3 city schools</em> — partnership channel. One school = 500 prospects in a single demo.</li>
+    <li><em>Coaching-centre dropouts</em> — high-intent, already pre-qualified, fed up. Easy switch.</li>
+    <li><em>Parent referrals</em> — Indian parents talk. One mom in the WhatsApp group recommends Sarthi = 20 signups.</li>
+  </ul>
+</section>
+
+<!-- 13 VISION -->
+<section class="slide">
+  <div class="eyebrow">11 · Where this goes</div>
+  <h2 class="title">A coach in every Indian child's pocket — by <em>2030.</em></h2>
+  <p class="lead">JEE / NEET / Boards is the wedge. Next: state boards, undergrad entrance (CUET, CAT, GATE), then UPSC and government exams. The same engine — mastery + personalised practice + 1:1 explanation — works for any standardised exam in any language.</p>
+  <p class="lead">India has <strong>250 million</strong> school-age students. The unit of education is shifting from <em>classroom</em> to <em>conversation.</em> We're building the default coach for that shift.</p>
+</section>
+
+<!-- 14 ASK -->
+<section class="slide">
+  <div class="eyebrow">12 · The ask</div>
+  <h2 class="title">Raising for <em>18 months of runway.</em></h2>
+  <div class="grid-2" style="margin-top: 4vh;">
+    <div>
+      <div class="ask-num">₹4 Cr</div>
+      <div class="ask-cap">Seed round</div>
+    </div>
+    <div>
+      <div class="ask-num">10K</div>
+      <div class="ask-cap">Paying students by month 18</div>
+    </div>
+  </div>
+  <p class="lead" style="margin-top: 5vh;"><strong>Uses:</strong> 6 engineers · content team for past-paper parsing · WhatsApp + school GTM · LLM inference budget for first 50K free-tier users.</p>
+</section>
+
+<!-- 15 CLOSING -->
+<section class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <div class="pull-quote">"Coaching used to be a privilege. <em>It doesn't have to be anymore.</em>"</div>
+  <p class="cover-tag" style="margin-top: 6vh;">Sarthi · 2026</p>
+  <p class="footnote" style="margin-top: 1vh;">Contact: aiworkshopludhiana@proton.me</p>
+</section>
+
+<div class="progress" id="progress">1 / 15</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const progress = document.getElementById('progress');
+  const total = slides.length;
+  function updateProgress() {
+    const scroll = window.scrollY;
+    const idx = Math.round(scroll / window.innerHeight) + 1;
+    progress.textContent = `${Math.min(idx, total)} / ${total}`;
+  }
+  window.addEventListener('scroll', updateProgress);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+      e.preventDefault();
+      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+    }
+  });
+</script>
+
+</body>
+</html>
