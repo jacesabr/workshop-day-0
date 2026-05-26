@@ -499,6 +499,62 @@
       font-size: 0.8rem;
     }
 
+    /* SETUP + BIG-SHIFT AS DROPDOWNS */
+    details.setup-card,
+    details.big-shift-card { padding-top: 0.6rem; }
+
+    details.setup-card > summary,
+    details.big-shift-card > summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      padding: 0.6rem 0;
+      font-weight: 700;
+    }
+    details.setup-card > summary::-webkit-details-marker,
+    details.big-shift-card > summary::-webkit-details-marker { display: none; }
+
+    details.setup-card > summary::before,
+    details.big-shift-card > summary::before {
+      content: "▸";
+      display: inline-block;
+      transition: transform 0.15s ease;
+      font-size: 0.95rem;
+      margin-right: 0.1rem;
+    }
+    details.setup-card[open] > summary::before,
+    details.big-shift-card[open] > summary::before {
+      transform: rotate(90deg);
+    }
+
+    details.setup-card > summary {
+      font-size: 1.25rem;
+      color: #065f46;
+      margin-bottom: 0;
+    }
+    details.setup-card[open] > summary {
+      margin-bottom: 0.4rem;
+      border-bottom: 1px solid #a7f3d0;
+      padding-bottom: 0.8rem;
+    }
+    details.setup-card > summary::before { color: #047857; }
+
+    details.big-shift-card > summary {
+      font-size: 1.4rem;
+      color: #0a0f1c;
+      margin-bottom: 0;
+    }
+    details.big-shift-card[open] > summary {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #b9e0ff;
+      padding-bottom: 0.8rem;
+    }
+    details.big-shift-card > summary::before { color: #2563eb; }
+
     /* VERTICAL FLOW ARROW BETWEEN STEPS */
     .step-arrow {
       display: flex;
@@ -618,9 +674,9 @@
     </div>
   </div>
 
-  <!-- SETUP CARD: install + signup + .env -->
-  <div class="setup-card">
-    <h2><span class="setup-card-tag">START HERE · 15 MIN</span> Get your accounts ready</h2>
+  <!-- SETUP CARD: install + signup + .env (dropdown) -->
+  <details class="setup-card" open>
+    <summary><span class="setup-card-tag">START HERE · 15 MIN</span> Get your accounts ready</summary>
     <p>One-time setup. After this you'll never do it again. The same accounts power every app you'll ever build.</p>
 
     <div class="setup-block">
@@ -661,7 +717,7 @@ UPLOADTHING_TOKEN=
 UPLOADTHING_APP_ID=
       </div>
     </div>
-  </div>
+  </details>
 
   <!-- STEP NAV -->
   <nav class="step-nav">
@@ -672,13 +728,11 @@ UPLOADTHING_APP_ID=
     <a href="#step-4">4 · Plan</a>
     <a href="#step-5">5 · Build</a>
     <a href="#validate">🔬 Validate</a>
-    <a href="#templates">📇 Templates</a>
-    <a href="#schedule">⏱️ Schedule</a>
   </nav>
 
-  <!-- THE BIG SHIFT -->
-  <div class="big-shift-card card" id="big-shift">
-    <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem;">🔄 The Big Shift</h2>
+  <!-- THE BIG SHIFT (dropdown) -->
+  <details class="big-shift-card card" id="big-shift">
+    <summary>🔄 The Big Shift &mdash; <span style="font-weight:500;color:#475569;font-size:0.95rem;">how AI changed building</span></summary>
     <div class="idea-context">
       📌 <strong>Demo example only:</strong> a simple to-do list. <em>Your app will be whatever you want — same recipe.</em>
     </div>
@@ -704,7 +758,7 @@ UPLOADTHING_APP_ID=
       • Newest on top = sort by date<br><br>
       <strong>You never said "database" or "backend" or "API endpoint." You just described the app. AI does the rest — and the same describe-the-screen recipe works for <em>any</em> app you can dream up.</strong>
     </div>
-  </div>
+  </details>
 
   <!-- THE RULE -->
   <div class="jargon-free-rule">
@@ -995,63 +1049,6 @@ Keep it super simple. No tech words."
     </div>
     </div>
   </details>
-
-  <!-- TEMPLATES -->
-  <div class="section-title" id="templates">
-    <span>📇</span> Copy-paste templates <span class="reference-banner">Reference</span>
-  </div>
-  <p style="margin: 0 0 1rem; color: #475569; font-size: 0.95rem;">Reusable prompt scaffolds. Fill in the blanks, paste into Claude or Cursor.</p>
-  <div class="grid-2">
-    <div class="card">
-      <h4>✏️ Describe your app</h4>
-      <div class="prompt-box light">
-"I want an app called [NAME].
-
-<strong>What it does:</strong> [one sentence]
-<strong>The screens:</strong> [list them]
-<strong>On the main screen:</strong> [describe buttons, lists, checkboxes]
-<strong>When I click [BUTTON]:</strong> [what happens?]"
-      </div>
-    </div>
-    <div class="card">
-      <h4>🔍 Research your idea</h4>
-      <div class="prompt-box light">
-"Before I build, research this idea: [paste idea].
-1. Similar apps?
-2. Worth building?
-3. Simplest 1-day version?
-Be honest."
-      </div>
-    </div>
-    <div class="card">
-      <h4>⚡ Handoff to Cursor</h4>
-      <div class="prompt-box light">
-"Cursor, build this app from this plan:
-[paste Claude's plan]
-Start with login, then main screen. Make it clean."
-      </div>
-    </div>
-  </div>
-
-  <!-- SCHEDULE -->
-  <div class="section-title" id="schedule">
-    <span>⏱️</span> Day 1 Schedule
-  </div>
-  <div class="card">
-    <div class="schedule">
-      <div class="schedule-row"><div class="schedule-time">0:00</div><div class="schedule-content">📢 Intro &amp; the rule: describe what you see and click. No tech jargon.</div></div>
-      <div class="schedule-row"><div class="schedule-time">0:15</div><div class="schedule-content">🛠️ Setup: install Claude + Cursor, sign up for the 4 services, paste your <code>.env</code>.</div></div>
-      <div class="schedule-row"><div class="schedule-time">0:30</div><div class="schedule-content">✏️ <strong>Step 1:</strong> Draw your app with Stitch (or MockFlow).</div></div>
-      <div class="schedule-row"><div class="schedule-time">1:15</div><div class="schedule-content">📝 <strong>Step 2:</strong> Describe what happens, in plain English.</div></div>
-      <div class="schedule-row break"><div class="schedule-time">1:45</div><div class="schedule-content">☕ Break (15 min)</div></div>
-      <div class="schedule-row"><div class="schedule-time">2:00</div><div class="schedule-content">🧰 <strong>Step 3:</strong> Pick your toolbox. 📋 <strong>Step 4:</strong> Claude writes the plan.</div></div>
-      <div class="schedule-row"><div class="schedule-time">2:30</div><div class="schedule-content">⚡ <strong>Step 5a:</strong> Cursor builds login + main screen.</div></div>
-      <div class="schedule-row break"><div class="schedule-time">3:15</div><div class="schedule-content">☕ Break (15 min)</div></div>
-      <div class="schedule-row"><div class="schedule-time">3:30</div><div class="schedule-content">⚡ <strong>Step 5b:</strong> Cursor builds interactions (buttons, saving, lists).</div></div>
-      <div class="schedule-row"><div class="schedule-time">4:00</div><div class="schedule-content">🚀 Deploy to Railway → public URL. Test, fix, polish.</div></div>
-      <div class="schedule-row"><div class="schedule-time">4:30</div><div class="schedule-content">🎉 Show &amp; tell: live app demo.</div></div>
-    </div>
-  </div>
 
   <!-- FINAL REMINDER -->
   <div class="card" style="background: #ecfdf5; text-align: center; border-color: #a7f3d0; margin-top: 2rem;">
