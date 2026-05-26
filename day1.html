@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AI Workshop · Day 1 · Build Anything · The AI Revolution Way</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafbfd;
+      color: #0a0f1c;
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; }
+
+    .hero { text-align: center; margin-bottom: 3rem; }
+
+    .badge {
+      background: #e0e7ff;
+      color: #1e40af;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.9rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #0f172a, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      max-width: 22ch;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.1;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #334155;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .subhead-highlight {
+      background: #fef3c7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-left: 5px solid #3b82f6;
+      padding-left: 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e9eef3;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .big-shift-card {
+      background: #f0f9ff;
+      border-color: #b9e0ff;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      box-shadow: 0 6px 24px rgba(37, 99, 235, 0.08);
+    }
+
+    .idea-context {
+      background: #e0e7ff;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .old-way {
+      background: #fef2f2;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      text-decoration: line-through;
+      color: #991b1b;
+    }
+
+    .new-way {
+      background: #ecfdf5;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      border-left: 4px solid #10b981;
+    }
+
+    .insight {
+      background: #fefce8;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .prompt-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', 'SF Mono', monospace;
+      font-size: 0.8rem;
+      padding: 1rem;
+      border-radius: 14px;
+      margin: 0.75rem 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    .tool-tag {
+      background: #eef2ff;
+      color: #1e40af;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+      margin: 0.2rem;
+    }
+
+    .step-number {
+      background: #2563eb;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .drawing-demo {
+      background: #fef9e6;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      border: 2px dashed #fbbf24;
+    }
+
+    .example-list {
+      background: #f8fafc;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .jargon-free-rule {
+      background: linear-gradient(135deg, #1e3a5f, #0f2b3d);
+      color: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      text-align: center;
+      margin: 2rem 0;
+      box-shadow: 0 8px 32px rgba(15, 43, 61, 0.18);
+    }
+
+    .jargon-free-rule h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .bad-words {
+      background: #7f1a1a;
+      color: #fecaca;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.2rem;
+      font-size: 0.8rem;
+      text-decoration: line-through;
+    }
+
+    .good-words {
+      background: #065a46;
+      color: #a7f3d0;
+      padding: 0.25rem 0.75rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.2rem;
+      font-size: 0.8rem;
+    }
+
+    /* Validation tool pair: primary + backup */
+    .validation-section {
+      margin-bottom: 1.5rem;
+    }
+    .validation-pair {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 700px) {
+      .validation-pair { grid-template-columns: 1fr; }
+    }
+    .tool-primary {
+      background: white;
+      border: 2px solid #2563eb;
+      border-radius: 1rem;
+      padding: 1.1rem 1.2rem;
+      position: relative;
+    }
+    .tool-backup {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 1rem;
+      padding: 1.1rem 1.2rem;
+      position: relative;
+    }
+    .tool-flag {
+      position: absolute;
+      top: -0.6rem;
+      left: 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.15rem 0.6rem;
+      border-radius: 40px;
+    }
+    .tool-flag.primary { background: #2563eb; color: white; }
+    .tool-flag.backup { background: #cbd5e1; color: #334155; }
+    .tool-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 0.25rem 0 0.4rem 0;
+    }
+    .tool-meta {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.5rem;
+    }
+    .tool-meta a { color: #2563eb; text-decoration: none; }
+    .tool-meta a:hover { text-decoration: underline; }
+    .tool-desc { font-size: 0.9rem; color: #334155; }
+
+    /* Schedule grid (replaces step-row + step-number for time entries) */
+    .schedule {
+      display: grid;
+      gap: 0;
+    }
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #eef2f8;
+      align-items: baseline;
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 0.95rem;
+    }
+    .schedule-content { font-size: 1rem; }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 2rem;
+      color: #5b6e8c;
+      font-size: 0.8rem;
+    }
+
+    hr { margin: 1rem 0; border: none; border-top: 1px solid #eef2f8; }
+
+    .emoji-big { font-size: 2rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="badge">🚀 THE AI REVOLUTION · DAY 1</span>
+    <h1>Stop saying tech words. Start describing what people see and click.</h1>
+    <div class="subhead">
+      <span class="subhead-highlight">"Database" "API" "Modal" "Backend" ← these have minimal meaning in the AI revolution</span>
+    </div>
+  </div>
+
+  <!-- THE BIG SHIFT -->
+  <div class="big-shift-card card">
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔄 The Big Shift</h2>
+    <div class="idea-context">
+      📌 THE APP WE'RE BUILDING: A simple to-do list. You can add tasks and see them in a list.
+    </div>
+    <div class="old-way">
+      <strong>❌ Old way (meaningless tech jargon):</strong><br>
+      "I need a MERN stack with MongoDB Atlas and JWT authentication using middleware and a RESTful API with CORS enabled."
+    </div>
+    <div class="new-way">
+      <strong>✅ The AI Revolution way (just describe the screen):</strong><br>
+      <strong>What the app does:</strong> It's a to-do list. You can add tasks and see them in a list.<br><br>
+      <strong>How it looks and behaves:</strong><br>
+      • The home page has a <strong>+ Add Task</strong> button<br>
+      • When I click it, a white box pops up with a text field and a green Save button<br>
+      • I type something like "Buy milk" and click Save<br>
+      • The white box disappears<br>
+      • My new task "Buy milk" appears in the list below<br>
+      • The newest task shows up at the top
+    </div>
+    <div class="insight">
+      <span class="emoji-big">🧠</span> <strong>What AI figures out by itself:</strong><br>
+      • It needs to remember each task (so it saves them somewhere)<br>
+      • Each task belongs to whoever added it (so it knows who's who)<br>
+      • When I click Save, something happens on the screen (it updates the list)<br>
+      • Newest on top means it sorts them by date<br><br>
+      <strong>You never said "database" or "backend" or "API endpoint." You just described a to-do list. The AI understands.</strong>
+    </div>
+  </div>
+
+  <!-- THE RULE -->
+  <div class="jargon-free-rule">
+    <h3>📢 The One Rule of the AI Revolution</h3>
+    <p style="font-size: 1.1rem; margin: 0.5rem 0 1rem 0;">Don't say technical terms that have minimal to no meaning in the AI revolution.</p>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+      <span class="bad-words">❌ "database"</span>
+      <span class="bad-words">❌ "API"</span>
+      <span class="bad-words">❌ "modal"</span>
+      <span class="bad-words">❌ "backend"</span>
+      <span class="bad-words">❌ "endpoint"</span>
+      <span class="bad-words">❌ "middleware"</span>
+      <span class="bad-words">❌ "authentication"</span>
+      <span class="bad-words">❌ "schema"</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+      <span class="good-words">✅ "a white box pops up"</span>
+      <span class="good-words">✅ "when I click Save, it appears in the list"</span>
+      <span class="good-words">✅ "a text field where I type"</span>
+      <span class="good-words">✅ "a green button that says Save"</span>
+      <span class="good-words">✅ "the newest one shows at the top"</span>
+      <span class="good-words">✅ "log in with Google"</span>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">Say what the user <strong>sees</strong> and what happens when they <strong>click</strong>. Nothing else matters.</p>
+  </div>
+
+  <!-- STEP 1: DRAW -->
+  <div class="section-title">
+    <span>✏️</span> Step 1: Draw what you want — AI-powered design tools
+  </div>
+  <div class="grid-2">
+    <div class="tool-primary">
+      <span class="tool-flag primary">PRIMARY</span>
+      <div class="tool-name">🔥 Google Stitch</div>
+      <div class="tool-meta"><a href="https://stitch.withgoogle.com" target="_blank">stitch.withgoogle.com</a> · Free · 350 generations/month (Gemini 3-powered, March 2026 update)</div>
+      <p>Describe your screen in plain English, or snap a sketch. Stitch generates up to 5 connected screens in one prompt, lets you "Play" the prototype, and exports HTML/CSS straight to Cursor (or to Figma with Auto Layout).</p>
+      <div class="drawing-demo" style="margin-top: 0.75rem;">
+        <div style="font-size: 0.8rem; color: #92400e;">Example: type</div>
+        <div style="background: white; border-radius: 8px; padding: 0.5rem; font-family: monospace; font-size: 0.8rem;">"A task list with a green Add button at the top"</div>
+        <div style="font-size: 0.7rem; margin-top: 0.5rem;">→ AI generates a clickable preview + code</div>
+      </div>
+    </div>
+    <div class="tool-backup">
+      <span class="tool-flag backup">BACKUP</span>
+      <div class="tool-name">📐 MockFlow</div>
+      <div class="tool-meta"><a href="https://mockflow.com" target="_blank">mockflow.com</a> · Free tier</div>
+      <p>Wireframing tool with a Feb 2026 <strong>Export to AI Prompt</strong> feature — one click turns any wireframe into an optimized prompt you paste into Cursor / Claude Code / Lovable. Useful for multi-screen flows where you want to control layout precisely.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 1rem; background: #fef9e6;">
+    <p><strong>🖍️ Workshop flow:</strong> Stitch for speed (napkin → polished design in 2 minutes), MockFlow if you want manual control of multi-screen layouts. Either tool hands off cleanly to Cursor.</p>
+  </div>
+
+  <!-- STEP 2: DESCRIBE -->
+  <div class="section-title">
+    <span>📝</span> Step 2: Describe what happens (using normal human words)
+  </div>
+  <div class="card">
+    <p style="margin-bottom: 1rem;">Don't say "database" or "API" or "modal" — those have minimal meaning in the AI revolution. Say what the user <strong>sees</strong> and what happens when they <strong>click</strong>.</p>
+    <div class="example-list">
+      <strong>📌 EXAMPLE: Habit Tracker App</strong><br>
+      <em>What the app does:</em> You check off habits each day (like "exercise" or "read").<br><br>
+      <strong>Describe it (no tech words):</strong>
+      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+        <li>The main screen shows a list of my habits with a checkbox next to each one</li>
+        <li>At the top, it shows today's date</li>
+        <li>There's a "+ New Habit" button at the bottom</li>
+        <li>When I click "+ New Habit", a small box slides up from the bottom with a text field where I type the habit name and a blue "Create" button</li>
+        <li>When I click Create, the box closes and my new habit appears in the list</li>
+        <li>When I check a checkbox, it turns green and that habit is marked "done" for today</li>
+        <li>Tomorrow, all the checkboxes reset to unchecked</li>
+      </ul>
+    </div>
+    <div class="grid-2" style="margin-top: 1rem;">
+      <div>
+        <strong>🎯 Template: Describe your pages</strong>
+        <div class="prompt-box" style="background: #f1f5f9; color: #0f172a; margin-top: 0.5rem;">
+"My app has:
+• A <strong>login screen</strong> with 'Sign in with Google' button
+• A <strong>main screen</strong> showing a list of my [whatever]
+• A <strong>settings screen</strong> where I can pick dark or light mode"
+        </div>
+      </div>
+      <div>
+        <strong>🔘 Template: Describe what buttons do</strong>
+        <div class="prompt-box" style="background: #f1f5f9; color: #0f172a; margin-top: 0.5rem;">
+"When I click the <strong>+ Add</strong> button:
+→ A white box appears in the middle of the screen
+→ There's a text field where I type [something]
+→ There's a green 'Save' button
+→ When I click Save, the white box disappears and my new [thing] appears in the list"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: TOOLBOX -->
+  <div class="section-title">
+    <span>🧰</span> Step 3: Give AI access to a toolbox of services
+  </div>
+  <div class="card">
+    <p style="font-weight: 500; margin-bottom: 1rem;">You don't need to know how they work. You just need to give your AI permission to use them. Claude picks the right tools from this list and assembles your app.</p>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">🎨 For the look of your app</h3>
+      <div><span class="tool-tag">⚡ React with Tailwind CSS</span></div>
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">🔐 To let people log in</h3>
+      <div><span class="tool-tag">🔐 Clerk (free up to 10k users)</span> <span class="tool-tag">🔐 Supabase Auth (free)</span></div>
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">💾 To remember information (tasks, names, dates)</h3>
+      <div><span class="tool-tag">💾 Supabase (free, 500MB)</span> <span class="tool-tag">💾 Turso (free)</span></div>
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">📸 To store pictures uploaded by users</h3>
+      <div><span class="tool-tag">📸 Uploadthing (2GB free)</span> <span class="tool-tag">📸 Cloudinary (25GB free)</span></div>
+    </div>
+    <div style="margin-bottom: 1.5rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">🌍 To put your app online for free</h3>
+      <div><span class="tool-tag">🌍 Vercel (for the screens)</span> <span class="tool-tag">🌍 Render (for the logic)</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 4: CLAUDE PLAN -->
+  <div class="section-title">
+    <span>📋</span> Step 4: Claude reads your description → writes a plan
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>The "Bridge Prompt"</h3>
+      <div class="prompt-box">
+"Here is my app description: [paste what you wrote in Step 2]
+
+Using these available tools (React for screens, Clerk for logins, Supabase for saving things, Uploadthing for pictures),
+
+Create a simple plan that has:
+1. What screens to build
+2. What happens when each button is clicked
+3. What things need to be saved (like 'tasks' or 'user names')
+4. Step-by-step instructions for Cursor to follow
+
+Keep it super simple. No tech words."
+      </div>
+    </div>
+    <div class="card">
+      <h3>Example plan (what Claude outputs)</h3>
+      <div class="prompt-box" style="background: #f1f5f9; color: #0f172a;">
+<strong>📋 PLAN FOR: Habit Tracker</strong>
+
+<strong>Screens to build:</strong>
+1. Login screen with Google button
+2. Main screen with habit list + checkboxes + Add button
+
+<strong>What gets saved:</strong>
+• Each habit (its name, who created it)
+• Each day's checkmarks (which habits were done on which date)
+
+<strong>Button behaviors:</strong>
+• Add button → slides up box with text field → Create button closes box and adds habit to list
+• Checkbox → turns green and saves that today this habit is done
+• Tomorrow → all checkboxes reset to unchecked
+
+<strong>Cursor steps:</strong>
+1. Make login work with Google
+2. Make main screen show habits
+3. Make Add button work
+4. Make checkboxes save to today's date
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: CURSOR -->
+  <div class="section-title">
+    <span>⚡</span> Step 5: Cursor reads the plan → builds the app
+  </div>
+  <div class="card">
+    <div class="step-row">
+      <div class="step-number">1</div>
+      <div>Open Cursor</div>
+    </div>
+    <div class="step-row">
+      <div class="step-number">2</div>
+      <div>Paste the plan from Claude and say: <strong>"Build this app step by step"</strong></div>
+    </div>
+    <div class="step-row">
+      <div class="step-number">3</div>
+      <div>Cursor writes all the code. You just watch and test.</div>
+    </div>
+    <div class="prompt-box" style="margin-top: 0.5rem;">
+💬 "Cursor, follow this plan exactly. Start with the login screen. Make it look clean and simple. When I click Google login, take me to the main screen."
+    </div>
+  </div>
+
+  <!-- VALIDATION (fixed: 1 primary + 1 backup per category, all real, all ≥1-week trial/free tier) -->
+  <div class="section-title">
+    <span>🔬</span> SIDE NOTE: Validate the idea with AI — before you build
+  </div>
+  <div class="card">
+    <p style="margin-bottom: 1.25rem;"><strong>Before you draw or describe anything, validate the idea is worth building.</strong> Four AI checks, one primary tool + one backup each. Every tool below has a real free tier or ≥7-day trial.</p>
+
+    <!-- 1. IDEA CHECK -->
+    <div class="validation-section">
+      <h3 style="font-size: 1.15rem;">📊 1. Quick Idea Check — "is this worth building?"</h3>
+      <div class="validation-pair">
+        <div class="tool-primary">
+          <span class="tool-flag primary">PRIMARY</span>
+          <div class="tool-name">ValidatorAI</div>
+          <div class="tool-meta"><a href="https://validatorai.com" target="_blank">validatorai.com</a> · Free tier · 300k+ users</div>
+          <div class="tool-desc">Paste your idea in plain English. "Val" — an AI trained as a startup advisor — analyzes it, scores it, and tells you how to launch. No payment, no time limit.</div>
+        </div>
+        <div class="tool-backup">
+          <span class="tool-flag backup">BACKUP</span>
+          <div class="tool-name">IdeaProof</div>
+          <div class="tool-meta"><a href="https://ideaproof.io" target="_blank">ideaproof.io</a> · 70 free credits</div>
+          <div class="tool-desc">120-second validation: scores + market analysis + risks. Free credits last well over a week of normal use.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PROFIT -->
+    <div class="validation-section">
+      <h3 style="font-size: 1.15rem;">💰 2. Profit & Revenue Estimation — "can this make money?"</h3>
+      <div class="validation-pair">
+        <div class="tool-primary">
+          <span class="tool-flag primary">PRIMARY</span>
+          <div class="tool-name">Sturppy</div>
+          <div class="tool-meta"><a href="https://sturppy.com" target="_blank">sturppy.com</a> · 7-day free trial</div>
+          <div class="tool-desc">Built specifically for startups. Replaces Excel: full financial model with revenue, costs, MRR, runway projections. Drag-and-drop, no spreadsheet pain.</div>
+        </div>
+        <div class="tool-backup">
+          <span class="tool-flag backup">BACKUP</span>
+          <div class="tool-name">Upmetrics</div>
+          <div class="tool-meta"><a href="https://upmetrics.co" target="_blank">upmetrics.co</a> · 15-day free trial</div>
+          <div class="tool-desc">AI financial modeling + projections. Generates full P&L, cash-flow, and break-even in minutes from your idea description.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. COMPETITOR -->
+    <div class="validation-section">
+      <h3 style="font-size: 1.15rem;">🔍 3. Competitor & Market Research — "who's already doing this?"</h3>
+      <div class="validation-pair">
+        <div class="tool-primary">
+          <span class="tool-flag primary">PRIMARY</span>
+          <div class="tool-name">Perplexity</div>
+          <div class="tool-meta"><a href="https://perplexity.ai" target="_blank">perplexity.ai</a> · Free tier (unlimited basic) + 7-day Pro trial</div>
+          <div class="tool-desc">Ask "who are the top 10 competitors for [my idea]?" — get sourced answers with citations. Pro adds Deep Research mode: 30-minute autonomous market scans.</div>
+        </div>
+        <div class="tool-backup">
+          <span class="tool-flag backup">BACKUP</span>
+          <div class="tool-name">DimeADozen.ai</div>
+          <div class="tool-meta"><a href="https://dimeadozen.ai" target="_blank">dimeadozen.ai</a> · Free credits</div>
+          <div class="tool-desc">Research-backed validation report with named competitor sets, retention-curve math from public S-1s. Sharper data than a general AI chat.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. COMPLEXITY -->
+    <div class="validation-section">
+      <h3 style="font-size: 1.15rem;">🧩 4. Complexity & Effort Estimation — "how big a build is this?"</h3>
+      <div class="validation-pair">
+        <div class="tool-primary">
+          <span class="tool-flag primary">PRIMARY</span>
+          <div class="tool-name">ProjectMaven</div>
+          <div class="tool-meta"><a href="https://projectmaven.io" target="_blank">projectmaven.io</a> · Free trial</div>
+          <div class="tool-desc">Paste your idea, get a detailed scope + cost estimate + build-ready spec in minutes. AI auto-extracts features, integrations, and technical requirements.</div>
+        </div>
+        <div class="tool-backup">
+          <span class="tool-flag backup">BACKUP</span>
+          <div class="tool-name">Brilworks Feature Complexity Estimator</div>
+          <div class="tool-meta"><a href="https://www.brilworks.com/tools/feature-complexity-vs-time-estimator/" target="_blank">brilworks.com</a> · Free, no signup</div>
+          <div class="tool-desc">Free AI-powered estimator: rates UI complexity, data integration, business logic, and security per feature → spits out hours/days.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin: 1.5rem 0 0.5rem 0;">⏱️ The 15-Minute Validation Sprint</h3>
+    <div class="insight" style="background: #e6f0ff;">
+      <p><strong>Phase 1 (5 min):</strong> Run your idea through <strong>ValidatorAI</strong> → "build / pivot / kill" verdict. Then <strong>Sturppy</strong> to model whether the unit economics work.</p>
+      <p><strong>Phase 2 (10 min):</strong> <strong>Perplexity</strong> for "who else is doing this, and how is mine different?" Then <strong>ProjectMaven</strong> for a real effort estimate before you write a line of code.</p>
+      <p><strong>Final step:</strong> Ask Claude: <em>"Based on all four reports above, give me a one-sentence verdict: build this, pivot, or abandon?"</em></p>
+    </div>
+  </div>
+
+  <!-- TEMPLATES -->
+  <div class="section-title">
+    <span>📇</span> Copy-paste templates (just fill in the blanks)
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <h4>✏️ Describe your app</h4>
+      <div class="prompt-box" style="background: #f1f5f9; color: #0f172a;">
+"I want an app called [NAME].
+
+<strong>What it does:</strong> [one sentence]
+<strong>The screens:</strong> [list them]
+<strong>On the main screen:</strong> [describe buttons, lists, checkboxes]
+<strong>When I click [BUTTON]:</strong> [what happens?]"
+      </div>
+    </div>
+    <div class="card">
+      <h4>🔍 Research your idea</h4>
+      <div class="prompt-box" style="background: #f1f5f9; color: #0f172a;">
+"Before I build, research this idea: [paste idea].
+1. Similar apps?
+2. Worth building?
+3. Simplest 1-day version?
+Be honest."
+      </div>
+    </div>
+    <div class="card">
+      <h4>⚡ Handoff to Cursor</h4>
+      <div class="prompt-box" style="background: #f1f5f9; color: #0f172a;">
+"Cursor, build this app from this plan:
+[paste Claude's plan]
+Start with login, then main screen. Make it clean."
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="section-title">
+    <span>⏱️</span> Day 1 Schedule
+  </div>
+  <div class="card">
+    <div class="schedule">
+      <div class="schedule-row"><div class="schedule-time">0:00</div><div class="schedule-content">📢 The rule: describe what you see and click. No tech jargon.</div></div>
+      <div class="schedule-row"><div class="schedule-time">0:30</div><div class="schedule-content">✏️ Draw your app with Google Stitch (or MockFlow).</div></div>
+      <div class="schedule-row"><div class="schedule-time">1:00</div><div class="schedule-content">🔬 15-min Validation Sprint (ValidatorAI + Sturppy + Perplexity + ProjectMaven).</div></div>
+      <div class="schedule-row"><div class="schedule-time">1:30</div><div class="schedule-content">📝 Describe your app in plain English → Claude makes a plan.</div></div>
+      <div class="schedule-row"><div class="schedule-time">2:00</div><div class="schedule-content">⚡ Cursor builds from the plan.</div></div>
+      <div class="schedule-row"><div class="schedule-time">4:30</div><div class="schedule-content">🎉 Show &amp; tell: live app.</div></div>
+    </div>
+  </div>
+
+  <!-- FINAL REMINDER -->
+  <div class="card" style="background: #ecfdf5; text-align: center; border-color: #a7f3d0; margin-top: 2rem;">
+    <p style="font-size: 1.2rem; font-weight: 600;">📢 The Only Rule That Matters</p>
+    <p style="font-size: 1rem;">Don't say technical terms that have minimal to no meaning in the AI revolution.<br>Say what the user <strong>sees</strong> and what happens when they <strong>click</strong>. That's it.</p>
+  </div>
+
+  <footer>
+    🚀 The AI Revolution · No tech jargon allowed<br>
+    Just: "My app does THIS. The screen looks like THAT. When I click HERE, THIS happens."<br>
+    AI Workshop Day 1 · Build with Cursor + Claude
+  </footer>
+</div>
+</body>
+</html>
