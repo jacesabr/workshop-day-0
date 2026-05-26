@@ -499,6 +499,89 @@
       font-size: 0.8rem;
     }
 
+    /* VERTICAL FLOW ARROW BETWEEN STEPS */
+    .step-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0 -0.5rem;
+      gap: 0;
+    }
+    .step-arrow::before {
+      content: "";
+      width: 3px;
+      height: 44px;
+      background: linear-gradient(to bottom, #c7d2fe 0%, #2563eb 100%);
+      border-radius: 100px;
+    }
+    .step-arrow::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 14px solid #2563eb;
+      margin-top: -2px;
+      filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.25));
+    }
+
+    /* COLLAPSIBLE REFERENCE BLOCK */
+    .advanced-reference {
+      margin: 2rem 0;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 1rem;
+      padding: 0.4rem 1.25rem;
+      transition: all 0.15s ease;
+    }
+    .advanced-reference[open] {
+      background: white;
+      border-style: solid;
+      border-color: #c7d2fe;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06);
+    }
+    .advanced-reference summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #475569;
+      padding: 0.7rem 0;
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .advanced-reference summary::-webkit-details-marker { display: none; }
+    .advanced-reference summary::before {
+      content: "▸";
+      display: inline-block;
+      transition: transform 0.15s ease;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+    .advanced-reference[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .advanced-reference[open] summary {
+      color: #1e40af;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+    }
+    .advanced-content { padding-top: 0.5rem; }
+    .advanced-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      background: #e0e7ff;
+      color: #4338ca;
+      padding: 0.2rem 0.65rem;
+      border-radius: 40px;
+    }
+
     /* BACK TO TOP */
     .back-to-top {
       position: fixed;
@@ -648,6 +731,8 @@ UPLOADTHING_APP_ID=
     <p style="margin-top: 0.8rem; font-size: 0.85rem; opacity: 0.9;">Say what the user <strong>sees</strong>, what happens when they <strong>click</strong>. Nothing else matters.</p>
   </div>
 
+  <div class="step-arrow"></div>
+
   <!-- STEP 1: DRAW -->
   <div class="section-title" id="step-1">
     <span class="step-badge">1</span>
@@ -676,6 +761,8 @@ UPLOADTHING_APP_ID=
   <div class="card" style="margin-top: 1rem; background: #fef9e6;">
     <p><strong>🖍️ When to pick which:</strong> Stitch = "I just want it done, fast." MockFlow = "I want to nudge every pixel before handing off." Both export cleanly to Cursor.</p>
   </div>
+
+  <div class="step-arrow"></div>
 
   <!-- STEP 2: DESCRIBE -->
   <div class="section-title" id="step-2">
@@ -721,12 +808,14 @@ UPLOADTHING_APP_ID=
     </div>
   </div>
 
+  <div class="step-arrow"></div>
+
   <!-- STEP 3: TOOLBOX -->
   <div class="section-title" id="step-3">
     <span class="step-badge">3</span>
     <span>🧰 Give AI your toolbox</span>
   </div>
-  <p style="margin: 0 0 1rem; color: #475569; font-size: 0.95rem;">You already signed up for these services in setup. Now tell Cursor it has permission to use them. <strong>Each category lists the recommended pick</strong> (the one in your <code>.env</code>) plus alternatives if you ever want to swap.</p>
+  <p style="margin: 0 0 1rem; color: #475569; font-size: 0.95rem;">You already signed up for these services in setup. Now tell Cursor it has permission to use them — these are the keys in your <code>.env</code>.</p>
   <div class="card">
 
     <div class="toolbox-cat">
@@ -740,31 +829,33 @@ UPLOADTHING_APP_ID=
       <h4>🔐 To let people log in</h4>
       <div class="cat-desc">"Sign in with Google" / email login.</div>
       <span class="toolbox-recommended">👉 Clerk</span>
-      <span class="toolbox-alts">free up to 10k users · <strong>alternative:</strong> Supabase Auth</span>
+      <span class="toolbox-alts">free up to 10k users</span>
     </div>
 
     <div class="toolbox-cat">
       <h4>💾 To remember information</h4>
       <div class="cat-desc">Tasks, names, dates, recipes, scores — anything your app needs to save.</div>
       <span class="toolbox-recommended">👉 Supabase</span>
-      <span class="toolbox-alts">free, 500MB · <strong>alternative:</strong> Turso</span>
+      <span class="toolbox-alts">free, 500MB</span>
     </div>
 
     <div class="toolbox-cat">
       <h4>📸 To store pictures uploaded by users</h4>
       <div class="cat-desc">Profile photos, attachments, any image users send.</div>
       <span class="toolbox-recommended">👉 Uploadthing</span>
-      <span class="toolbox-alts">2GB free · <strong>alternative:</strong> Cloudinary (25GB free)</span>
+      <span class="toolbox-alts">2GB free</span>
     </div>
 
     <div class="toolbox-cat">
       <h4>🌍 To put your app online for free</h4>
       <div class="cat-desc">Where your app lives so others can use it. One service for the whole app — screens, logic, database.</div>
       <span class="toolbox-recommended">👉 Railway</span>
-      <span class="toolbox-alts">$5 free trial credit (no card) · then $5/mo · <strong>alternative:</strong> Vercel (screens) + Render (logic)</span>
+      <span class="toolbox-alts">$5 free trial credit (no card) · then $5/mo</span>
     </div>
 
   </div>
+
+  <div class="step-arrow"></div>
 
   <!-- STEP 4: CLAUDE PLAN -->
   <div class="section-title" id="step-4">
@@ -816,6 +907,8 @@ Keep it super simple. No tech words."
     </div>
   </div>
 
+  <div class="step-arrow"></div>
+
   <!-- STEP 5: CURSOR + DEPLOY -->
   <div class="section-title" id="step-5">
     <span class="step-badge">5</span>
@@ -849,12 +942,14 @@ Keep it super simple. No tech words."
     </div>
   </div>
 
-  <!-- VALIDATION SECTION (visible, marked optional) -->
-  <div class="section-title" id="validate">
-    <span>🔬</span> Validate your idea first <span class="reference-banner">Optional · Reference</span>
-  </div>
-  <div class="card">
-    <p style="margin-bottom: 1.25rem;"><strong>Not sure if your idea is worth building?</strong> Four AI checks, one purpose-built tool each — paste your idea, get layered analysis, no prompt engineering required. <em>Even if you skip this today, bookmark this section — these are worth knowing for your next idea.</em></p>
+  <!-- VALIDATION SECTION (collapsible reference for future ideas) -->
+  <details class="advanced-reference" id="validate">
+    <summary>
+      <span class="advanced-tag">REFERENCE · FOR FUTURE IDEAS</span>
+      🔬 Validate your next idea with 4 purpose-built AI tools
+    </summary>
+    <div class="advanced-content">
+    <p style="margin-bottom: 1.25rem;"><strong>Not sure if your <em>next</em> idea is worth building?</strong> Four AI checks, one purpose-built tool each — paste your idea, get layered analysis, no prompt engineering required. <em>Skip today, bookmark for when you've got an idea you want to pressure-test.</em></p>
 
     <div class="validation-section">
       <h3 style="font-size: 1.1rem;">📊 1. Quick Idea Check — "is this worth building?"</h3>
@@ -898,7 +993,8 @@ Keep it super simple. No tech words."
       <p><strong>Phase 2 (10 min):</strong> <strong>DimeADozen.ai</strong> for a 60-second competitor + market report straight from your idea. Then <strong>ProjectMaven</strong> for a real effort estimate before you write a line of code.</p>
       <p><strong>Final step:</strong> Ask Claude: <em>"Based on all four reports above, give me a one-sentence verdict: build this, pivot, or abandon?"</em></p>
     </div>
-  </div>
+    </div>
+  </details>
 
   <!-- TEMPLATES -->
   <div class="section-title" id="templates">
@@ -945,8 +1041,7 @@ Start with login, then main screen. Make it clean."
     <div class="schedule">
       <div class="schedule-row"><div class="schedule-time">0:00</div><div class="schedule-content">📢 Intro &amp; the rule: describe what you see and click. No tech jargon.</div></div>
       <div class="schedule-row"><div class="schedule-time">0:15</div><div class="schedule-content">🛠️ Setup: install Claude + Cursor, sign up for the 4 services, paste your <code>.env</code>.</div></div>
-      <div class="schedule-row"><div class="schedule-time">0:30</div><div class="schedule-content">🔬 (Optional) 15-min Validation Sprint — ValidatorAI + Sturppy + DimeADozen + ProjectMaven.</div></div>
-      <div class="schedule-row"><div class="schedule-time">0:45</div><div class="schedule-content">✏️ <strong>Step 1:</strong> Draw your app with Stitch (or MockFlow).</div></div>
+      <div class="schedule-row"><div class="schedule-time">0:30</div><div class="schedule-content">✏️ <strong>Step 1:</strong> Draw your app with Stitch (or MockFlow).</div></div>
       <div class="schedule-row"><div class="schedule-time">1:15</div><div class="schedule-content">📝 <strong>Step 2:</strong> Describe what happens, in plain English.</div></div>
       <div class="schedule-row break"><div class="schedule-time">1:45</div><div class="schedule-content">☕ Break (15 min)</div></div>
       <div class="schedule-row"><div class="schedule-time">2:00</div><div class="schedule-content">🧰 <strong>Step 3:</strong> Pick your toolbox. 📋 <strong>Step 4:</strong> Claude writes the plan.</div></div>
