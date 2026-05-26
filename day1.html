@@ -681,6 +681,69 @@
       border-radius: 40px;
     }
 
+    /* OBVIOUS CLICK-FOR-DETAILS AFFORDANCE on all dropdowns */
+    details.setup-card > summary,
+    details.big-shift-card > summary,
+    .advanced-reference summary {
+      border-radius: 10px;
+      transition: background 0.15s ease;
+      padding: 0.75rem 0.75rem !important;
+    }
+    details.setup-card > summary:hover,
+    details.big-shift-card > summary:hover,
+    .advanced-reference summary:hover {
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    /* Bigger, bolder chevrons */
+    details.setup-card > summary::before,
+    details.big-shift-card > summary::before,
+    .advanced-reference summary::before {
+      font-size: 1.4rem !important;
+      font-weight: 700;
+    }
+
+    /* "+ CLICK FOR DETAILS" pill — pushed to right by flex */
+    details.setup-card > summary::after,
+    details.big-shift-card > summary::after,
+    .advanced-reference summary::after {
+      content: "+ CLICK FOR DETAILS";
+      margin-left: auto;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    details.setup-card > summary::after {
+      background: #059669;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    }
+    details.big-shift-card > summary::after {
+      background: #2563eb;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+    .advanced-reference summary::after {
+      background: #4f46e5;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+    /* "− HIDE" state when open */
+    details.setup-card[open] > summary::after,
+    details.big-shift-card[open] > summary::after,
+    .advanced-reference[open] summary::after {
+      content: "− HIDE";
+      background: #94a3b8;
+      box-shadow: none;
+    }
+    details.setup-card > summary:hover::after,
+    details.big-shift-card > summary:hover::after,
+    .advanced-reference summary:hover::after {
+      transform: scale(1.05);
+    }
+
     /* BACK TO TOP */
     .back-to-top {
       position: fixed;
