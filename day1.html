@@ -72,6 +72,58 @@
     }
     .build-prompt strong { color: #312e81; }
 
+    /* TODAY'S GOALS */
+    .goals-header {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #2563eb;
+      text-transform: uppercase;
+      margin: 1rem 0 0.85rem;
+    }
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 0 0 2rem;
+    }
+    @media (max-width: 700px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+    .goal-card {
+      background: white;
+      border: 2px solid #c7d2fe;
+      border-radius: 1rem;
+      padding: 1.15rem 1.25rem;
+      transition: all 0.15s ease;
+    }
+    .goal-card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+    }
+    .goal-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      border-radius: 50%;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      margin-bottom: 0.7rem;
+    }
+    .goal-text {
+      font-size: 0.95rem;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+    .goal-text strong { color: #0a0f1c; font-weight: 700; }
+
     /* SETUP CARD */
     .setup-card {
       background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
@@ -812,6 +864,23 @@
     <p class="subhead">No coding. No tech words. Describe what you want — <em>AI builds it.</em> The same recipe works for any app: a habit tracker, a recipe organiser, a fitness planner, a chat app, a study buddy — anything.</p>
     <div class="build-prompt">
       <strong>👉 Before we start:</strong> think about one app <em>you</em> wish existed. That's what you'll build today.
+    </div>
+  </div>
+
+  <!-- TODAY'S GOALS -->
+  <div class="goals-header">By the end of today, you will have</div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-num">1</div>
+      <div class="goal-text"><strong>Set up</strong> the full AI builder's toolkit — Claude, Cursor, and the services your apps run on.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">2</div>
+      <div class="goal-text"><strong>Learned the rule</strong> — describe what users see and click, not tech words. AI fills in the rest.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">3</div>
+      <div class="goal-text"><strong>Built &amp; deployed</strong> a working app you can share — yours, end-to-end, live on the public internet.</div>
     </div>
   </div>
 

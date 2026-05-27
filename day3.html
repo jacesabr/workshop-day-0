@@ -80,6 +80,54 @@
       line-height: 1.55;
     }
 
+    /* TODAY'S GOALS */
+    .goals-eyebrow {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.04em;
+    }
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 700px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
+    .goal-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--gold);
+      border-radius: 0.85rem;
+      padding: 1.4rem 1.45rem;
+      transition: all 0.2s ease;
+    }
+    .goal-card:hover {
+      border-color: var(--gold-soft);
+      border-top-color: var(--gold-bright);
+      transform: translateY(-3px);
+    }
+    .goal-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+    .goal-text {
+      font-size: 0.98rem;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    .goal-text em { color: var(--gold-bright); font-style: italic; }
+
     /* SECTIONS */
     section { margin-bottom: 4.5rem; }
     .section-eyebrow {
@@ -435,6 +483,23 @@
     <h1 class="hero-title">Read any philosophy book. <em>Master it through dialogue.</em></h1>
     <p class="lede">A Socratic AI tutor that reads the book with you, tests your understanding through conversation, and breaks down what you don't get — fractally, until you do.</p>
   </header>
+
+  <!-- TODAY'S GOALS -->
+  <div class="goals-eyebrow">By end of today, you will have</div>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-num">I</div>
+      <div class="goal-text">Built an <em>AI tutor</em> that reads any philosophy PDF with you and maps out every concept inside it.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">II</div>
+      <div class="goal-text">Tested your understanding through <em>Socratic dialogue</em>, with a live confidence score on every concept.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">III</div>
+      <div class="goal-text">Mastered a book through <em>fractal deep-dives</em> — breaking weak concepts into prerequisites, then climbing back up.</div>
+    </div>
+  </div>
 
   <!-- THE PROBLEM -->
   <section>
