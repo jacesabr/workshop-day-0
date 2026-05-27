@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Day 3 · Socratic — Master any philosophy book through dialogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg-soft: #131829;
+      --card: #1a1f33;
+      --card-soft: #232842;
+      --rule: #2a3050;
+      --ink: #e8e4d4;
+      --ink-dim: #94a3b8;
+      --ink-faint: #64748b;
+      --gold: #d4a849;
+      --gold-bright: #e8c468;
+      --gold-soft: #8b7333;
+      --green: #4ade80;
+      --yellow: #fbbf24;
+      --red: #ef4444;
+      --indigo: #818cf8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .serif { font-family: 'Playfair Display', serif; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 4rem;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      border: 1px solid var(--gold-soft);
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    h1.hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin: 0 auto 1.5rem;
+      color: var(--ink);
+    }
+    h1.hero-title em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .lede {
+      font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+      max-width: 55ch;
+      margin: 0 auto;
+      color: var(--ink-dim);
+      line-height: 1.55;
+    }
+
+    /* SECTIONS */
+    section { margin-bottom: 4.5rem; }
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      max-width: 28ch;
+    }
+    h2 em { font-style: italic; color: var(--gold); font-weight: 600; }
+    p.body {
+      font-size: 1.05rem;
+      color: var(--ink-dim);
+      line-height: 1.65;
+      max-width: 65ch;
+      margin-bottom: 1rem;
+    }
+    p.body strong { color: var(--ink); font-weight: 600; }
+    p.body em { color: var(--gold-bright); font-style: italic; }
+    p.lead {
+      font-size: 1.2rem;
+      color: var(--ink);
+      max-width: 60ch;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      color: var(--gold);
+      line-height: 1.4;
+      max-width: 32ch;
+      margin: 2rem 0;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* FLOW STEPS */
+    .flow {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      padding: 1.4rem 1.5rem;
+      transition: all 0.2s ease;
+    }
+    .flow-step:hover {
+      border-color: var(--gold-soft);
+      transform: translateX(4px);
+    }
+    .flow-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      color: var(--bg);
+      border-radius: 50%;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .flow-step-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    .flow-step-body p {
+      color: var(--ink-dim);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    /* MIND MAP MOCKUP */
+    .mindmap-frame {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+    .mindmap-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .mindmap-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+    }
+    .mindmap-legend .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* FRACTAL VIS */
+    .fractal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .fractal-level {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 1rem;
+      padding: 1.25rem 1.4rem;
+      position: relative;
+    }
+    .fractal-level-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .fractal-concept {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .fractal-conf {
+      height: 6px;
+      background: var(--rule);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 0.6rem;
+    }
+    .fractal-conf-fill {
+      height: 100%;
+      border-radius: 100px;
+    }
+    .fractal-status {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      margin-bottom: 0.6rem;
+    }
+    .fractal-subs {
+      font-size: 0.85rem;
+      color: var(--ink-dim);
+      line-height: 1.5;
+    }
+    .fractal-subs strong { color: var(--ink); }
+
+    /* CHAT MOCKUP */
+    .chat-mockup {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 1.5rem;
+    }
+    @media (max-width: 800px) {
+      .chat-mockup { grid-template-columns: 1fr; }
+    }
+    .chat-pane {
+      background: var(--bg);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 0.8rem 1.1rem;
+      border-radius: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .msg.ai {
+      background: var(--card-soft);
+      color: var(--ink);
+      align-self: flex-start;
+      border-bottom-left-radius: 0.3rem;
+    }
+    .msg.ai .name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+    .msg.user {
+      background: var(--gold);
+      color: var(--bg);
+      align-self: flex-end;
+      border-bottom-right-radius: 0.3rem;
+      font-weight: 500;
+    }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .sidebar-block {
+      background: var(--bg);
+      border-radius: 0.85rem;
+      padding: 1rem 1.1rem;
+    }
+    .sidebar-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+    .conf-bar {
+      height: 8px;
+      background: var(--rule);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 0.4rem;
+    }
+    .conf-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--gold-bright));
+      border-radius: 100px;
+    }
+    .conf-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+    .concept-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .concept-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.83rem;
+      color: var(--ink-dim);
+    }
+    .concept-list .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* TECH GRID */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .tech-tile {
+      background: var(--bg-soft);
+      border: 1px solid var(--rule);
+      border-radius: 0.85rem;
+      padding: 1.1rem 1.2rem;
+    }
+    .tech-tile strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    .tech-tile span {
+      color: var(--ink-dim);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta-card {
+      background: linear-gradient(135deg, var(--card), var(--card-soft));
+      border: 1px solid var(--gold-soft);
+      border-radius: 1.5rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      box-shadow: 0 16px 48px rgba(212, 168, 73, 0.1);
+    }
+    .cta-card h2 { margin: 0 auto 1rem; }
+    .cta-card p {
+      color: var(--ink-dim);
+      max-width: 50ch;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      color: var(--ink-faint);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-soft); }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="badge">Day 3 · Project Demo</span>
+    <h1 class="hero-title">Read any philosophy book. <em>Master it through dialogue.</em></h1>
+    <p class="lede">A Socratic AI tutor that reads the book with you, tests your understanding through conversation, and breaks down what you don't get — fractally, until you do.</p>
+  </header>
+
+  <!-- THE PROBLEM -->
+  <section>
+    <div class="section-eyebrow">The Problem</div>
+    <h2>You read 30 pages of Nietzsche. <em>Two days later, you can't explain a single concept.</em></h2>
+    <p class="body">Passive reading creates the <strong>illusion</strong> of understanding. Your eyes pass over the words, the prose feels profound, you nod along. But real comprehension is something else entirely &mdash; it's the ability to <em>be asked something you can't bullshit through.</em></p>
+    <p class="body">Socrates figured this out 2,400 years ago. You learn by being questioned. By having to explain. By being caught contradicting yourself and then having to reconcile it.</p>
+    <p class="body">Until now, that meant hiring a tutor &mdash; one who'd read the same book, one who knows when you're faking it. Most people will never have that.</p>
+    <div class="pull-quote">"You don't understand a thing until you can answer questions about it you weren't expecting."</div>
+  </section>
+
+  <!-- THE SOLUTION -->
+  <section>
+    <div class="section-eyebrow">The Solution</div>
+    <h2>The tutor is now <em>inside the book.</em></h2>
+    <p class="lead">Upload a PDF of any philosophy text. The AI reads it, builds a map of every concept it contains, and starts a conversation with you about it.</p>
+    <p class="body">You don't quiz yourself with flashcards. You don't underline and re-read. You <em>talk</em> &mdash; and the AI talks back, Socratically, asking the question that finds the exact spot where you don't actually understand.</p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="section-eyebrow">How It Works</div>
+    <h2>Four moves. <em>Then it loops until you've mastered the book.</em></h2>
+    <div class="flow">
+
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-step-body">
+          <h3>Drop in your PDF</h3>
+          <p>The AI ingests the text, identifies every distinct concept (e.g. "the eternal recurrence", "amor fati", "the death of God"), and arranges them into a concept map &mdash; a tree showing which ideas depend on which.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-step-body">
+          <h3>Begin the dialogue</h3>
+          <p>The AI doesn't lecture. It asks you a Socratic question about the first concept and listens to how you answer. Are you confident? Do you contradict the text? Are you parroting words you don't actually grasp?</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-step-body">
+          <h3>Track confidence, per concept</h3>
+          <p>Every exchange updates a <strong>confidence score</strong> for that concept &mdash; green at 85%+, yellow at 50-85%, red below. The map glows accordingly. You can see, at a glance, what you actually know vs what you only think you know.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-step-body">
+          <h3>Fractal deep-dive on the weak spots</h3>
+          <p>When a concept is red or yellow, the AI doesn't repeat the explanation louder. It <em>breaks the concept down into its prerequisites</em>, researches them, tests those next. If those are also shaky, it goes deeper. Once the leaves are mastered, it climbs back up the tree &mdash; and now the parent concept clicks.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MIND MAP -->
+  <section>
+    <div class="section-eyebrow">The Mind Map</div>
+    <h2>See what you <em>actually</em> understand.</h2>
+    <p class="body">Every concept from the book becomes a node. Lines show which depend on which. Colors show your live confidence: green = mastered, gold = shaky, red = misunderstood. The whole map updates as you talk to the AI.</p>
+
+    <div class="mindmap-frame">
+      <svg class="mindmap-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- connector lines -->
+        <g stroke="#2a3050" stroke-width="2" fill="none">
+          <line x1="450" y1="80" x2="200" y2="200"/>
+          <line x1="450" y1="80" x2="450" y2="200"/>
+          <line x1="450" y1="80" x2="700" y2="200"/>
+          <line x1="200" y1="220" x2="100" y2="340"/>
+          <line x1="200" y1="220" x2="280" y2="340"/>
+          <line x1="450" y1="220" x2="430" y2="340"/>
+          <line x1="450" y1="220" x2="560" y2="340"/>
+          <line x1="700" y1="220" x2="700" y2="340"/>
+          <line x1="700" y1="220" x2="820" y2="340"/>
+        </g>
+
+        <!-- root node -->
+        <g>
+          <circle cx="450" cy="60" r="38" fill="#1a1f33" stroke="#d4a849" stroke-width="2.5"/>
+          <text x="450" y="58" text-anchor="middle" fill="#e8e4d4" font-family="Playfair Display" font-size="13" font-weight="600">Thus Spoke</text>
+          <text x="450" y="74" text-anchor="middle" fill="#e8e4d4" font-family="Playfair Display" font-size="13" font-weight="600" font-style="italic">Zarathustra</text>
+        </g>
+
+        <!-- mid nodes (level 2) -->
+        <g>
+          <circle cx="200" cy="220" r="34" fill="#1a1f33" stroke="#4ade80" stroke-width="2.5"/>
+          <text x="200" y="217" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="11" font-weight="600">Übermensch</text>
+          <text x="200" y="232" text-anchor="middle" fill="#4ade80" font-family="JetBrains Mono" font-size="10" font-weight="700">92%</text>
+        </g>
+        <g>
+          <circle cx="450" cy="220" r="34" fill="#1a1f33" stroke="#fbbf24" stroke-width="2.5"/>
+          <text x="450" y="217" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="10" font-weight="600">Eternal</text>
+          <text x="450" y="230" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="10" font-weight="600">Recurrence</text>
+          <text x="450" y="245" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="10" font-weight="700">64%</text>
+        </g>
+        <g>
+          <circle cx="700" cy="220" r="34" fill="#1a1f33" stroke="#ef4444" stroke-width="2.5"/>
+          <text x="700" y="217" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="11" font-weight="600">Will to</text>
+          <text x="700" y="230" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="11" font-weight="600">Power</text>
+          <text x="700" y="245" text-anchor="middle" fill="#ef4444" font-family="JetBrains Mono" font-size="10" font-weight="700">31%</text>
+        </g>
+
+        <!-- leaf nodes (level 3) -->
+        <g>
+          <circle cx="100" cy="360" r="26" fill="#1a1f33" stroke="#4ade80" stroke-width="2"/>
+          <text x="100" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Master/Slave</text>
+          <text x="100" y="368" text-anchor="middle" fill="#4ade80" font-family="JetBrains Mono" font-size="9" font-weight="700">88%</text>
+        </g>
+        <g>
+          <circle cx="280" cy="360" r="26" fill="#1a1f33" stroke="#4ade80" stroke-width="2"/>
+          <text x="280" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Self-overcoming</text>
+          <text x="280" y="368" text-anchor="middle" fill="#4ade80" font-family="JetBrains Mono" font-size="9" font-weight="700">90%</text>
+        </g>
+        <g>
+          <circle cx="430" cy="360" r="26" fill="#1a1f33" stroke="#fbbf24" stroke-width="2"/>
+          <text x="430" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Amor fati</text>
+          <text x="430" y="368" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="9" font-weight="700">55%</text>
+        </g>
+        <g>
+          <circle cx="560" cy="360" r="26" fill="#1a1f33" stroke="#ef4444" stroke-width="2"/>
+          <text x="560" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Time as cycle</text>
+          <text x="560" y="368" text-anchor="middle" fill="#ef4444" font-family="JetBrains Mono" font-size="9" font-weight="700">28%</text>
+        </g>
+        <g>
+          <circle cx="700" cy="360" r="26" fill="#1a1f33" stroke="#ef4444" stroke-width="2"/>
+          <text x="700" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Schopenhauer</text>
+          <text x="700" y="368" text-anchor="middle" fill="#ef4444" font-family="JetBrains Mono" font-size="9" font-weight="700">22%</text>
+        </g>
+        <g>
+          <circle cx="820" cy="360" r="26" fill="#1a1f33" stroke="#fbbf24" stroke-width="2"/>
+          <text x="820" y="357" text-anchor="middle" fill="#e8e4d4" font-family="Inter" font-size="9" font-weight="500">Life-affirmation</text>
+          <text x="820" y="368" text-anchor="middle" fill="#fbbf24" font-family="JetBrains Mono" font-size="9" font-weight="700">61%</text>
+        </g>
+      </svg>
+
+      <div class="mindmap-legend">
+        <span><span class="dot" style="background:#4ade80"></span>Mastered (85%+)</span>
+        <span><span class="dot" style="background:#fbbf24"></span>Shaky (50–85%)</span>
+        <span><span class="dot" style="background:#ef4444"></span>Misunderstood (&lt;50%)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRACTAL DEEP DIVE -->
+  <section>
+    <div class="section-eyebrow">The Fractal Deep-Dive</div>
+    <h2>When you're shaky, the concept <em>breaks itself open.</em></h2>
+    <p class="body">Repeating an explanation louder doesn't help. The AI's move is different: it <strong>decomposes the misunderstood concept into its prerequisites</strong> and tests those first. If the prerequisites are also shaky, it goes deeper. The tree expands until every leaf is mastered. Then it walks back up the tree &mdash; and now the parent concept makes sense, because the foundations under it are solid.</p>
+
+    <div class="fractal-grid">
+
+      <div class="fractal-level">
+        <div class="fractal-level-label">↓ Level 0 · The misunderstood concept</div>
+        <div class="fractal-concept">The Eternal Recurrence</div>
+        <div class="fractal-conf"><div class="fractal-conf-fill" style="width:31%;background:#ef4444"></div></div>
+        <div class="fractal-status">31% &mdash; shaky. Time to break down.</div>
+        <div class="fractal-subs">AI surfaces its <strong>prerequisites</strong> from the text + outside research: <em>nature of time, amor fati, Schopenhauer's eternal will, Stoic cyclical cosmos.</em></div>
+      </div>
+
+      <div class="fractal-level">
+        <div class="fractal-level-label">↓ Level 1 · Prerequisite under test</div>
+        <div class="fractal-concept">Schopenhauer's "eternal will"</div>
+        <div class="fractal-conf"><div class="fractal-conf-fill" style="width:22%;background:#ef4444"></div></div>
+        <div class="fractal-status">22% &mdash; still shaky. Go deeper.</div>
+        <div class="fractal-subs">AI now drills into: <strong>what is "the will"</strong>, <strong>why "eternal"</strong>, <strong>how Nietzsche read &amp; reacted to it.</strong> Each becomes its own conversation.</div>
+      </div>
+
+      <div class="fractal-level">
+        <div class="fractal-level-label">↓ Level 2 · Foundation reached</div>
+        <div class="fractal-concept">"The will" as Schopenhauer's prime force</div>
+        <div class="fractal-conf"><div class="fractal-conf-fill" style="width:91%;background:#4ade80"></div></div>
+        <div class="fractal-status">91% &mdash; mastered. Now climb back up.</div>
+        <div class="fractal-subs">With this rock-solid, the next layer up makes sense. Then the one above that. By the time we're back at the Eternal Recurrence, <em>it's no longer a mystery.</em></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHAT MOCKUP -->
+  <section>
+    <div class="section-eyebrow">What It Looks Like</div>
+    <h2>The interface is just <em>conversation</em>, with the map watching.</h2>
+    <p class="body">Chat on the left. Concept map &amp; live confidence on the right. The AI asks. You answer. The numbers move. The map glows.</p>
+
+    <div class="chat-mockup">
+      <div class="chat-pane">
+        <div class="msg ai">
+          <div class="name">Socratic Tutor</div>
+          You said the Eternal Recurrence is "Nietzsche's idea that time repeats forever." Fair summary. But here's the harder question: <em>does Nietzsche think this is literally true, or is it a thought experiment?</em> What's the textual evidence either way?
+        </div>
+        <div class="msg user">
+          I think it's literal? Because he keeps saying it in dramatic terms.
+        </div>
+        <div class="msg ai">
+          <div class="name">Socratic Tutor</div>
+          Possible. But look at §341 of <em>The Gay Science</em>, where he frames it as a demon's offer &mdash; "would you not throw yourself down and gnash your teeth?" That's not a cosmological claim. It's a <strong>test of how you're living right now.</strong> So which is it? Both? Neither?
+        </div>
+        <div class="msg user">
+          Hmm. I'm not sure.
+        </div>
+        <div class="msg ai">
+          <div class="name">Socratic Tutor</div>
+          Good &mdash; that "I'm not sure" is the honest answer, and it's why I'm dropping your confidence on this. Let's go back: what does Nietzsche mean by <em>amor fati</em>, and how does it relate?
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-label">Overall mastery</div>
+          <div class="conf-bar"><div class="conf-bar-fill" style="width:67%"></div></div>
+          <div class="conf-pct">67%</div>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Concepts in play</div>
+          <ul class="concept-list">
+            <li><span><span class="dot" style="background:#4ade80"></span>Übermensch</span><span>92%</span></li>
+            <li><span><span class="dot" style="background:#fbbf24"></span>Eternal Recurrence</span><span>64%</span></li>
+            <li><span><span class="dot" style="background:#fbbf24"></span>Amor fati</span><span>55%</span></li>
+            <li><span><span class="dot" style="background:#ef4444"></span>Will to Power</span><span>31%</span></li>
+            <li><span><span class="dot" style="background:#ef4444"></span>Schopenhauer roots</span><span>22%</span></li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <div class="sidebar-label">Next deep-dive</div>
+          <div style="color:#e8e4d4;font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;">Schopenhauer's "eternal will" — prerequisite for the Recurrence.</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- UNDER THE HOOD -->
+  <section>
+    <div class="section-eyebrow">Under the Hood</div>
+    <h2>The tech stack &mdash; <em>simple, mostly free.</em></h2>
+    <div class="tech-grid">
+      <div class="tech-tile">
+        <strong>Gemini 2.5 Pro</strong>
+        <span>The dialogue brain. Long context window lets it hold the whole book + your conversation. Free tier on Google AI Studio.</span>
+      </div>
+      <div class="tech-tile">
+        <strong>PDF parsing</strong>
+        <span>Cursor wires in <code>pdf-parse</code> or Gemini's native PDF understanding to extract text + figure structure.</span>
+      </div>
+      <div class="tech-tile">
+        <strong>Concept extraction</strong>
+        <span>One Gemini call: "List every distinct philosophical concept in this text, with prerequisites." Gives us the map nodes &amp; edges.</span>
+      </div>
+      <div class="tech-tile">
+        <strong>Confidence model</strong>
+        <span>After each user response, Gemini scores 0–100 on whether the answer was confident, accurate, original. Rolling average per concept.</span>
+      </div>
+      <div class="tech-tile">
+        <strong>Live mind map</strong>
+        <span>D3.js or React Flow renders the concept tree. Node colors bind to the confidence scores in real time.</span>
+      </div>
+      <div class="tech-tile">
+        <strong>Storage</strong>
+        <span>Supabase saves your conversations + confidence history. Pick the book back up next week, your map is where you left it.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY PHILOSOPHY -->
+  <section>
+    <div class="section-eyebrow">Why Philosophy First</div>
+    <h2>Because dialogue is its <em>native medium.</em></h2>
+    <p class="body">Math and the hard sciences are conversation-resistant. You can't really Socratically question someone about <em>L'Hôpital's rule</em> &mdash; either they can apply it or they can't. The answer space is too narrow, the prerequisites too rigid.</p>
+    <p class="body">Philosophy is the opposite. The text <strong>is</strong> the argument. Understanding means being able to reconstruct the argument, push back on it, see where it depends on prior assumptions, notice where Nietzsche contradicts himself between sections. That's exactly what a language model can do, well.</p>
+    <p class="body">Once we prove the loop &mdash; <em>map → dialogue → confidence → fractal deep-dive → mastery</em> &mdash; on philosophy, the same engine lifts to history, theology, literature, law, then eventually to softer regions of the sciences (biology > physics > math, roughly).</p>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <h2 style="color:var(--gold);text-align:center;">Want to build this with us?</h2>
+    <p>Day 3 is when groups of you pick one ambitious project and ship it together. <strong>This is one option.</strong> Or bring your own. Either way: the recipe from Day 1, the team energy from Day 2 &mdash; aimed at something real.</p>
+  </div>
+
+  <footer>
+    Day 3 · Project Demo &middot; Socratic PDF Learner<br>
+    ← <a href="day2.html">Day 2 hackathon</a>  &middot;  <a href="day1.html">Day 1 recipe</a>  &middot;  <a href="index.html">Day 0 overview</a>
+  </footer>
+</div>
+</body>
+</html>

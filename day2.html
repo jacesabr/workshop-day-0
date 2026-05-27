@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AI Workshop · Day 2 · Hackathon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fffbeb;
+      color: #1c1207;
+      line-height: 1.55;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #fde68a 0%, #fbbf24 50%, #f59e0b 100%);
+      border-radius: 1.5rem;
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 16px 48px rgba(245, 158, 11, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "🏆";
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.08;
+      top: -3rem;
+      right: -2rem;
+      transform: rotate(-15deg);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: #78350f;
+      color: #fde68a;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 0.3rem 0.9rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 900;
+      color: #78350f;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      max-width: 18ch;
+      margin: 0 auto 1rem;
+    }
+    .lede {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: #78350f;
+      max-width: 50ch;
+      margin: 0 auto;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* SECTION HEADINGS */
+    h2 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #78350f;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 18px rgba(120, 53, 15, 0.06);
+      border: 1px solid #fde68a;
+    }
+
+    /* RULES GRID */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .rule-tile {
+      background: #fffbeb;
+      border: 1.5px solid #fde68a;
+      border-radius: 1rem;
+      padding: 1.1rem 1.2rem;
+      transition: all 0.15s ease;
+    }
+    .rule-tile:hover {
+      border-color: #f59e0b;
+      transform: translateY(-2px);
+    }
+    .rule-tile strong {
+      display: block;
+      font-size: 1.05rem;
+      color: #78350f;
+      margin-bottom: 0.3rem;
+    }
+    .rule-tile span {
+      font-size: 0.9rem;
+      color: #92400e;
+      line-height: 1.45;
+    }
+
+    /* RECIPE FLOW */
+    .recipe-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .recipe-step {
+      flex: 1 1 160px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 1.5px solid #fbbf24;
+      border-radius: 100px;
+      padding: 0.7rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #78350f;
+      text-align: center;
+    }
+    .recipe-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #f59e0b;
+      color: white;
+      border-radius: 50%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+    .recipe-arrow {
+      color: #f59e0b;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    @media (max-width: 700px) {
+      .recipe-arrow { transform: rotate(90deg); width: 100%; text-align: center; }
+    }
+
+    .day1-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: #b45309;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1.5px solid #fbbf24;
+    }
+    .day1-link:hover { color: #78350f; }
+
+    /* IDEAS */
+    .ideas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+    .idea-pill {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 0.75rem 0.95rem;
+      font-size: 0.92rem;
+      color: #78350f;
+      transition: all 0.15s ease;
+    }
+    .idea-pill:hover {
+      background: #fef3c7;
+      border-color: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    /* JUDGING */
+    .judging-list {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .judging-list li {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0.6rem;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.95rem;
+      color: #78350f;
+    }
+    .judging-list li strong { color: #78350f; }
+
+    /* SCHEDULE */
+    .schedule { display: grid; gap: 0; margin-top: 0.5rem; }
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid #fef3c7;
+      align-items: baseline;
+    }
+    .schedule-row:last-child { border-bottom: none; }
+    .schedule-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #b45309;
+      font-size: 0.95rem;
+    }
+    .schedule-content { font-size: 0.95rem; color: #1c1207; }
+    .schedule-row.major .schedule-content { font-weight: 700; }
+    .schedule-row.break .schedule-time,
+    .schedule-row.break .schedule-content { color: #ca8a04; font-style: italic; }
+
+    /* FINAL HYPE */
+    .hype-card {
+      background: linear-gradient(135deg, #1c1207 0%, #422006 100%);
+      color: #fde68a;
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 2rem;
+      box-shadow: 0 16px 40px rgba(28, 18, 7, 0.3);
+    }
+    .hype-card h2 {
+      color: #fbbf24;
+      font-size: 2rem;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
+    .hype-card p {
+      font-size: 1.1rem;
+      max-width: 50ch;
+      margin: 0 auto;
+      color: #fef3c7;
+    }
+    .hype-card strong { color: #fbbf24; }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #92400e;
+      font-size: 0.85rem;
+    }
+    footer a { color: #b45309; text-decoration: none; border-bottom: 1px solid #fde68a; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-tag">🏆 DAY 2 · HACKATHON</span>
+    <h1>Today you ship something real.</h1>
+    <p class="lede">Teams of 3–4. Pick one idea. Build it end-to-end with yesterday's recipe. Demo at the finish line.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="card">
+    <h2>🎯 How it works</h2>
+    <div class="rules-grid">
+      <div class="rule-tile">
+        <strong>👥 Teams</strong>
+        <span>Groups of 3–4. Mix skills — one talks to AI, one designs, one tests.</span>
+      </div>
+      <div class="rule-tile">
+        <strong>⏱️ Build time</strong>
+        <span>4 hours of building. 30 minutes for the demo round.</span>
+      </div>
+      <div class="rule-tile">
+        <strong>🎯 The goal</strong>
+        <span>One app, end-to-end, live on the internet by the time we demo.</span>
+      </div>
+      <div class="rule-tile">
+        <strong>🏆 The demo</strong>
+        <span>5 min on stage. Show the URL, show it working, share your story.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE RECIPE -->
+  <div class="card">
+    <h2>🍳 The recipe (you already know this)</h2>
+    <p style="color:#78350f;">Yesterday's 5 steps, same order. Just execute — fast.</p>
+    <div class="recipe-flow">
+      <div class="recipe-step"><span class="recipe-num">1</span>Draw it (Stitch)</div>
+      <div class="recipe-arrow">→</div>
+      <div class="recipe-step"><span class="recipe-num">2</span>Describe what users see &amp; click</div>
+      <div class="recipe-arrow">→</div>
+      <div class="recipe-step"><span class="recipe-num">3</span>Claude writes the plan</div>
+      <div class="recipe-arrow">→</div>
+      <div class="recipe-step"><span class="recipe-num">4</span>Cursor builds it</div>
+      <div class="recipe-arrow">→</div>
+      <div class="recipe-step"><span class="recipe-num">5</span>Railway puts it online</div>
+    </div>
+    <a class="day1-link" href="day1.html">← Open the Day 1 recipe in a new tab to follow along</a>
+  </div>
+
+  <!-- IDEA STARTERS -->
+  <div class="card">
+    <h2>💡 If your team is stuck (idea starters)</h2>
+    <p style="color:#78350f;">Pick one in 10 minutes. Don't debate for an hour — you can always pivot at hour 1.</p>
+    <div class="ideas-grid">
+      <div class="idea-pill">📚 Study buddy that quizzes you on your own notes</div>
+      <div class="idea-pill">🍳 What's in my fridge → recipe ideas</div>
+      <div class="idea-pill">🧘 AI mood check-in journal</div>
+      <div class="idea-pill">🏋️ Workout planner from your fitness goal</div>
+      <div class="idea-pill">🌍 Translate &amp; explain a foreign menu photo</div>
+      <div class="idea-pill">📰 News explainer for a 12-year-old</div>
+      <div class="idea-pill">🎵 Mood → playlist generator</div>
+      <div class="idea-pill">📝 College essay feedback bot</div>
+      <div class="idea-pill">🎨 Story → kids' picture book</div>
+      <div class="idea-pill">🧠 Flashcard maker from any PDF</div>
+      <div class="idea-pill">🛍️ Compare-two-products at the supermarket</div>
+      <div class="idea-pill">📅 Plan-my-week from a goal sentence</div>
+    </div>
+  </div>
+
+  <!-- JUDGING -->
+  <div class="card">
+    <h2>🏅 What we're looking for</h2>
+    <ul class="judging-list">
+      <li><strong>It works.</strong> A live URL anyone can open and use. If it's not deployed, it didn't happen.</li>
+      <li><strong>It solves something real.</strong> One problem your team actually has, or someone you know has.</li>
+      <li><strong>It uses AI well.</strong> The Gemini key is in your <code>.env</code> — wire it in so the app <em>thinks</em>, not just stores.</li>
+      <li><strong>You can demo in 5 minutes.</strong> Story, problem, walkthrough, URL. No slides needed — the app is the slides.</li>
+    </ul>
+  </div>
+
+  <!-- TODAY'S SCHEDULE -->
+  <div class="card">
+    <h2>⏱️ Today's clock</h2>
+    <div class="schedule">
+      <div class="schedule-row major"><div class="schedule-time">0:00</div><div class="schedule-content">🎤 Intro, team formation, idea pitches (15 min)</div></div>
+      <div class="schedule-row"><div class="schedule-time">0:15</div><div class="schedule-content">📝 Steps 1–2: Draw + describe your app</div></div>
+      <div class="schedule-row"><div class="schedule-time">0:45</div><div class="schedule-content">📋 Step 3: Claude writes the plan, team aligns</div></div>
+      <div class="schedule-row"><div class="schedule-time">1:00</div><div class="schedule-content">⚡ Step 4: Cursor builds — core screens + login</div></div>
+      <div class="schedule-row break"><div class="schedule-time">2:00</div><div class="schedule-content">☕ Break (15 min) — stretch, hydrate</div></div>
+      <div class="schedule-row"><div class="schedule-time">2:15</div><div class="schedule-content">⚡ Cursor builds — wire in the AI features (Gemini calls)</div></div>
+      <div class="schedule-row"><div class="schedule-time">3:15</div><div class="schedule-content">🛠️ Test, fix, polish</div></div>
+      <div class="schedule-row break"><div class="schedule-time">3:45</div><div class="schedule-content">☕ Break (15 min) — eat, regroup</div></div>
+      <div class="schedule-row"><div class="schedule-time">4:00</div><div class="schedule-content">🚀 Deploy to Railway, share the URL with the room</div></div>
+      <div class="schedule-row major"><div class="schedule-time">4:15</div><div class="schedule-content">🎤 Demo round — 5 min per team</div></div>
+      <div class="schedule-row major"><div class="schedule-time">4:45</div><div class="schedule-content">🏆 Awards + group photo</div></div>
+    </div>
+  </div>
+
+  <!-- PEP TALK -->
+  <div class="hype-card">
+    <h2>Done &gt; perfect.</h2>
+    <p>Don't over-design. Don't refactor. Pick an idea in the first 15 minutes and <strong>start building</strong>. The team that ships in 4 hours beats the team still "planning" at hour 3. <em>Anyone can build anything now.</em> Prove it today.</p>
+  </div>
+
+  <footer>
+    🏆 AI Workshop Day 2 · Hackathon<br>
+    ← <a href="day1.html">Day 1 recipe</a>  ·  <a href="day3.html">Day 3 project →</a>
+  </footer>
+</div>
+</body>
+</html>
